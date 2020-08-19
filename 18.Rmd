@@ -1,0 +1,217 @@
+# Zweifaktorielle Varianzanalyse
+
+## Von der einfaktoriellen zur zweifaktoriellen Varianzanalyse
+
+Im letzten Kapitel haben wir uns mit der einfaktoriellen ANOVA beschäftigt, bei welchem wir den Effekt einer einzigen kategorialen Variable auf eine metrische abhängige Variable uns angeschaut hat. Es ist jedoch möglich, den Effekt von mehreren kategorialen Variablen auf eine metrische abhängige Variable gleichzeitig zu untersuchen. Nicht nur das, wir können uns nämlich auch Interaktionen zwischen diesen kategorialen UVs anschauen. Im Folgenden werden wir uns mit der zweifaktoriellen Varianzanalyse beschäftigen, d.h. das Modell besteht aus zwei kategorialen unabhängigen Variablen sowie einer weiteren Variable, welches die Interaktion zwischen den beiden UVs quantifiziert. Bevor wir uns die Modellgleichung der zweifaktoriellen ANOVA genauer anschauen, müssen wir zuvor ein Paar Begriffe definieren. Bei der ANOVA spricht man in der Regel nicht von unabhängigen Variablen oder von Prädiktoren, sondern von __Faktoren__ (deshalb der Name zweifaktoriell). Im Folgenden wird mit dem Begriff Faktor stets die kategoriale unabhängige Variable gemeint. Die einzelnen Gruppen innerhalb eines Faktors hingegen nennt man die __Stufen eines Faktors__. Wenn wir beispielsweise den Effekt eines Medikaments überprüfen möchten, indem wir drei Gruppen unterschiedliche Dosen des Medikaments (100mg, 200mg, 300mg) abreichen, ist die Gruppierung selbst der Faktor ,,Medikament'', während die konkrete Gruppe des Faktors die Stude ist. Eine Stufe des Faktors wäre folglich eine 100mg Dosis. Wenn die Besetzungszahlen in allen Gruppen des Designs identisch sind, spricht man von einem ausbalancierten Design. Ein ausbalanciertes Design ist stets wünschenswert, da es bestimmte Berechnungen erleichtert. Nun kommen wir zur Modellgleichung der zweifaktoriellen ANOVA, die folgendermaßen aussieht:
+
+$y_{ijk}=\mu_{jk}+\epsilon_{ijk}=\mu+\alpha_{j}+\beta_{k}+\gamma_{jk}+\epsilon_{ijk}$
+
+$y_{ijk}$ steht hierbei für den Messwert der i-ten Person in der Zelle j,k des zweifaktoriellen Designs. Dieser Messwert setzt sich zusammen aus dem Mitelwert in der Zelle $\mu_{jk}$ und dem Messfehler für die i-te Person in dieser entsprechenden Zelle $\epsilon_{ijk}$. Man kann jedoch den Zellenmittelwert $\mu_{jk}$ in mehrere Komponenten unterteilen, die additiv zusammengesetzt sind, nämlich den Gesamtmittelwert $\mu$, dem Treatmenteffektparameter der entsprechenden Stufe des ersten Faktors $\alpha_{j}$, dem Treatmenteffektparameter der entsprechenden Stufe des zweiten Faktors $\beta_{k}$ und zu guter letzt dem Interaktionseffekt zwischen den beiden Faktorstufen in der jeweiligen Zelle $\gamma_{jk}$. Hierbei repräsentiert der Interaktionseffekt die Abweichung des Zellenmittelwerts von demjenigen Mittelwert, welchen man über die Addition der Haupteffekte erhalten würde. Was dies genau bedeutet werden wir noch besprechen. Man kann hier noch anmerken, dass $\epsilon$ dieses Mal für die Abweichung des Messwerts vom __Zellenmittelwert__ steht $\epsilon_{ijk}=y_{ijk}-\mu_{jk}$. Ähnlich wie beider einfaktoriellen ANOVA gelten folgende Nebenbedingungen:
+
+1.) Die Summe der Treatmenteffektparameter des ersten Faktors entspricht Null: $\alpha_{1}+\alpha_{2}+...+\alpha_{j}=0$
+
+2.) Die Summe der Treatmenteffektparameter des zweiten Faktors entspricht Null: $\beta_{1}+\beta_{2}+...+\beta_{k}=0$
+
+3.) Über alle Faktorstufen hinweg ist die Summe der Interaktionseffekte gleich Null: $\sum_{K=1}^{K}\gamma_{jk}$ und $\sum_{J=1}^{J}\gamma_{jk}$ für alle Faktorstufen des ersten und zweiten Faktors.
+
+Die Erklärung der Modellgleichung mag sich vielleicht beim ersten Mal ein bisschen kompliziert und schwer verständlich anhören. Im Folgenden werden wir jedoch die Modellgleichung an einem Beispiel erklären, welches hoffentlich jegliche Verständnisprobleme löst.
+
+## Beispiel: Zweifaktorielle ANOVA
+
+### Einführung
+
+Stellen wir uns vor, wir leben in der Welt von [Avatar- Der Herr der Elemente](https://de.wikipedia.org/wiki/Avatar_%E2%80%93_Der_Herr_der_Elemente). In dieser Welt ist die Erde in vier Nationen unterteilt. Dem Erdreich, dem Wasserstamm, den Luftnomaden sowie die Feuernation. Das besondere in der Welt von Avatar ist die Tatsache, dass einzelne Menschen über besondere Kräfte verfügen, welche ihnen die Möglichkeit gibt, eines der vier Element zu kontrollieren: Wasser, Erde, Feuer oder Wind. Meist leben diese Individuen auch in dem Reich ihres respektiven Bändigungselements. Als ein interessierter Forscher interessierst du dich dafür, ob die Lebenszufriedenheit sich in diesen vier Nationen voneinander unterscheiden. Da die Feuernation zum jetzigen Zeitpunkt einen Krieg gegen die Welt angezettelt hat, beschränkst du deine Untersuchung auf die restlichen drei Nationen (Faktor A: Erdnation, Wasserstamm, Luftnomaden). Zusätzlich interessiert dich auch, ob die Fähigkeit des Elementenbändigen eine Auswirkung auf die Lebenszufriedenheit hat (Faktor B: Kann bändigen, kann nicht bändigen). Du hast an einer Gesamtstichprobe von $n=66$ Personen folgelden Tabelle erstell (Disclaimer: Es handelt sich hierbei um ein balanciertes Design, d.h. in jeder Zelle wird der Mittelwert von $11$ Personen dargestellt):
+
+|                |                          |  Faktor A: Nationalität             |                |              |  
+|----------------|--------------------------|----------------------------|------------------|----------------------|-----------------------
+|                |                          |  Luftnomaden               | Erdkönigreich    | Wasserstamm           |
+| Faktor B: Fähigkeit | Kann bändigen      |   $\mu_{11}=8$                         | $\mu_{12}=7$                | $\mu_{13}=3$                    | $\mu+\beta_{1}$
+|                 | kann nicht bändigen     |  $\mu_{21}=6$                         | $\mu_{22}=1$                | $\mu_{23}=5$                    | $\mu+\beta_{1}$
+|                  |                        | $\mu+\alpha_{1}$           | $\mu+\alpha_{2}$ | $\mu+\alpha_{3}$     | $\mu=5$
+
+Der Gesamtstichprobenmittelwert liegt bei $\mu=5$. Bei einem ausbalancierten Design ist die Berechnung des Gesamtmittelwerts über die Zellenmittelwerte relativ unkompliziert und zwar kann man die Zellenmittelwerte alle aufaddieren und durch ihre Anzahl teilen. Wenn das Studiendesign jedoch nicht ausbalanciert ist, muss man das gewichtete arithmetische Mittel der Zellenmittelwerte über folgende Formel berechnen: $GAM_{X}=\frac{\sum_{r=1}^{R}n_{r}\cdot \overline{x_{r}}}{\sum_{r=1}^{R}n_{r}}$. Obwohl unser Design ausbalanciert ist, werden wir das gewichtete arithmetische Mittel beispielhaft hierfür bestimmen:
+
+$GAM_{X}=\frac{ 8\cdot 11+ 7\cdot 11+ 3\cdot 11+ 6\cdot 11+ 1\cdot 11+ 5\cdot 11}{66}=\frac{330}{66}=5$
+
+### Bestimmung der Treatmenteffektparameter
+
+An den Rändern der Tabelle sind die Randmittelwerte der jeweiligen Zeilen und Spalten dargestellt $\mu+\alpha_{j}$ oder $\mu+\beta_{k}$. Es ist folglich möglich, über die Berechnung der Randmittelwerte die Treatmenteffektparameter der beiden Faktoren zu bestimmen. Die Logik hierbei ist folgende:
+
+1.) Für jede Zeile bzw. Spalte werden die Randmittelwerte berechnet welche die in den Zellen angegebenen Elementen der Modellgleichung entsprechen. Möglicherweise wundert ihr euch, dass in den Randmittelwerten nie die Interaktionseffekte erwähnt werden. Der Grund hierfür ist die Nebenbedingung der zweifaktoriellen ANOVA, welche besagt, dass die Summe der Interaktionseffekte über alle Stufen der beiden Faktoren Null ergibt. Da wir die Randmittelwerte der entsprechenden Faktorenstufen berechnen, rechnen sich die Interaktionseffekte in den Zellen selbst aus, da ihre Summe Null ergibt.
+
+2.) Nachdem für jede Zeile und Spalte die Randmittelwerte bestimmt wurden, kann man den Gesamtmittelwert davon abziehen. Dadurch erhält man den Haupteffektparameter der entsprechenden Faktorstufe. Im Folgenden wird dies für jede Faktostufe durchgeführt. Dabei werden die Randmittelwerte mit Hilfe der Formel für das gewichtete arithmetische Mittel bestimmt, obwohl dies nicht nötig ist, da unser Design ausbalanciert ist:
+
+Faktor A: Nationalität
+
+I.) Als erstes berechnen wir das gewichtete arithmetische Randmittel der Luftnomaden: $GAM_{A_{1}}=\mu+\alpha_{1}=\frac{8\cdot 11+6\cdot 11}{22}=7$ 
+
+Nun berechnen wir die Differenz zwischen dem gewichteten arithmetischen Randmittel und dem Gesamtmittelwert: $\alpha_{1}=GAM_{A_{1}}-\mu=7-5=2$
+
+II.) Als nächstes berechnen wir das gewichtete arithmetische Randmittel des Erdkönigreichs: $GAM_{A_{2}}=\mu+\alpha_{2}=\frac{7\cdot 11+1\cdot 11}{22}=4$ 
+
+Nun berechnen wir die Differenz zwischen dem gewichteten arithmetischen Randmittel und dem Gesamtmittelwert: $\alpha_{2}=GAM_{A_{2}}-\mu=4-5=-1$
+
+III.) Zuletzt berechnen wir das gewichtete arithmetische Randmittel des Wasserstamms: $GAM_{A_{3}}=\mu+\alpha_{3}=\frac{3\cdot 11+5\cdot 11}{22}=4$ 
+
+Nun berechnen wir die Differenz zwischen dem gewichteten arithmetischen Randmittel und dem Gesamtmittelwert: $\alpha_{3}=GAM_{A_{3}}-\mu=4-5=-1$
+
+Nun haben wir alle Effektparameter des Faktors A. Im nächsten Schritt werden wir die beiden Treatmenteffektparameter des zweiten Faktors nach dem gleichen Schema bestimmen:
+
+Faktor B: Fähigkeiten
+
+I.) Als erstes berechnen wir das gewichtete arithmetische Randmittel derjenigen, die ein Element bändigen können: $GAM_{B_{1}}=\mu+\beta_{1}=\frac{8\cdot 11+7\cdot 11+3\cdot 11}{33}=6$ 
+
+Nun berechnen wir die Differenz zwischen dem gewichteten arithmetischen Randmittel und dem Gesamtmittelwert: $\beta_{1}=GAM_{B_{1}}-\mu=6-5=1$
+
+
+II.) Zuletzt berechnen wir das gewichtete arithmetische Randmittel derjenigen, die nicht bändigen können: $GAM_{B_{2}}=\mu+\beta_{2}=\frac{6\cdot 11+1\cdot 11+5\cdot 11}{22}=4$ 
+
+Nun berechnen wir die Differenz zwischen dem gewichteten arithmetischen Randmittel und dem Gesamtmittelwert: $\beta_{2}=GAM_{B_{2}}-\mu=4-5=-1$
+
+Nun haben wir die Treatmenteffektparameter aller Faktorstufen berechnet. Jedoch fehlen uns noch die Interaktionseffekte zwischen den beiden Faktoren, deren Berechnung etwas umständlicher ist als die Bestimmung der Haupteffektparameter.
+
+### Bestimmung der Interaktionsparameter
+
+Im Gegensatz zu den Haupteffekt-Parametern ist die Berechnung der Interaktionseffekte für jede Zelle etwas komplizierter und minimal umständlicher. Um es simpel zu fassen, gibt es in einer Zelle einen Interkationeffekt, wenn der tatsächliche Mittelwert in der Zelle von demjenigen Mittelwert abweicht, welchen man über die Modellgleichung der ANOVA, wenn der Interaktionseffekt entfernt wird, erhält, sprich $\mu_{jk}=\mu+\alpha_{j}+\beta_{k}$. Man kann auch die Modellgleichung der ANOVA nach dem Interaktionsparameter umformen, um diese berechnen zu können:
+
+$\mu_{jk}=\mu+\alpha_{j}+\beta_{k}+\gamma_{jk}$ $\to$ $\gamma_{jk}=\mu_{jk}-(\mu+\alpha_{j}+\beta_{k})$
+
+Wenden wir diese Formel beispielhaft für den Zellenmittelwert $\mu{12}$ an: Der tatsächliche Mittelwert liegt bei $\mu_{12}=7$, der Treatmenteffekt des ersten Faktors A liegt bei $\alpha_{2}=-1$, während der Effekt des zweiten Faktors B bei $\beta_{1}=1$ liegt. Mit diesen Informationen können wir nun den Interaktionseffekt der Zelle mit der obigen Formel bestimmen:
+
+$\gamma_{12}=\mu_{12}-(\mu+\alpha_{2}+\beta_{1})=7-(5-1+1)=2$
+
+In der Zelle liegt der Interaktionseffekt also bei $\gamma_{12}=2$. Wenn wir die gleiche Vorgehensweise für die restlichen Zellen anwenden, erhalten wir folgende Interaktionsparameter:
+
+$\gamma_{11}=\mu_{11}-(\mu+\alpha_{1}+\beta_{1})=8-(5+2+1)=0$
+
+$\gamma_{13}=\mu_{13}-(\mu+\alpha_{3}+\beta_{1})=3-(5-1+1)=-2$
+
+$\gamma_{21}=\mu_{21}-(\mu+\alpha_{1}+\beta_{2})=6-(5+2-1)=0$
+
+$\gamma_{22}=\mu_{22}-(\mu+\alpha_{2}+\beta_{2})=1-(5-1-1)=-2$
+
+$\gamma_{23}=\mu_{23}-(\mu+\alpha_{3}+\beta_{2})=5-(5-1-1)=2$
+
+Nun haben wir die komplette Modellgleichung der ANOVA aufgestellt, mit Ausnahme der Residuenwerte, da diese individuenspezifisch sind. Im Folgenden sind die Modellwerte für jede Zelle abgebildet:
+
+Zellenposition |$\mu_{jk}=$    |  $\mu$    | $+\alpha_{j}$   | $+\beta_{k}$  |  $+\gamma_{jk}$   
+---------------|---------------|-----------|-----------------|---------------|-----------------
+11             | $8=$           | $5$       | $+2$            | $+1$          | $+0$
+12             | $7=$           | $5$       | $-1$            | $+1$          | $+2$
+13             | $3=$           | $5$       | $-1$            | $+1$          | $-2$
+21             | $6=$           | $5$       | $+2$            | $-1$          | $+0$
+22             | $1=$           | $5$       | $-1$            | $-1$          | $-2$
+23             | $5=$           | $5$       | $-1$            | $-1$          | $+2$
+
+### Interpretation der Haupteffektparameter
+
+Allgemein kann man sagen, dass die Haupteffektparameter die Mittelwertsunterschiede auf den jeweiligen Faktorstufen modellieren. Dies bedeutet, dass der Effektparameter zeigt, inwiefern sich der Gesamtmittelwert durch die Zugehörigkeit zu einer Faktorstufe verändert. Bei den einzelen Faktoren interpretiert man ihre Haupteffektparameter wie bei der einfaktoriellen ANOVA, d.h. bei der Interpretation des Haupteffekts von Faktor A wird der Einfluss des zweiten oder weiterer Faktoren im Modell berücksichtigt. Beispielsweise repräsentiert $\alpha_{j}$ den Treatmenteffekt der Faktorstufen des Faktors A, die man auch bei der einfaktoriellen ANOVA alleine erhalten würde (bei einem balancierten Design). Folglich modelliert $\alpha_{j}$ die Mittelwertsunterschiede auf den Faktorstufen das Faktors A, wobei innerhalb aller Stufen von j die Personen im Hinblick auf die Faktorstufen $\beta_{k}$ gepoolt werden. Gleiches gilt bei der Interpretation des Faktod B: $\beta_{k}$ modelliert die Mittelwertsunterschiede auf allen Stufen des Faktors B, wohingegen bei jeder Stufe k die Personen des Faktors A gepoolt werden. Dies bedeutet, dass bei der Interpretation des Haupteffekts B die Faktorstufen des ersten Faktors A unberücksichtigt bleiben.
+
+Diese Interpretation der Haupeffekte setzt voraus, dass es zwischen den beiden Haupteffekten keine Interaktionen gibt bzw. dass die Interaktionsparameter über alle Zellen hinweg Null ergeben. Wenn es jedoch Interkationen gibt, ist die Interpretierbarkeit der Haupteffekte deutlich eingeschränkt und komplizierter.
+
+### Interpretation der Interaktionsparameter
+
+Wenn keine Interaktionen zwischen den beiden Faktoren bestehen, bedeutet dies, dass sich der Zellenmittelwert additiv zusammensetzt aus den Haupteffekten der beiden Faktoren $\mu_{jk}=\alpha_{j}+\beta_{k}$. In diesem Fall kann man Mittelwertsveränderungen folgendermaßen erklären: Bei einem Wechsel der Stufe von Faktor A (z.B. Wechsel von Erdreich zu Luftnomaden) ist die mittlere Veränderung in der abhängigen Variablen (Lebenszufriedenheit) unabhängig von allen Faktorstufen des Faktors B (Die Fähigkeit zu bädngigen): Die mittlere Veränderung in der Lebenszufriedenheit bei einem Wechsel der Nationalität bleibt gleich, unabhängig davon, ob die Person bändigen kann oder nicht. In einem Mittelwertsplot kann man die Abwesenheit von Interaktionen daran erkennen, dass die Plots parallel verlaufen.
+
+Wenn Interaktionen zwischen den beiden Faktoren vorliegen, bedeutet dies, dass sich der Zellenmittelwert nicht in allen Fällen nur additiv aus den Haupteffekten zusammensetzt, sondern zusätzlich aus der Interkation zwischen den beiden Faktoren. Die Interpretation der Mittelwertsveränderung sieht dann folgendermaßen aus. Bei einem Wechsel der Stufe von Faktor A ist die mittlere Veränderung in der abhängigen Variablen unterschiedlich in Abhängigkeit von den Stufen des Faktors B: Die mittlere Veränderung in der Lebenszufriedenheit bei einem Wechsel der Nationalität ist unterschiedlich abhängig davon, ob die Person bändigen kann oder nicht. In einem Mittelwertsplot kann man die Anwesenheit von Interaktionen daran erkennen, dass die Plots nicht parallel verlaufen.
+
+## Signifikanztestung
+
+### Hypothesen
+
+Man kann nun sowohl die Haupteffekte der beiden Faktoren sowie die Interaktion zwischen den Faktoren auf Signifikant überprüfen. Folglich gibt es auch mehrere Nullhypothesen die folgendermaßen lauten:
+
+1.) Nullhypothese des Haupteffekts A: $H_{0A}: \alpha_{1}=\alpha_{2}=...=\alpha_{j}=0$ Die Nullhypothese sagt aus, dass alle Stufen des Faktors A keine mittlere Auswirkungen auf die abhängige Variable haben. Für unser Beispiel sagt die Nullhypothese aus, dass die Nationalität keinen Einfluss auf die Lebenszufriedenheit hat.
+
+2.) Nullhypothese des Haupteffekts B: $H_{0B}: \beta_{1}=\beta_{2}=...=\beta_{k}=0$ Die Nullhypothese sagt aus, dass alle Stufen des Faktors B keine mittleren Auswirkungen auf die abhängige Variable haben. Für unser Beispiel sagt die Nullhypothese aus, dass die Fähigkeit, ein Element zu bändigen, keinen Einfluss auf die Lebenszufriedenheit hat.
+
+3.) Nullhypothese des Interaktionseffekts AxB: $H_{0Axb}: \gamma_{jk}=0$ fpr alle j,k 
+
+Die Nullhypothese sagt aus, dass es keine Interaktionen zwischen den beiden Faktoren gibt. Für unser Beispiel würde dies bedeuten, dass mittlere Veränderungen in der Lebenszufriedenheit aufgrund einer Stufenänderung in einem Faktor komplett unabhängig von der Gruppenzugehörigkeit des anderen Faktors ist.
+
+### Quadratsummen
+
+Analog zur einfaktoriellen Varianzanalyse berechnet man die F-Prüfgrößen mit Hilfe von Quadratsummen, wobei bei der zweifaktoriellen Varianzanalyse Quadratsummen für die beiden Faktoren sowie für ihre Interaktion existieren:
+
+1.) Quadratsumme des Haupteffekts von A (Repräsentiert die quadrierten Abweichungen der Gruppenmittelwerte der Faktorstufen A vom Gesamtmittelwert, gewichtet an der einzelnen Zellenbesetzung): $QS_{A}=n_{Zelle}\cdot K\cdot \sum_{j=1}^{J}(\overline{y_{j\cdot}}-\overline{\overline{y}})^2$
+
+2.) Quadratsumme des Haupteffekts von B (Repräsentiert die quadrierten Abweichungen der Gruppenmittelwerte der Faktorstufen B vom Gesamtmittelwert, gewichtet an der einzelnen Zellenbesetzung): $QS_{B}=n_{Zelle} \cdot J\cdot \sum_{k=1}^{K}(\overline{y_{\cdot k}}-\overline{\overline{y}})^2$
+
+3.) Quadratsumme des Interaktionseffekts zwischen den beiden Faktoren: $QS_{AxB}=n_{Zelle}\cdot \sum_{k=1}^{K}\sum_{j=1}^{J} (\overline{y}_{jk}-\overline{y}_{j\cdot}-\overline{y}_{\cdot k}+\overline{\overline{y}})^2$
+
+4.) Quadratsumme innerhalb der Zellen bei einem balancierten Design: $QS_{inn}=\sum_{j=1}^{J}\sum_{k=1}^{k}\sum_{m=1}^{n} (y_{ijk}-\overline{y}_{jk})^2$
+
+Im Folgenden werden alle Quadratsummen außer der Quadratsumme innerhhalb der Gruppen beispielhaft berechnet. Wir gehen einfach davon aus, dass $QS_{inn}=1200$ gilt.
+
+
+I.) Berechnung der Quadratsumme des Haupteffekts A: $QS_{A}=n_{Zelle}\cdot K\cdot \sum_{j=1}^{J}(\overline{y_{j\cdot}}-\overline{\overline{y}})^2= 11\cdot 2 \cdot [(7-5)^2+(4-5)^2+(4-5)^2]=22\cdot 6=132$
+
+II.) Berechnung der Quadratsumme des Haupteffekts B: $QS_{B}=n_{Zelle} \cdot J\cdot \sum_{k=1}^{K}(\overline{y_{\cdot k}}-\overline{\overline{y}})^2= 11\cdot 3 \cdot [(6-5)^2+(4-5)^2]=33\cdot 2=66$
+
+III.) Berechnung der Quadratsumme des Interkationseffekts: $QS_{AxB}=n_{Zelle}\cdot \sum_{k=1}^{K}\sum_{j=1}^{J} (\overline{y}_{jk}-\overline{y}_{j\cdot}-\overline{y}_{\cdot k}+\overline{\overline{y}})^2=$
+
+$11\cdot [(8-7-6+5)^2+(7-4-6+5)^2+(3-4-6+5)^2+(6-7-4+5)^2+(1-4-4+5)^2+(5-4-4+5)^2]=176$
+
+### Mittlere Quadratsummen
+
+Nun relativieren wir die Quadratsummen an ihren korrespondierenden Freiheitsgraden, wodurch wir die mittleren Quadratsummen erhalten. Im Folgenden wird die Formel für die Berechnung der jeweiligen mittleren Quadratsummen angegeben. Dabei stehen die Elemente im Nenner der Formel für die Freiheitsgrade der korrespondierenden Quadratsumme.
+
+1.) Mittlere Quadratsumme des Haupteffekts A: $MQS_{A}=\frac{QS_{A}}{df_{A}}=\frac{QS_{A}}{J-1}=\frac{132}{2}=61$
+
+2.) Mittlere Qudratsumme des Haupteffekts B: $MQS_{B}=\frac{QS_{B}}{df_{B}}=\frac{QS_{B}}{K-1}=\frac{66}{1}=66$
+
+3.) Mittlere Quadratsumme der Interaktion AxB: $MQS_{AxB}=\frac{QS_{AxB}}{df_{AxB}}=\frac{QS_{AxB}}{(J-1)\cdot (K-1)}=\frac{176}{2\cdot 1}=88$
+
+4.) Mittlere Quadratsumme innerhalb der Zellen: $MQS_{inn}=\frac{QS_{inn}}{df_{inn}}=\frac{QS_{inn}}{J\cdot K \cdot (n_{Zelle}-1)}=\frac{1200}{3\cdot 2\cdot 10 }=20$
+
+### F-Tests
+
+Wir können mit den mittleren Quadratsummen nun die F-Prüfgrößen zur Überprüfung der Hypothesen berechnen. Die Logik hierbei ist identisch mit derjenigen der einfaktoriellen ANOVA.
+
+#### F-Test für den Haupteffekt A
+
+Man testet die Nullyhpothese des Haupteffekts von Faktor A mit folgender Formel: $F_{A}=\frac{MQS_{A}}{MQS_{inn}}$ mit $df_{A}=J-1$ und $df_{inn}=JK(n_{Zelle}-1)$ Freiheitsgraden. Für unser Beispiel erhalten wir folgende F-Teststatistik:
+
+$F_{A}=\frac{61}{20}=3.05$
+
+Wir können mit Hilfe des qf() Befehls und den beiden Freiheitsgraden den kritischen F-Wert unter der F-Verteilung bestimmen. Im Folgenden beschränken wir uns auf ein $\alpha$-Fehlerniveau von 5% für alle Tests:
+
+```{r}
+qf(0.95,   # 1-alpha 
+   2,      # Zählerfreiheitsgrade J-1
+   60)
+```
+
+Da die Teststatistik nicht extremer als der kritische F-Wert ist, wird die Nullhypothese beibehalten, d.h. die Nationalität hat in der Population keine Auswirkungen auf die allgemeine Lebenszufriedenheit.
+
+#### F-Test für den Haupteffekt B
+
+Man testet die Nullhypothese des Haupteffekts von Faktor B mit folgender Formel: $F_{B}=\frac{MQS_{B}}{MQS_{inn}}$ mit $df_{B}=K-1$ und $df_{inn}=JK(n_{Zelle}-1)$ Freiheitsgraden. Für unser Beispiel erhalten wir folgende F-Teststatistik:
+
+$F_{B}=\frac{66}{20}=3.3$
+
+Als nächstes bestimmen wir den kritsichen F-Wert in R:
+
+```{r}
+qf(0.95,     #1-alpha
+   1,        # Zählerfreiheitsgrade K-1
+   60)       # Nennerfreiheitsgrade df(inn)
+```
+
+Da die Teststatistik nicht extremer als der kritische F-Wert ist, wird die Nullhypothese beibehalten, d.h. die Fähigkeit des Bändigens hat keine Auswirkungen auf die allgemeine Lebenszufriedenheit.
+
+#### F-Test für den Interaktionseffekt
+
+Man testet die Nullhypothese des Interaktionseffekts AxB mit folgender Formel: $F_{AxB}=\frac{MQS_{AxB}}{MQS_{inn}}$ mit $df_{AxB}=(J-1)\cdot (K-1)$ und $df_{inn}=JK(n_{Zelle}-1)$ Freiheitsgraden. Für unser Beispiel erhalten wir folgende F-Teststatistik:
+
+$F_{AxB}=\frac{88}{20}=4.4$
+
+Als nächstes bestimmen wir den kritischen F-Wert in R:
+
+```{r}
+qf(0.95,
+   2,
+   60)
+```
+
+Da die Teststatistik extremer als der kritische F-Wert ist, wird die Nullhypothese verworfen, d.h. die beiden Faktoren interagieren miteiander. Dies bedeutet, dass die Kombination der Nationalität und der Fähigkeit des Bändigens zusammen zu mittleren Veränderungen in der AV führen bzw. zumindest nicht unabhängig voneinander sind. Da die Haupteffekte nicht signifikant waren, bedeutet dies, dass in der Population die einzelnen Faktoren allein keinen Effekt auf die allgemeine Lebenszufriedenheit haben, miteinander kombiniert schon.

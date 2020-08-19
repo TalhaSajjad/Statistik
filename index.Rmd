@@ -1,0 +1,54 @@
+--- 
+title: "Statistik Tutoriumsschriften"
+author: "Talha Sajjad"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Bei der vorliegenden Bookdown Datei handelt es sich um eine Sammlung aller Tutoriumsschriften aus dem Wintersemester 2019/20."
+---
+
+# Einführung
+
+__Achtung__: Falls ihr die Buchkapitel als PDF haben möchtet, klickt bitte [hier](https://www.dropbox.com/sh/2xeswpxtzy6fxvu/AAAcywiEIwRNSpzSlLGPn0nta?dl=0). Der Vorteil der Online Bookdown Ressource ist, dass ich diese ständig aktualisieren kann, was bei den PDF-Dateien schwer zu realisieren ist, wobei ihr für die Einsicht in die PDF-Dateien keine stabile Internetverbindung benötigt. Es kann jedoch sein, dass die Online Ressource auf einem neueren Stand ist, als die PDF-Dateien.
+
+In diesem kleinen Büchlein werden die Themeninhalte der beiden Statistikmodule PsyBSc 2 und PsyBSc 7 anhand von Beispielen näher erläutert bzw. vorgestellt. Dieses Buch ersetzt in keinster Weise die Prüfungsliteratur und/oder die Foliensätze von Herrn Schultze und Herrn Klein. 
+
+Bevor ihr ein Kapitel zu einem bestimmten Thema durchlest, würde ich euch empfehlen, die Vorlesungsvideos vorher anzuschauen. Dabei ist es nicht wichtig, ob ihr die Themeninhalte dann schon bereits verstanden habt. Vielmehr wird es eurem allgemeinen Verständnis helfen, wenn ihr zumindest einmal den Konzepten ,,ausgesetzt'' wurdet. Darüber hinaus wird in den Kapiteln, in welchem die Themen aus dem Modul PsyBSc 7 behandelt werden, nicht immer besprochen, wie man die Aufgaben in R berechnen könnte: Die Kapitel werden sich __primär__ auf die theoretischen Inhalte fokussieren.
+
+Da meine Wenigkeit alles bisher alleine geschrieben hat, ist die Wahrscheinlichkeit extrem hoch, dass es irgendwo Tippfehler/Grammatik- und Rechtschreibfehler und dergleichen geben wird. Da die vorliegende Ressource online für jeden zugänglich ist - und dies auch immer sein wird- wäre ich euch sehr dankbar, wenn ihr mich auf solche Fehler aufmerksam macht, damit ich diese beheben kann. Langfristig werden wir definitiv alle davon profitieren. Ihr könnt mich über folgende E-Mail-Adresse erreichen: talha.sajjad@stud.uni-frankfurt.de. Als Zeichen meiner Dankbarkeit wird euer Name unten in diesem Kapitel als eine mitwirkende Person angegeben (mit einer Verlinkung zu eurem Social Media, falls ihr das wünscht. Do it for the exposure).
+
+Als abschließende Bemerkung möchte ich hier erwähnen, dass die Tutoriumsschriften euch niemals auch nur einen Cent kosten werden und ihr jederzeit darauf zugreifen könnt - vorausgesetzt, ihr verfügt über eine stabile Internetverbindung.
+
+Ich wünsche euch viel Spaß und bleibt gesund!
+
+Liebe Grüße
+
+Talha
+
+__Mitwirkende__: 
+Ich möchte mich an dieser Stelle bei folgenden Personen für ihre Mithilfe, egal wie gering, bedanken: Kai Reh, Gero Kalb, Katharina Roth.
+
+Falls ihr euch vertiefend mit den Themeninhalten auseinandersetzen möchtet, könnt ihr dies unter folgenden Quellen, auf welchem die Mitschriften basieren, tun:
+
+Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage.). Weinheim: Beltz.
+
+Agresti, A., & Finlay, B. (2009). Statistical methods for the social sciences. Upper Saddle River, N.J: Pearson Prentice Hall.
+
+Moosbrugger, H. (2011). Lineare Modelle: Regressions- und Varianzanalysen (4. Aufl.). Bern: Huber.
+
+
+Korrekturen ab Kapitel 14:
+
+31.05.2020;
+
+I.) Kapitel 16: Lösung des ersten Elements von $X'y$ wurde korrigiert von 11 zu 22:
+
+
+$X'y=\begin{pmatrix} 1&1&1&1&1 \\ 10&7&5&4&1 \\ 1&3&2&8&9 \end{pmatrix}\cdot \begin{pmatrix} 7\\8\\4\\2\\1 \end{pmatrix}=\begin{pmatrix} 22\\155\\64\end{pmatrix}$
+
+```{r}
+library(foreign)
+```

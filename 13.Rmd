@@ -1,0 +1,273 @@
+
+# Grundbegriffe der Matrixalgebra
+
+## Matrix, Datenmatrix, Vektoren
+
+Matrix: Bei einer Matrix handelt es sich um eine mathematische Einheit die aus einer geordneten Menge von Elementen $X_{ij}$ besteht. Kurzum, es ist eine Anordnung von Zahlen
+
+Beispiel für eine Matrix:  
+
+$\begin{pmatrix} 1&2&3 \\ 4&5&6 \\ 7&8&9 \end{pmatrix}$
+
+Es gibt für die einzelnen Elemente einer Matrix Indizes, welche zwischen den Spalten und Zeilen differenzieren. Die Laufnummer $i=1,...,n$ bezieht sich auf die Zeile, inwelchem sich das Element befindet. Die Laufnummer $j=1,...,n$ bezieht sich auf die Spalte, in welchem das Element liegt. Bei einem Element x wird zuerst die Zeile und dann die Spalte angegeben, sprich: $x_{ij}$
+
+In unserem Beispiel entspräche das Element $6$ $x_{23}$ (Das Element der zweiten Zeile, das in der dritten Spalte liegt). Allgemein kann das Format einer Matrix über sogenannte Typangaben definiert werden: Auch hier wird zuerst die Anzahl der Zeilen der Matrix angegeben und dann ihre Spaltenanzahl. Im Folgenden sind ein paar Beispiele aufgelistet:
+
+1.) Typ $(3 x2)$: $\begin{pmatrix} 2&3\\ 4&9 \\ 1&-2 \end{pmatrix}$
+
+2.) Typ $(2x4)$: $\begin{pmatrix} 6&8&4&0 \\ 2&4&2&1 \end{pmatrix}$
+
+3.) Typ $(2x2)$: $\begin{pmatrix} 1&3\\7&4 \end{pmatrix}$
+
+Datenmatrix/Designmatrix: Eine Designmatrix ist eine Matrix, bei der jede der $i=1,...,n$ Zeilen die Werte eines Probanden i in $j=1,..,n$ Variablen enthält. Die Stichprobengröße kann bei einer Designmatrix aus der Anzahl ihrer Zeilen abgeleitet werden. Für das obige Beispiel würde dies bedeuten, dass wir bei der ersten Matrix 3 Personen im Bezug zu 2 Variablen erfasst haben, in der zweiten Matrix 2 Personden hinsichtlich 4 Variablen und in der letzten Matrix 2 Personen in zwei Variablen.
+
+Vektoren: Vektoren sind spezielle Formen von Matrizen, die jeweils aus nur einer Zeile (Zeilenvektor) oder Spalte (Spaltenvektor) bestehen. Sie werden meist mit fettgedruckten Kleinbuchstaben (z.B. __x__) bezeichnet.  Im Folgenden wird ein Spaltenvektor und ein Zeilenvektor angegeben:
+
+1.) Spaltenvektor vom Typ $(3x1)$: $\begin{pmatrix} 1\\2\\3 \end{pmatrix}$
+
+2.) Zeilenvektor vom Typ $(1x3)$:   $\begin{pmatrix}  1&2&3  \end{pmatrix}$
+
+Jede Matrix kann in Zeilen- oder Spaltenvektoren zerlegt bzw. dekomponiert werden. Bei der Multiplikation von Matrizen wird diese Eigenschaft von Relevanz sein.
+
+## Formen von Matrizen
+
+
+Name   | Definition    | Beispiel        | weitere besondere Eigenschaften
+--------------------|---------------|-----------------|--------------------------------
+Einsvektor| Ein Vektor, dessen Elemente alle Eins sind. (wird mit __1__ bezeichnet)| $\begin{pmatrix} 1\\1\\1 \end{pmatrix}$| 
+Quadratische Matrix| Eine Matrix, die ebenso viele Zeilen wie Spalten hat (Typ $(mxm)$)|   $\begin{pmatrix} 3&7&2 \\ 2&8&-4\\4&2&9\end{pmatrix}$| 
+Symmetrische Matrix| Eine quadratische Matrix, bei der für alle Elemente gilt: $x_{ij}=x_{ji}$, d.h. die Matrix ist an der Hauptdiagonale gespiegelt. | $\begin{pmatrix} 1&2&3 \\ 2&4&5  \\ 3&5&7 \end{pmatrix}$| -  alle symmetrische Matrizen sind auch quadratische Matrizen \newline -  es gilt: $A=A'$
+Diagonalmatrix | Eine quadratische Matrix, in der alle Elemente außerhalb der Hauptdiagonalen null sind.| $\begin{pmatrix} 1&0&0 \\ 0&2&0 \\ 0&0&3 \end{pmatrix}$ | - alle Diagonalmatrizen sind quadratisch \newline - alle Diagonalmatrizen sind symmetrisch
+Einheitsmatrix | Eine Diagonalmatrix, bei welcher die Diagnoalelemente allesamt eins sind. | $\begin{pmatrix} 1&0&0 \\ 0&1&0 \\ 0&0&1 \end{pmatrix}$| - die gleichen Eigenschaften der Diagonalmatrix gelten hier \newline - zusätzlich: Die Einheitsmatrix spielt bei der Berechnung der Inverse einer Matrix eine Rolle
+
+## Rechenoperationen in der Matrixalgebra
+
+### Addition und Subtraktion
+
+Um zwei Matrizen (und folglich auch Vektoren) miteinander addieren bzw. subtrahieren zu können, müssen sie vom gleichen Typ sein. Wenn diese Voraussetzung gegeben ist, werden die einzelnen Elemente der beiden Matrizen elementenweise miteinander verrechnet. Im Folgenden wird in 1.) eine unmögliche Verrechnung zweier Matrizen gezeigt, da diese nicht vom gleichen Typ sind und in 2.) eine korrekte Verrechnung:
+
+1.) $\begin{pmatrix} 1&2&3 \\ 4&5&6 \end{pmatrix} + \begin{pmatrix} 3&5\\7&3 \end{pmatrix}$
+
+2.) $\begin{pmatrix} 1&2&3 \\ 4&5&6 \end{pmatrix} - \begin{pmatrix} 1&3&5\\7&3&-1 \end{pmatrix}= \begin{pmatrix} 1-1&2-3&3-5 \\4-7&5-3&6--1\end{pmatrix}= \begin{pmatrix} 0&-1&-2 \\ -3&2&7 \end{pmatrix}$
+
+Hier ist ein Beispiel für die Addition zweier Matrizen (der Vollständigkeitshalber):
+
+3.) $\begin{pmatrix} 2&3 \\ 5&6 \end{pmatrix} + \begin{pmatrix} 3&5\\3&-1 \end{pmatrix}= \begin{pmatrix} 2+3&3+5\\5+3&6+-1\end{pmatrix}=\begin{pmatrix} 5&8\\8&5\end{pmatrix}$
+
+Das Kommutativgesetz, welches ihr sicherlich aus der Schulzeit noch kennt, gilt auch für die __Addition von Matrizen__ und zwar spielt bei der Addition von Matrizen die Reihenfolge keine Rolle, d.h. es gilt: $\textbf{X}+\textbf{Y}=\textbf{X}+\textbf{X}$. Diese Eigenschaft gilt nicht sowohl für die Subtraktion von Matrizen ($\textbf{X}-\textbf{Y}\neq\textbf{Y}-\textbf{X}$) als auch ihre Multiplikation ($\textbf{X}\cdot\textbf{Y}\neq\textbf{Y}\cdot\textbf{X}$)
+
+### Multiplikation
+
+#### Multiplikation einer Matrix mit einem Skalar k
+
+Unter einem Skalar versteht man in der Mathematik eine Größe, die durch die Angabe von nur einem Zahlenwert charakterisiert ist (TIL: in der Biologie versteht man unter einem Skalar eine [\color{blue}{Fischart}](https://de.wikipedia.org/wiki/Skalar_(Fisch))). Die Multiplikation einer Matrix mit einem Skalar ist immer möglich, d.h. die Multiplikation ist unabhängig vom Typ der Matrix. Jedes Element der Matrix wird einzeln mit dem Skalar k multipliziert. Im Folgenden wird ein Beispiel vorgeführt:
+
+$\begin{pmatrix} 2&4&8 \\ 3&5&2 \end{pmatrix} \cdot 3 =\begin{pmatrix} 2\cdot 3&4\cdot 3&8\cdot 3 \\ 3\cdot 3&5\cdot 3&2\cdot 3 \end{pmatrix}= \begin{pmatrix} 6&12&24 \\ 9&15&6 \end{pmatrix}$
+
+#### Multiplikation zweier Vektoren
+
+Bei der Multiplikation eines Zeilenvektors __x__ vom Typ (1 x m) und eines korrespondierenden Spaltenvektors __y__ vom Typ (m x 1) passiert folgendes: jedes Element $x_{i}$ des Zeilenvektors wird mit dem korrespondierenden Element $y_{i}$ des Spaltenvektors multipliziert. Anschließend werden die Produkte miteinander addiert und das Ergebnis ist ein Skalar bzw. eine einzelne Zahl (deshalb spricht man hier von einer __Skalarmultiplikation__).Im Folgenden wird ein Beispiel für eine Skalarmultiplikation angegeben:
+
+$\begin{pmatrix} 3&-2&1 \end{pmatrix} \cdot \begin{pmatrix} 5\\1\\7 \end{pmatrix}= 3\cdot 5+ (-2)\cdot 1+ 1\cdot 7=20$
+
+#### Multiplikation zweier Matrizen
+
+Man kann zwei Matrizen nur dann miteinander multiplizieren, wenn die ,,linke'' Matrix __X__ genauso viele Spalten wie die ,,rechte'' Matrix __Y__ Zeilen hat, d.h. die beiden Matrizen müssen die gleichen innere Typangaben haben: (nxm)$\cdot$ (mxk). Darüber hinaus definieren die äußeren Typangaben die Gestalt der resultierenden Matrix __Z__ (nxk). Bei der Multiplikation zweier Matrizen geschieht folgendes: Zuallererst wird die Matrix __X__ in ihre einzelnen Zeilenvektoren dekomponiert und die Matrix Y in ihre Spaltenvektoren. Die  Zeilen und Spaltenvektoren werden in Abhängigkeit vom Element der resultierenden Matrix dann miteinander multipliziert, wodurch sich ein Skalar bildet. In der Theorie mag sich das etwas kompliziert anhören, aber in der Praxis ist es relativ simpel. Im Folgenden wird eine solche Multiplikation zweier Matrizen vorgeführt. Da die erste Matrix __X__ vom Typ 2x3 und die zweite Matrix __Y__ vom Typ 3x2 ist können wir bereits zwei Dinge ableiten: (1) Das Produkt der beiden Matrizen ist definiert, da ihre inneren Typangaben übereinstimmen und (2) wird die resultierende Matrix die Gestalt 2x2 haben.
+
+
+$\textbf{X}\cdot \textbf{Y}= \begin{pmatrix} 1&2&3 \\ 4&5&4 \end{pmatrix} \cdot \begin{pmatrix} 2&5\\ 3&2 \\ 3&5 \end{pmatrix}$
+
+Hier ein Tipp: Man kann sehr schnell den Überblick verlieren bei der Multiplikation zweier Matrizen, da man darauf achten muss, die korrekten Zeilen- und Spaltenvektoren miteinander zu verrechnen. Daher würde ich euch empfehlen, folgende visuelle Hilfe zunutze zu machen:
+
+![](Abbildungen/7.png)
+
+
+Anhand dieser Darstellung wird sofort ersichtlich, für welches Element der resultierenden Matrix welche Zeilen und Spalten der Matrizen relevant sind. Im Folgenden wird jedes Element berechnet:
+
+
+$x_{11}= \begin{pmatrix} 1&2&3 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ 3 \\3 \end{pmatrix}= 1\cdot 2+ 2\cdot 3 + 3\cdot 3= 17$
+
+$x_{12}= \begin{pmatrix} 1&2&3 \end{pmatrix} \cdot \begin{pmatrix} 5 \\ 2 \\5 \end{pmatrix}= 1\cdot 5+ 2\cdot 2 + 3\cdot 5= 24$
+
+$x_{21}= \begin{pmatrix} 4&5&4 \end{pmatrix} \cdot \begin{pmatrix} 2 \\ 3 \\3 \end{pmatrix}= 4\cdot 2+ 5\cdot 3 + 4\cdot 3= 35$
+
+$x_{22}= \begin{pmatrix} 4&5&4 \end{pmatrix} \cdot \begin{pmatrix} 5 \\ 2 \\5 \end{pmatrix}= 4\cdot 5+ 5\cdot 2 + 4\cdot 5= 50$
+
+Das Produkt der beiden Matrizen sieht dementsprechend folgendermaßen aus:
+
+![](Abbildungen/8.png)
+
+
+##### __Das Kommutativgesetz__
+
+Im Allgemeinen ist die Multiplikation zweier Matrizen __nicht__ kommutativ. Dies leuchtet sofort ein, da beim Vertauschen der Reihenfolge zweier Matrizen die innere Typangaben potentiell nicht übereinstimmen (z.B. wenn man eine 2x3 und eine 3x5 Matrix miteinander multiplizieren möchte, kann man die Reihenfolge nicht ändern da die inneren Typangaben, 2 und 5, nicht mehr übereinstimmen). Sogar wenn die inneren Typangaben nach dem Vertauschen der Reihenfolge übereinstimmen und eine Multiplikation möglich wäre, ist sie nicht kommutativ, da die resultierende Matrix von einem anderen Typ sein wird (dies gilt auch für die Multiplikation einer Matrix mit ihrer transponierten). Man kann sich dies an einem Beispiel anschaulisch darstellen lassen. Im Folgenden werden wir in 1.) eine 2x3 und eine 3x2 Matrix miteinander multiplizieren und dann in 2.) die Reihenfolge tauschen:
+
+\newpage
+
+1.) Multiplikation einer 2x3 Matrix mit einer 3x2 Matrix.
+
+![](Abbildungen/9.png)
+
+
+2.) Mutliplikation der gleichen Matrizen, jedoch umgekehrt.
+
+![](Abbildungen/10.png)
+
+
+
+In Folgendne Ausnahmefällen ist die Multiplikation mit Matrizen kommutativ:
+
+(I) Wenn eine Matrix mit einem Skalar k multipliziert wird: __X__$\cdot$ k= k $\cdot$ __X__
+
+(II) Wenn eine Matrix mit einer Einheitsmatrix multipliziert wird: $\textbf{XI}=\textbf{IX}=\textbf{X}$ (Die Multiplikation mit einer Einheitsmatrix ändert nichts an der Ausgangsmatrix)
+
+(III) Wenn eine Matrix mit ihrer Inversen multipliziert wird: $Y\cdot Y^{-1}=Y^{-1}\cdot Y$ (s. unten)
+
+(IV) Wenn zwei Diagonalmatrizen miteinander multipliziert werden.
+
+#### Kovarianzmatrix
+
+Wenn es sich bei der Matrix X um eine Datenmatrix handelt, enthält das Matrizenprodukt __X'X__ die Quadrat- zbd Kreuzproduktsummen der beteiligten Variablen. Diese kann man sich zunutze machen, um die Varianz und Kovarianz der jeweiligen Variablen berechnen zu können mit folgender Formel (für Matrizen mit 2 Variablen; die Formel ist jedoch erweiterbar auf eine x-beliebige Anzahl an Variablen):
+
+$$S=\frac{1}{n}X'X-\begin{pmatrix} \overline{x}_{1}\\\overline{x}_{2} \end{pmatrix}\begin{pmatrix} \overline{x}_{1}&\overline{x}_{2} \end{pmatrix} $$
+
+Im Folgenden werden wir beispielhaft für eine 3x3 Matrix (3 Personen auf 3 Variablen) eine Varianz-Kovarianz-Matrix berechnen:
+
+$X= \begin{pmatrix} 6&7&2 \\ 4&5&3 \\ 5&9&4 \end{pmatrix}$
+
+1.) Transponieren der Matrix X und Berechnung des Matrizenprodukts X'X:
+
+$X'=  \begin{pmatrix} 6&4&5 \\ 7&5&9 \\ 2&3&4 \end{pmatrix}$
+
+![](Abbildungen/11.png)
+
+
+Also: $X'X= \begin{pmatrix} 6&4&5 \\ 7&5&9 \\ 2&3&4 \end{pmatrix} \cdot \begin{pmatrix} 6&7&2 \\ 4&5&3 \\ 5&9&4 \end{pmatrix}=\begin{pmatrix} 77&107&44 \\ 107&155&65 \\ 44&65&29 \end{pmatrix}$
+
+2.) Bildung der Mittelwerte für die Variablen und die Multiplikation mit sich selbst (als Zeilenvektor):
+
+$\overline{x}_{1}= \frac{6+4+5}{3}=5$
+
+$\overline{x}_{2}= \frac{7+5+9}{3}=7$
+
+$\overline{x}_{3}= \frac{2+3+4}{3}=3$
+
+
+Multiplikation: ![](Abbildungen/12.png)
+
+Also: $\begin{pmatrix} 5\\7\\3 \end{pmatrix} \cdot \begin{pmatrix} 5&7&3 \end{pmatrix}=\begin{pmatrix} 25&35&15 \\35&49&21 \\ 15&21&9 \end{pmatrix}$
+
+3.) Multiplikation des Matrizenprodukts $X'X$ mit dem Skala $\frac{1}{n}$ (in unserem Fall $\frac{1}{3}$, da unsere Datenmatrix aus drei Personen besteht):
+
+$$\frac{1}{3}\cdot X= \frac{1}{3}\cdot \begin{pmatrix} 77&107&44 \\ 107&155&65 \\ 44&65&29 \end{pmatrix}=\begin{pmatrix} 25.67&35.67&14.67 \\ 35.67&51.67&21.67 \\ 14.67&21.67&9.67 \end{pmatrix}$$
+4.) Bildung der Differenz beider Matrizen. Da die Typen der beiden Matrizen immer identisch sein wird, kann dies ein Indikator für eine korrekte Rechnung sein:
+
+$$S=\frac{1}{n}X'X-\begin{pmatrix} \overline{x}_{1}\\\overline{x}_{2}\\\overline{x}_{3} \end{pmatrix}\begin{pmatrix} \overline{x}_{1}&\overline{x}_{2}&\overline{x}_{3} \end{pmatrix}= \begin{pmatrix} 25.67&35.67&14.67 \\ 35.67&51.67&21.67 \\ 14.67&21.67&9.67 \end{pmatrix}-\begin{pmatrix} 25&35&15 \\35&49&21 \\ 15&21&9 \end{pmatrix}$$
+
+$$=\begin{pmatrix} \color{red}{0.67}&0.67&-0.33 \\ 0.67&\color{red}{2.67}&0.67 \\ -0.33&0.67&\color{red}{0.67} \end{pmatrix}$$
+
+Die rot markierten Matrizenelemente sind die Varianzen der einzelnen Variablen: $X_{11}=0.67$ ist die Varianz der ersten Variable, $x_{22}=2.67$ die Varianz der zweiten Variable und $x_{33}=0.67$ die Varianz der dritten Variable. Alle Elemente außerhalb der Hauptdiagonalen sind die Kovarianzen zwischen den Variablen: z.B. ist $x_{13}=-0.33$ die Kovarianz zwischen der ersten und der dritten Variable.
+
+#### Division 
+
+Leider ist es nicht möglich, zwei Matrizen direkt miteinander zu dividieren, so wie es bei zwei Skalaren möglich wäre. Jedoch gibt es eine grundlegende Logik bei Skalaren, die auf Matrizen übertragbar ist: Wenn man ein Skalar a durch ein Skalar b teilen möchte, kann man dies erreichen, indem man das Skalar a mit dem Kehrwert von b, sprich $b^{-1}$, multipliziert.
+
+$a/b=a\cdot b^{-1}=a\cdot \frac{1}{b}$
+
+Für Matrizen gibt es ein theoretisches äquivalent, und zwar die Inverse. Wenn man ein Skalar mit seinem Kehrwert multipliziert, erhält man als Produkt 1. Übertragen auf Matrizen muss man nun für eine Matrix $X$ diejenige Matrix finden, für die folgendes gilt:
+
+$XX^{-1}=X^{-1}X=I$
+
+Wenn man eine Matrix $X$ mit seiner Inverse multipliziert, sollte man die Einheitsmatrix erhalten. Nun ist es so, dass nicht für alle Matrizen eine Inverse existiert: Eine Inverse $X^{-1}$ ist nur dann definiert, wenn die Originalmatrix $X$ quadratisch und regulär ist, d.h. es dürfen keine linearen Abhängigkeiten zwischen den Spalten-oder Zeilenvektoren existieren. Ist dies gegeben, kann man die Inverse der Matrix bestimmten nach folgender Formel:
+
+Formel 1:$Y^{-1}=\frac{K'}{|Y|}$
+
+Im Folgenden bestimmen wir beispielhaft die Inverse an der Matrix $X$:
+
+ 
+
+$X=\begin{pmatrix}1&2&3 \\4&5&6 \\ 0&2&3\end{pmatrix}$
+
+ 
+
+1.) Im ersten Schritt wird die Determinante der Matrix gebildet nach folgender Formel:
+
+$$|Y|=\sum_{j=1}^{m} y_{1j}\cdot (-1)^{1+j}\cdot |M_{1j}|= 1\cdot \begin{vmatrix} 5&6\\2&3\end{vmatrix}-2\cdot \begin{vmatrix} 4&6\\0&3\end{vmatrix}+3\cdot \begin{vmatrix} 4&5\\0&2\end{vmatrix}$$
+
+Der Betrag einer $2x2$ Matrix kann nach dem Schema von Formel 2 berechnet werden:
+
+Formel 2: $\begin{vmatrix} a&b\\c&d\end{vmatrix}= a\cdot d - c\cdot b$
+
+Übertragen auf unsere Matrix erhalten wird den Wert $3$ für die Determinante:
+
+$$ 1\cdot \begin{vmatrix} 5&6\\2&3\end{vmatrix}-2\cdot \begin{vmatrix} 4&6\\0&3\end{vmatrix}+3\cdot \begin{vmatrix} 4&5\\0&2\end{vmatrix}$$
+
+$$=1\cdot(5\cdot 3-2\cdot 6)-2\cdot(4\cdot3 - 0\cdot 6)+3\cdot (4\cdot 8-7\cdot 5)=1\cdot 3-2\cdot 12+3\cdot 8=3 $$
+
+2.) Als nächstes wird die Kofaktorenmatrix bestimmt. Sie definiert sich aus ihren Elementen $k_{ij}$, welche Kofaktoren heißen:
+
+Formel 3: $k_{ij}=(-1)^{i+j}\cdot |M_{ij}|$
+
+Für jede Zelle wird die Minormatrix ihres Spalten- und Zeilenvektors bestimmt. Für das Element $x_{11}$ wird die Minormatrix bestimmt, indem aus der Originalmatrix die erste Zeile und Spalte entfernt wird.  Für das Element $x_{12}$ wird die Minormatrix bestimmt, indem aus der Originalmatrix die erste Zeile und zweiten Spalte entfernt wird usw..
+
+Anschließend wird das Vorzeichen der Minormatrix durch den Faktor $(-1)^{i+j}$ bestimmt. Für das Element $x_{11}$ gilt z.B.: $(-1)^{1+1}=(-1)^{2}=1$
+
+Aus diesen Schritten ergibt sich dann folgende Kofaktorenmatrix, die den gleichen Typ wie die Originalmatrix $X$ hat:
+
+$K=\begin{pmatrix} \begin{vmatrix}5&6\\ 2&3 \end{vmatrix}& -\begin{vmatrix}4&6 \\ 0&3 \end{vmatrix}& \begin{vmatrix} 4&5 \\0&2 \end{vmatrix}  \\ -\begin{vmatrix}2&3 \\ 2& 3\end{vmatrix}& \begin{vmatrix} 1&3\\0&3 \end{vmatrix}& - \begin{vmatrix} 1&2\\0&2 \end{vmatrix}\\ \begin{vmatrix} 2&3 \\ 5&6 \end{vmatrix}& -\begin{vmatrix} 1&3 \\ 4&6\end{vmatrix}& \begin{vmatrix} 1&2 \\ 4&5 \end{vmatrix} \end{pmatrix}$
+
+Da bei $3x3$ Matrizen die Minormatrizen vom Typ $2x2$ sind, müssen wir nun den Betrag der Minormatrix jedes einzelnen Elements nach dem oben angegebenen Schema berechnen (Formel 2). Daraus resultiert folgende Kofaktorenmatrix:
+
+$K= \begin{pmatrix} 3&-12&8 \\ 0& 3 & -2 \\ -3 & 6&-3\end{pmatrix}$
+
+Nun muss die Kofaktorenmatrix transponiert werden:
+
+$K'=\begin{pmatrix} 3&0&-3 \\ -12 & 3&6\\ 8&-2&-3 \end{pmatrix}$
+
+3.) Berechnung der Inverse:
+
+$X^{-1}=\frac{K'}{|X|}= \frac{1}{3} \cdot \begin{pmatrix} 3&0&-3 \\ -12 & 3&6\\ 8&-2&-3 \end{pmatrix}= \begin{pmatrix} 1&0&-1\\ -4&1&2\\ 2.67&-0.67&-1\end{pmatrix}$
+
+##### Determinante
+
+Nennenswert bei der Formel zur Bestimmung der Inverse ist die Determinante $|Y|$, und zwar ist diese immer $0$, wenn lineare Abhängigkeiten innerhalb der Matrix bestehen. In diesem Fall nennt man die Matrix auch singulär. Konzeptuell repräsentiert die Determinante eine reelle Zahl, die der Originalmatrix durch eine eindeutige Rechenvorschrift zugeordnet ist. Bei 2-Reihigen Matrizen entspricht die Determinante dem Flächeninhalt, welche durch die einzelnen Vektoren der Matrix aufgespannt wird, während sie bei einer 3-reihigen Matrix dem Volumen des Parallelepipeds entspricht.
+
+## Verknüpfungsregeln
+
+### Addition
+
+(I) __Das Assoziativgesetz der Addition__: $(X+Y)+Z=X+(Y+Z)=X+Y+Z$
+
+Die Klammern bei einer Addition von mehreren Matrizen sind überflüssig, da das Ergebnis sich nicht verändert.
+
+(II) __Das Kommutativgesetz der Addition__: $X+Y=Y+X$ 
+
+Die Reihenfolge der Summanden sind frei vertauschbar und hat keine Auswirkungen auf die Summe.
+
+### Multiplikation
+
+(I) __Das Assoziativgesetz der Multiplikation__: $(XY)Z=X(YZ)=XYZ
+
+Die Klammern bei einer Multiplikation mehrerer Matrizen sind überflüssig, da das Produkt sich nicht verändert.
+
+(II) __Skalarmultiplikation__
+
+Die Multiplikation einer Matrix mit einem Skalar ist kommutativ. Zusätzlich gilt, dass das Invertieren eines Produkts mit einem Skalar folgendermaßen berechnet werden kann: $(kX)^{-1}=k^{-1}X^{-1}$
+
+Statt das Produkt zu Invertieren kann das Skalar und die Matrix isoliert invertiert und dann miteinander multipliziert werden.
+
+### Transponieren
+
+(I) __Das erste Gesetz der Transposition__: $(X+Y)'=X'+Y'$
+
+Die Transponierte einer Summe von Matrizen ist gleich der Summe der Transponierten Matrizen.
+
+(II) __Das zweite Gesetz der Transposition__: $(XY)'=Y'X'$
+
+Die Transposition eines Matrizenprodukts kann man auch in der Form berechnen, dass man die Matrizen einzeln transponiert und in __umgekehrter Reihenfolge__ multipliziert.
+
+### Addition und Multiplikation
+
+__Die Distributivgesetze__: $(X+Y)Z=XZ+YZ$ bzw. $Z(X+Y)=ZX+ZY$
+
+Das Distributivgesetz wird angewandt, um eine Klammer aufzulösen mit Hilfe eines Faktors außerhalb der Klammer. Die Definition des Distributivgesetzes entspricht analog der Regelung für Zahlen. Zusätzlich muss bei Matrizen die Reihenfolge der Multiplikation berücksichtigt werden, da diese __nicht kommutativ__ ist.

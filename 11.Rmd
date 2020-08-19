@@ -1,0 +1,174 @@
+#  Chiquadrat-Test und Inferenzstatistik bei Regressionsmodellen
+
+## $\chi^2$-Test: Einführung
+
+Im Folgenden Abschnitt werden verschiedene Versionen des $\chi^2$-Unabhängigkeittests vorgestellt: der Vierfelder-$\chi^2$-Test und der Zweistichproben-$\chi^2$-Test. Diese inferenzstatistischen Verfahren werden herangezogen, wenn man die Unabhängigkeit von nominalskalierten Daten überprüfen möchte bzw. Häufigkeitsverteilungen miteinander vergleicht.
+
+Um den $\chi^2$-Test besser zu verstehen, wird die Aufgabe 5.) aus dem elften Übungsblatt zur genaueren Erklärung herangezogen.
+
+###  statistische Hypothesepaar
+
+Die statistischen Hypothesenpaare beim $\chi^2$-Test beziehen sich auf die Populationswahrscheinlichkeiten der Variablen.
+
+Bei einer ungerichteten Hypothese wird die statistische Hypothese folgendermaßen aufgestellt:
+
+$H_{0}:\pi_{ij}=\pi_{i\cdot}\cdot \pi_{\cdot j}$ bzw. $H_{1}:\pi_{ij}\neq \pi_{i\cdot}\cdot \pi_{\cdot j}$
+
+Inhaltlich: Die NUllhypothese impliziert statistische Unabhängigkeit der beiden Variablen, indem sie als Eigenschaft der beiden Variablen definiert, dass ihre gemeinsame Auftretsnwahrscheinlichkeit aus dem Produkt der Einzelwahrscheinlichkeiten berechnet werden kann. Im Gegensatz dazu postuliert die Alternativhypothese eine statistische Abhängigkeit zwischen den beiden Variablen.
+
+Bei einer gerichteten Hypothese, muss man sich inhaltlich für eine Merkmalskombination entscheiden, welcher scheinbar von der Unabhängigkeit abweicht. Wenn wir beispielsweise annehmen, dass Frauen mit einer höheren Wahrscheinlichkeit den Film ,,Hausu'' mögen als Männer, würden wir bei der Zelle $\pi_{21}$ eine Höhere Zellenbesetzung erwarten als unter der Unabhängigkeit der beiden Variablen. In diesem Sinne würde unsere gerichtete Hypothese lauten:
+
+$H_{0}:\pi_{21}\le\pi_{2\cdot}\cdot \pi_{\cdot 1}$ bzw. $H_{1}:\pi_{ij}> \pi_{2\cdot}\cdot \pi_{\cdot 1}$
+
+### Berechnung der Prüfgröße
+
+(I) Im ersten Schritt wird für jede Zelle eine erwartete Häufigkeit berechnet. Der Wert der erwarteten Häufigkeit repräsentiert die Zellenbesetzung, welche wir unter der Unabhängigkeit der beiden Variaben erwartet hätten. Starke Abweichungen der tatsächlichen Zellenbesetzungen von den erwarteten Zellenhäufigkeiten sprechen in dem Sinne gegen die Nullhypothese. Die erwartete Häufigkeit berechnet man folgendermaßen:
+
+$e_{ij}=\frac{n_{i\cdot}\cdot n_{\cdot j}}{n}=\pi_{ij}\cdot n$
+
+Man bildet also das Produkt der beiden Randsummen der Zelle und teilt durch die Gesamtstichprobengröße.
+
+(II) Im nächsten Schritt kann man die Prüfgröße für den $\chi^2$-Test mit folgender Formel (für den Vierfelder $\chi^2$-Test) bestimmen:
+
+$\chi^2=\sum_{i=1}^{2}\sum_{j=^1}^{2}\frac{(n_{ij}-e_{ij})^2}{e_{ij}}$
+
+Die Prüfgröße folgt mit $df=(p-1)\cdot (j-1)$ Freiheitsgraden (beim Vierfelder$\chi^2$-Test immder $df=1$) einer $\chi^2$-Verteilung. Aufgrund der Quadrierung im Zähler kann die Prüfgröße nie negativ sein, weshalb man stets einseitig testet. Bei einer ungerichteten Hypothesentestung nimmt man denjenigen kritischen Wert, welcher von der zentralen $\chi^2$ Veteilung rechts einen Flächenanteil von $\alpha$ abschneidet. Bei einer ungerichteten Hypothesentestung nimmt man denjenigen Wert, welcher von der Verteilung rechts einen Flächenanteil von $2\cdot \alpha$ abschneidet.
+
+(III) Der $\chi^2$-Test ist ein asymptotischer Test und ist nur robust bei einer ausreichend großen Stichprobe/Zellenbesetzung. Allgemein wird eine Zellenbesetzung von $n_{ij}>5$ empfohlen. Wenn diese Voraussetzung nicht gegeben ist, kann man ein alternatives Verfahren wie den Fisher-Yates-Test oder die Kontinuitätskorrektur nach Yates anwenden.
+
+### Effektgröße
+
+Eine Problematik beim $\chi^2$-Test im Hinblick auf die Effektgröße ist der Umstand, dass durch die Quadrierung im Zähler der Teststatistik jegliche Information über die Richtung des Effekts verlorengeht. Folglich bedeutet eine signifikante $\chi^2$-Prüfgröße, dass es signifikante Abweichungen der tatsächlichen Zellenbesetzung von der zu erwarteten gibt, nicht aber in welche Richtung diese Abweichungen gehen.
+
+Für den Vierfelder-$\chi^2$-Test gibt es mehrere Effektgrößen, wie der Korrelationskoeffizient Yules Q, $\phi$ und das Odds-Ratio (siehe. Tafelschrift zu Korrelationen)
+
+###  Zweistichproben-$\chi^2$-Test
+
+Der Vierfelder-$\chi^2$-Test kann auf eine beliebig große Anzahl an Ausprägungen erweitert werden. Bei diesne Erweiterungen handelt es sich dann um einen sogenannten Omnibus-Test, d.h. die Signifikanz der Häufigkeitsverteilung wird global getestet. An der Prüfgröße selbst ändert sich nichts, d.h. im ersten Schritt wird auch hier die erwartete Häufigkeit berechnet und zur Bestimmung der Prüfgröße genutzt. Falls die Prüfgröße signifikant ist, können wir sagen, dass es signifikante Abweichungen der tatsächlichen Zellenbesetzung gibt, jedoch können wir nicht sagen, wo genau diese Abweichungen vorliegen. Mit Post-Hoc-Tests müsste man genauer bestimmen, wo die Zellenabweichungen liegen, welche für die signifikante Prüfgröße gesorgt haben.
+
+Man könnte nun meinen, einzelne $\chi^2$-Testungen wären sinnvoller als der globale Test, weil man dann sofort erkennt, welche Zellenbesetzungen signifikante Abweichungen aufweisen. Die Problematik bei Post-Hoc-Tests ist das Konzept der $\alpha$-Fehlerinflation. Je mehr Tests ich durchführe mit einem bestimmten $\alpha$-Fehlerniveau, desto höher ist die Wahrscheinlichkeit, einen $\alpha$ Fehler zu begehen bzw. fälschlicherweise ein signifikantes Ergebnis zu erhalten. Im schlimmsten Fall kann die Fehlerinflation bei $k\cdot \alpha$ liegen (das k steht in dem Fall für die Anzahl durchgeführter inferenzstatistischer Verfahren). In diesem Sinne ist der Omnibus-Test vorteilhafter, da es bei diesem zu keiner $\alpha$-Fehlerinflation kommt.
+
+### Das standardisierte Pearon Residuum
+
+Man kann mit den Pearon-Residuen die Abweichungen der tatsächlichen Zellenhäufigkeit von der zu erwarteten Zellenhäufigkeit mit folgender Formel quantifzieren:
+
+
+$\frac{(n_{ij}-e_{ij})}{\sqrt{e_{ij}}}$
+
+
+Das standardisierte Pearon-Residuum erhält man mit folgender Formel:
+
+
+$\frac{(n_{ij}-e_{ij})}{\sqrt{e_{ij}\cdot (1-\frac{n_{i\cdot}}{n})\cdot (1-\frac{n_{\cdot j}}{n})}}$
+
+
+Das standardisierte Pearon-Residuum folgt asymptotisch der Standardnormalverteilung. Folglich kann man die Signifikanz dieser Residuen unter der Standardnormalverteilung überprüfen: Falls das Residuum im Betrag extremer als 1,96 (bei einer ungerichteten Hypothese mit einem $\alpha$-Fehler von 0.05) ist, ist das Residuum signifikant bzw, die Abweichung der tatsächlichen Zellenhäufigkeit von der zu erwarteten Zellenhäufigkeit ist signifikant.
+
+
+##  Tests für Zusammenhangmaße
+
+In allen bisher besprochenen Verfahren ging es um die Überprüfung von Unterschiedshypothesen (Unterschiedlichkeit von Mittelwerten, Varianzen usw.) und die unabhängige Variable war stets nominalaskaliert (bei den unabhängigen Stichprobentests repräsentieren die beiden zu vergleichenden Gruppen die unabhängige Variable). Jedoch gibt es nicht nur Unterschiedshypothesen, sondern auch Zusammenhangsyhpothesen bzw. ,allgemeiner, inwiefern die Unterschiedlichkeit in einer Variablen auf die Unterschiedlichkeit in einer Variablen einhergeht. Für diese Zuammenhangshypothesen gibt es natürlich auch inferenzstatistische Verfahren.
+
+### Inferenzstatistik für Regression: Einführung
+
+Im Rahmen der einfachen linearen Regressionsanalyse versucht man, ein Kriterium durch ein Prädiktor vorherzugsagen, bzw. durch die Variabilität im Prädiktor Varianz im Kriterium aufzuklären. Man nimmt an, dass diese beide Variablen in einem linearen Zusammenhang zueinander stehen und versuchen, diesen abzubilden, indem wir aus einer Population eine Stichprobe ziehen im Hinblick auf die beiden Variablen und das Regressionsmodell aufstellen:
+
+$Y=b_{0}+b_{1}\cdot x+ e$
+
+Die Regressionsparameter $b_{0}$ und $b_{1}$ wurden aus den empirischen Daten gewonnen. Folglich bedeutet dies, dass die Regressionsgleichung in der Population potentiell anders aussieht: Möglicherweise ist das empirisch gewonnene Regressionsgewicht $b_{1}$ nicht das Resultat eines tatsächlichen Zusammenhangs der beiden Variablen in der Population, sondern durch Zufall durch unsere Stichprobenziehung entstanden. Es kann also zu Diskrepanzen zwischen der empirischen Regressionsgleichung und dem folgenden Populationsmodell der Regressionsgleichung kommen:
+
+$Y=\beta_{0}+\beta_{1}\cdot X + \epsilon$
+
+Die Signifikanz der Regressionsparameter kann getestet werden, indem diese gegen ein alternatives Populationsmodell (unter der Nullhypothese) gestellt werden.
+
+### Modell mit einem deterministischen oder stochastischen Regressor
+
+__Anmerkung__: Ein Regressor ist ein synonymer Begriff für eine unabhängige Variable
+
+Bei einem Modell mit einem deterministischen Regressor geht man davon aus, dass die Werte der unabhängigen Variablen feste Werte sind, die vollständig durch die Untersurchunsplanung determiniert sind. Bei einem stochastischen Regressor sind die Ausprägungen der unabhängigen Variable Realisierungen einer Zufallsvariable X, also nicht vollständig durch die Untersuchungsplanung determiniert.
+
+Beispiel für einen deterministischen Regressor: Die Dosis eines Medikaments im Rahmen einer medizinischen Studie. Es wird sofort klar, dass nicht arbiträr eine Dosis ausgewählt und einem Probanden verabreicht wird, sondern diese vor Beginn der Untersuchung festgelegt werden.
+
+Beispiel für einen stochastischen Regressor: Die Nutzung von Intelligenz zur Vorhersage von Schulerfolg. In diesem Fall ist es nicht möglich, die Intelligenz eines Probanden vor Beginn der Erhebung festzulegen.
+
+Im Folgenden schauen wir uns die inferenzstatistische Testung an einem Regressionsmodell mit einem deterministischen Regressor an (die UV ist analog zum Beispiel in der Vorlesung dichotom kodiert)
+
+### Inferenzstatistik für Regression
+
+#### Voraussetzungen
+
+(I) Homoskedastizität: Die bedingte Varianz $Var(Y|X)$ ist für jede Ausprägung X in der Population gleich. Diese Voraussetzung ist gleichbedeutend damit, dass die bedingten Residuen $Var(\epsilon|X)$ über alle Ausprägungen der unabhängigen Variable identisch sind
+
+(II) Bedingte Normalverteilung: Die bedingte Verteilung der abhängigen Variable Y bzw. der bedingten Residuen müssen normalverteilt sein.
+
+(III) Unabhängigkeit der Fehlervariablen: Die Residuen sind über Beobachtungen hinweg unabhängig, d.h. die Abweichung des Kriteriumswerts einer Person darf in keinster Weise abhängig sein von der Abweichung einer anderen Person.
+
+#### Residualvarianz
+
+Bevor wir das Regressionsgewicht und den Achsenabschnitt auf Signifikanz testen können, müssen wir einen erwartungstreuen Schätzer der Residualvarianz in der Population berechnen. Dies tun wir mit folgender Formel:
+
+
+$\hat{\sigma}_{\epsilon}^2=\frac{\sum_{m=1}^{n}e_{m}^2}{n-2}$
+
+
+Die Wurzel der geschätzten Populationsfehlervarianz ist der geschätzte Standardschätzfehler, welcher ein Maß dafür ist, wie stark in der Population die beobachteten Y-Werte um die vorhergesagten Werte streuen:
+
+
+$\hat{\sigma}_{\epsilon}^2=\sqrt{\frac{\sum_{m=1}^{n}e_{m}^2}{n-2}}$
+
+
+####  Inferenz bezüglich Regressionsgewicht
+
+##### __Hypothese__
+
+Unter der Nullhypothese wird angenommen, dass das Regressionsgewicht $\beta_{1}$ identisch ist mit einem angenommenen Regressionsgewicht in der Population $\beta_{10}$ (welcher in der Regel 0 ist). Unser Regressionsgewicht wird folglich gegen 0 getestet.
+
+##### Prüfgröße
+
+Die Berechnung der t-Prüfgröße zur Signifikanztestung des Regressionsgewichts sieht folgendermaßen aus:
+
+
+$t=\frac{\beta_{1}-\beta_{10}}{\hat{\sigma}_{B_{1}}}$
+
+
+Die t-Prüfgröße folgt mit $n-2$ Freiheitsgraden einer t-Verteilung. An der Formel wird ersichtlich, dass ihr Aufbau der gleichen Logik wie dem Einstichproben-t-Test folgt: Es wird die Differenz zwischen zwei Populationsparameter bestimmt und durch ihren Standardfehler geteilt.
+
+##### Standardfehler
+
+Den Standardfehler bzw. die Unsicherheit in der Schätzung des Populationsregressionsgewichts wird folgendermaßen berechnet.
+
+$\hat{\sigma}_{B_{1}}=\sqrt{\frac{\hat{\sigma}_{\epsilon}^2}{\sum_{m=1}^{n}(x_{m}-\overline{x})^2}}=\sqrt{\frac{\hat{\sigma}_{\epsilon}^2}{n\cdot s_{x}^2}}=\sqrt{\frac{1-r_{XY}^2}{n-2}\cdot \frac{s_{Y}^2}{s_{X}^2}}$
+
+
+Analog zum t-Test wird die Prüfgröße auf Signifikanz getestet.
+
+####  Inferenz bezüglich Achsenabschnitt
+
+
+##### __Hypothese__
+
+Unter der Nullhypothese wird angenommen, dass der Achsenabschnitt $\beta_{0}$ identisch ist mit einem angenommenen Achsenabschnitt in der Population $\beta_{00}$ (welcher in der Regel 0 ist). Unser Achsenabschnitt wird folglich gegen 0 getestet.
+
+##### Prüfgröße
+
+Die Berechnung der t-Prüfgröße zur Signifikanztestung des Achsenabschnitts sieht folgendermaßen aus:
+
+
+$t=\frac{\beta_{0}-\beta_{00}}{\hat{\sigma}_{B_{0}}}$
+
+
+
+##### Standardfehler
+
+Den Standardfehler bzw. die Unsicherheit in der Schätzung des Achsenabschnitts wird folgendermaßen berechnet.
+
+
+$\hat{\sigma}_{B_{0}}=\hat{\sigma}_{\epsilon}\cdot \sqrt{\frac{1}{n}+\frac{\overline{x}^2}{n\cdot s_{x}^2}}$
+
+
+Analog zum t-Test wird die Prüfgröße auf Signifikanz getestet.
+
+
+###  Vergleich zum t-Test
+
+Wenn eure unabhängige Variable dichotom/dummy kodiert ist, werdet ihr im Rahmen eurer inferenzstatistischen Testung der Regressionsparameter auf folgenden Umstand treffen: Die t-Prüfgröße des Regressionsgewichts und dementsprechend ihre Signifikanz wird mit der t-Prüfgröße eines Zweistichproben-t-Tests identisch sein. Der Grund hierfür ist relativ simpel: Im Regressionsmodell repräsentiert der Achsenabschnitt die Unterschiedlichkeit zwischen den beiden Gruppen im Mittel ($b_{1}=\overline{x}_{0}-\overline{x}_{1}$). Folglich wird durch die Signifikanzprüfung des Regressionsgewichts indirekt die Mittelwertsdifferenz auf Signifikanz geprüft.

@@ -1,0 +1,293 @@
+#  Fortsetzung Kapitel 12, t-Test bei abh. Stichproben
+
+## Regressionsmodell mit einem stochastischen Regressor
+
+###  Einführung
+
+Bei einem Regressionsmodell mit einem stochastischen Regressor ist die unabhängige Variable, genau wie die abhängige Variable, eine Zufallsvariable, d.h. seine Ausprägungen sind nicht durch das Untersuchungsdesign festgelegt. Da nun sowohl die UV als auch die AV kontinuierliche Variable sind, kann man die zusätzliche Annahme der bivariaten Normalverteilung formulieren. Um es kurzzufassen sind zwei Variablen bivariat normalverteilt, wenn für jede Ausprägung der unabhängigen Variable X die Kriteriumswerte einer Normalverteilung folgen __und__ wenn für jede Ausprägung des Kriteriums die Prädiktorwerte auch normalverteilt sind. Wenn die Annahme der bivariaten Normalverteilung gegeben ist, sind die Residuen automatisch homoskedastisch und normalverteilt.
+
+##### __Standardfehler und Prüfgrößen__
+
+Die Formeln zur Berechnung der Residualvarianz $\hat{\sigma}_{\epsilon}^2$, der Standardfehler für das Regressionsgewicht $\hat{\sigma}_{B_{1}}$ und den Achsenabschnitt $\hat{\sigma}_{B_{0}}$ für die inferezstatistische Prüfung der Regressionsparameter erfolgt analog zum Modell mit deterministischen Regressor. Folglich ist auch die Berechnung der Prüfgröße und der p-Werte nicht anders.
+
+##### __bedingte Erwartungswerte__
+
+Ein grundlegender Unterschied zwischen den beiden Regressionsmodellen ist ihre Berechnung des Erwartungswerts. Beim deterministischen Regressor entspricht der Erwartungswert $E(Y/X=x)$ dem Mittelwert in der Gruppe. Beim stochastischen Regressor ist es nicht möglich, für jede einzelne Ausprägung den Mittelwert zu bestimmen, da es theoretisch gesehen unendlich viele gibt. Deshalb versucht man, auf der Grundlage der Linearitätsannahme der einfachen linearen Regression, diese zu schätzen.
+
+##### __Standardfehler der Regressionsgerade__
+
+Die Erwartungswerte bzw. die vorhergesagten Werte für einen konkreten Prädiktorwert werden durch die Aufstellung einer Regressionsgleichung geschätzt. Die Problematik hierbei ist, dass die Regressionsgleichung aus den Daten geschätzt wird, d.h. in der Population könnte die Regressionsgleichung, und dann als natürliche Konsequenz die Regressionsgerade anders aussehen. Um die Sicherheit in der Schätzung der Erwartungswerte mathematisch zu repräsentieren, kann man ein Konfidenzintervall für alle Erwartungswerte bestimmten, die dann einer Geraden folgen. Eine grundlegende Eigenschaft dieser Geraden ist die Tatsache, dass die Unsicherheit in der  Schätzung bedingter Erwartungswerte steigt, je weiter weg der Prädiktorwert vom Prädiktormittelwert liegt.
+
+Der Standardfehler für die bedingten Erwartungswerte kann man folgendermaßen bestimmen:
+
+
+$\hat{\sigma}_{E(Y/X=x)}=\hat{\sigma}_{\epsilon}\cdot\sqrt{\frac{1}{n}+\frac{(x-\overline{x})^2}{n\cdot s_{x}^2}}$
+
+
+Das Konfidenzintervall für einen bestimmten bedingten Erwartungswert ließe sich dann folgendermaßen berechnen:
+
+
+$\hat{y}\pm t_{(1-\frac{\alpha}{2};df)}\cdot\hat{\sigma}_{E(Y/X=x)}$
+
+
+##### __Vorhersagefehler__
+
+Für prognostizierte Werte kann auch ein Konfidenzintervall aufgespannt werden. In diesem Konfidenzintervall schlagen sich zwei Quellen der Unsicherheit nieder: (1) Zum einen existiert die Unsicherheit in unserer Schätzung der bedingten Erwartungswerte bzw. der konkreten Gestalt der Regressionsgerade und (2) zum anderen gibt es zusätzlich die allgemeine Unsicherheit in der Vorhersage des Kriteriumswerts (da die tatsächlichen Kriteriumswerte von Probanden meist von den prädizierten Wert abweichen). Wegen diesen zwei Umständen ist das Konfidenzintervall für die individuellen Kriteriumswerte größer.
+
+Den Standardfehler für die prognostizierten Werte berechnet man folgenderma0en:
+
+
+$\hat{\sigma}_{\hat{Y}_{0}}= \hat{\sigma}_{\epsilon}\cdot\sqrt{1+\frac{1}{n}+\frac{(x-\overline{x})^2}{n\cdot s_{x}^2}}$
+
+
+Das Konfidenzintervall für einen konkreten Prädiktorwert $x_{0}$ kann man mit folgender Formel bestimmen:
+
+
+$\hat{y}_{0}\pm t_{(1-\frac{\alpha}{2};df)}\cdot\hat{\sigma}_{\hat{Y}_{0}}$
+
+
+### Determinationskoeffizient
+
+Im Rahmen der Regressionsanalyse kann man die Varianzaufklärung des Prädiktors auf ihre Signifikanz überprüfen. Da der Determinationskoeffizient kein erwartungstreuer Schätzer des Populationsdeterminationskoeffizienten ist, existiert für den Schätzer eine Korrekturformel (die Olkin-Pratt-Korrektur). Im Rahmen der inferenzstatistischen Testung wird diese Formel jedoch nicht angewandt (zumindest tun wir dies nicht).
+
+Die Prüfgröße für den Determinationskoeffizienten berechnet man folgendermaßen:
+
+
+$F=(n-2)\cdot \frac{R^2}{1-R^2}$
+
+
+Die Prüfgröße folgt  der F-Verteilung mit $df_{1}=1$ und $df=n-2$ Freiheitsgraden. Dementsprechend kann man die Prüfgröße unter den Quantilen der F-Verteilung auf Signifikanz testen. Interessanterweise entspricht die Prüfgröße des F-Tests dem quadrierten t-Wert der Prüfgröße für das Regressionsgewicht. Dies ist relativ simpel zu erklären: Da das standardisierte Regressionsgewicht die Korrelation der UV und AV repräsentiert und der Determinationskoeffizient in unserem Fall identisch mit der quadrierten Korrelation ist, stehen die Prüfgrößen im gleichen Verhältnis zueinander.
+
+###  Korrelation und Fischers-Z-Transformation
+
+Man kann nicht nur den Determinationskoeffizienten auf Signifikanz prüfen, sondern auch die Korrelation beider Variablen. Dabei gibt es unterschiedliche inferenzstatistische Verfahren in Abhängigkeit davon, ob man den Zusammenhang gegen 0 auf Signifikanz testen möchte oder gegen einen Wert ungeich 0.
+
+#### Inferenz gegen 0
+
+Prüft man eine empirische Korrelation gegen 0 kann man dies über folgende Formel erreichen:
+
+
+$t=\frac{r\cdot\sqrt{n-2}}{\sqrt{1-r^2}}$
+
+
+Die resultierende Prüfgröße folgt einer t-Verteilung, weshalb man in diesem Fall die Quantile der t-Verteilung mit $df=n-2$ Freiheitsgraden heranziehen kann, um auf Signifikanz zu testen.
+
+#### Inferenz gegen einen Wert ungleich 0
+
+Wenn wir unsere Korrelation gegen einen Wert ungleich 0 auf Signifikanz testen möchten, können wir dies über die Fischers-Z-Transformation erreichen, welche die Korrelation in die Normalverteilung überträgt. Somit kann unter den Quantilen der Standardnormalverteilung auf Signifikanz getestet werden. Die einzelnen Elemente der Fischers-Z-Transformation werden folgendermaßen berechnet:
+
+
+(I) Berechnung des $Z_{r}$-Werts: $Z_{r}=\frac{1}{2}\cdot ln\frac{1+r}{1-r}$
+
+(II) Berechnung des Erwartungswerts: $\mu_{z}=\frac{1}{2}\cdot ln \frac{1+\rho}{1-\rho}+\frac{\rho}{2\cdot (n-1)}$
+
+__Anmerkung__: Der griechische Buchstabe $\rho$ (gelesen rho) bezieht sich auf die Korrelation, gegen die unsere empirisch gewonnene Korrelation auf Signifikanz geprüft wird.
+
+(III) Berechnung des Standardfehlers:$\sigma_{z}=\sqrt{\frac{1}{n-3}}$
+
+(IV) Berechnung der z-Prüfgröße: $z=\frac{Z_{r}-\mu_{Z}}{\sigma_{Z}}=(Z_{r}-\mu_{Z})\cdot \sqrt{n-3}$
+
+
+
+##  t-Test für abhängige Stichproben
+
+### Einführung
+
+>Wir haben bisher behandelt, wie man Mittelwertsunterschiede zwischen zwei unabhängigen Stichproben mit Hilfe der Inferenzstatistik auf Signifikanz überprüfen kann. Mit der Unabhängigkeit der beiden Stichproben ist gemeint, dass sie sich auf keinste Art und Weise beeinflussen bzw. gegenseitige Varianz aufklären. Welche Verfahren sollte man jedoch anwenden, wenn die beiden Stichproben abhängig sind bzw. wenn die Varianz in den beiden Stichproben bis zu einem gewissen Maß auf die gleiche Ursache zurückführbar ist? Stellen wir uns vor, wir haben eine neue Therapiemethode zur Behandlung von Depression entwickelt und möchsten ihre Effektivität untersuchen. Dafür würden wir aus unserer Zielpopulation Probanden rekrutieren, ihre Depression mit Hilfe eines Depressionsfragebogens erfassen und dann die Therapie anwenden. Anschließend würden wir erneut die Depressivität dieser Probanden erfassen. Jetzt haben wir Daten von den __gleichen__ Probanden zu unterschiedlichen Meszeitpunkten und möchten überprüfen, ob die Therapie einen signifikanten Effekt hatte. Mit den folgenden inferenzstatistischen Verfahren kann man bei abhängigen Stichproben aus Signifikanz prüfen.
+
+
+
+### Beispiel aus der Vorlesung
+
+>In einer Erhebung werden 13 Patienten mit einer Posttraumatischen Belastungsstörung (PTBS) und einem ausgeprägten Negativitätsbias bzgl. sozialer Reize untersucht. Man möchte die Effektivität von MDMA vor einer Therapiesitzung bei diesen Patienten erfassen. Zu zwei Messzeitpunkten wird das Negativitätsbias dieser Patienten durch eine Therapeuteneinschätzung erfasst, folglich sind die Daten abhängig voneinander.
+
+>Hypothesen:
+
+>1.) Nullhypothese $H_{0}$: Die MDMAs haben keinen oder einen negativen Effekt auf den Negativitätsbias der Patienten. (Formal: $H_{0}=\mu_{1}\le \mu_{2}$ oder $\mu_{D}\le 0$)
+
+>2.) Alternativhypothese: Die MDMAs haben einen positiven Effekt auf den Negativitätsbias der Patienten. (Formal: $H_{1}:\mu_{1}>\mu_{2}$ oder $\mu_{D}>0$)
+
+>Das D in $\mu_{D}$ bezieht sich auf die Differenzvariable, welche man erhalten würde, wenn man die intraindividuelle Differenzen der Patienten zu den zwei Messzeitpunkten berechnen würde (Also $x_{m1}-x_{m2}$)
+
+>Es gibt drei unterschiedliche Wege, den t-Test für abhängige Stichproben anzuwenden. Zuerst beschäftigen wir uns mit der anspruchsvolleren Version.
+
+>Hier sind die Daten, mit denen wir arbeiten werden (entnommen aus der Vorlesung):
+
+Proband m|1.MZP | 2. MZP
+---------|------ | ------
+1|8|7
+2|10|8
+3|7|8
+4|9|9
+5|8|7
+6|6|6
+7|6|6
+8|9|7
+9|10|7
+10|7|7
+11|7|6
+12|6|5
+13|10|9
+
+### komplexere Version
+
+>Die Gleichung für die Prüfgröße in der t-Verteilung entspricht der Gleichung für unabhängige Stichproben:
+
+> $t=\frac{(\overline{X_{1}}-\overline{X_{2}})-(\mu_{1}-\mu_{2})}{\hat{\sigma}_{(\overline{X_{1}}-\overline{X_{2}})}}$
+
+>Da unter der Nullhypothese angenommen wird, dass $\mu_{1}-\mu_{2}$ null entspricht bzw. es keinen Effekt gibt, fällt dieser Ausdruck bei der praktischen Anwendung der Formel aus. Aber natürlich muss es irgendwie einen mathematischen Unterschied in der Bestimmung der Signifikanz geben bei abhängigen Stichproben: Die Abhängigkeit der beiden Daten muss irgendwie berücksichtigt werden.
+
+>Der konkrete Unterschied zum t-Test für unabhängige Stichproben ist die Berechnung des Standardfehlers für die Mittelwertsdifferenzen. Beim t-Test für unabhängige Stichproben wird der Standardfehler folgendermaßen bestimmt:
+
+>$\sigma_{(\overline{X_{1}}-\overline{X_{2}})}=\sqrt{\frac{\sigma_{X_{1}}^2}{n_{1}}+\frac{\sigma_{X_{2}}^2}{n_{2}}}$
+
+> Die Bestimmung des Standardfehler für abhängige Stichproben wird um die Kovarianz der beiden Variablen erweitert:
+
+>$\sigma_{(\overline{X_{1}}-\overline{X_{2}})}=\sqrt{\frac{\sigma_{X_{1}}^2+\sigma_{X_{2}}^2-2\cdot\sigma_{X_{1},X_{2}}^2}{n}}$
+
+>Die Bestimmung des Standardfehler wurde erweitert auf die doppelte Gewichtung der Kovarianz beider Variablen. Warum wird die Kovarianz abgezogen und warum zwei Mal?
+
+>Man muss sich bei abhängigen Variablen folgendes vorstellen: Da die beiden Stichproben (oder, in unserem Beispiel, die beiden Messzeitpunkte) abhängig sind,so sind ein Teil der Varianz in der ersten und ein Teil der Varianz in der zweiten Stichprobe auf gemeinsame Ursachen zurückzuführen. Würde man bei der Bestimmung des Standardfehlers diese Tatsache missachten, dann würde man die Varianz, die bei den beiden Stichproben auf eine gemeinsame Ursache zurückzuführen ist, doppelt ins Gewicht nehmen (analog zur Bestimmung der Wahrscheinlichkeit der Vereinigungsmenge zweier Mengen A und B, wenn diese nicht disjunkt sind.). Deshalb muss man bei der Berechnung des Standardmessfehlers die Kovarianz der beiden Variablen abziehen, um die doppelte Gewichtung zu vermeiden. Die Kovarianz wird zwei Mal abgezogen, weil wir im Zähler der Formeln Varianzen miteinander verrechnen. Eine grundlegende Eigenschaft bei der Verrechnung von Varianzen, die miteinander korrelieren, ist folgende: $X+-Y \to\ s^2_{X+Y}=S^2_{X}+s_{Y}^2+-2\cdot s_{XY}$. Diese Rechenregel für Varianzen wurde auf die Berechnung des Standardfehlers übertragen.
+
+>Vielleicht habt ihr bereits gemerkt, dass im Nenner der Formel nicht mehr zwischen einem $n_{1}$ und einem $n_{2}$ mehr differenziert wird. Der Grund hierfür ist die Tatsache, dass die beiden Stichproben aus der gleichen Anzahl an Merkmalsträgern bestehen, da es sich ja um die gleichen Personen handeln, die erfasst werden. Im Bezug zu unserem MDMA Beispiel bestehen die beiden Stichproben aus unseren 13 Patienten.
+
+>_WICHTIG_: Das n in den Formeln bezieht sich nicht auf die Gesamtanzahl an Beobachtungen, sondern auf die __Anzahl an Messwertpaaren__. Bei unserem Beispiel entspricht n=13, da wir 13 Personen zu zwei Messzeitpunkten erfasst haben.
+
+>Welche Auswirkungen hat der Zusammenhang auf den Standardfehler? (_Wichtig_: Diese Informationen beziehen sich auf die __Produkt-Moment-Korrelatio__ der beiden Variablen, nicht die Kovarianz aus der Formel.)
+
+>1.) Wenn die Korrelation zwischen den beiden Variablen null ist, entspricht die Formel dem t-Test für unabhängige Stichproben, da die beiden Stichproben statistisch nicht miteinander zusammenhängen.
+
+>2.) Wenn die Korrelation zwischen den beiden Variablen 1 entspricht, ist der Standardfehler null, da man perfekt von der einen Variablen auf die andere schließen kann.
+
+>3.) Wenn die Korrelation zwischen den beiden Variablen -1 entspricht, dann ist der Standardfehler maximal.
+
+>Bevor wir jetzt die Signifikanz im Bezug zu unserem Beispiel berechnen, müssen wir noch eine Kleinigkeit erwähnen. Wenn die Kovarianz von zwei Variablen geschätzt wird, verändert sich ihre Formel folgendermaßen:
+
+>$\hat{\sigma}_{XY}=\frac{\sum_{m=1}^{n}(X_{m}-\overline{x})\cdot(y_{m}-\overline{y})}{n-1}$
+
+>Im Nenner wird n-1 statt n berechnet.
+
+>t-Test für abhängige Stichproben am Beispiel:
+
+>Varianz der beiden Messungen (wurden geschätzt):$\hat{\sigma}_{X_{1}}=2.41$, $\hat{\sigma}_{X_{2}}=1.41$
+
+>Kovarianz zwischen den Zeitpunkten: $\hat{\sigma}_{X_{1}, X_{2}}=1.34$
+
+>Berechnung des Standardfehlers:
+
+>$\sigma_{(\overline{X_{1}}-\overline{X_{2}})}=\sqrt{\frac{\sigma_{X_{1}}^2+\sigma_{X_{2}}^2-2\cdot\sigma_{X_{1},X_{2}}^2}{n}}$
+
+>$\sigma_{(\overline{X_{1}}-\overline{X_{2}})}=\sqrt{\frac{2.41+1.41-2\cdot 1.34}{13}}$
+
+>$\sigma_{(\overline{X_{1}}-\overline{X_{2}})}=0.3$
+
+>Berechnung der Prüfgröße: $t=\frac{(\overline{X_{1}}-\overline{X_{2}})-(\mu_{1}-\mu_{2})}{\hat{\sigma}_{(\overline{X_{1}}-\overline{X_{2}})}}$
+
+>Da $\mu_{1}-\mu_{2}=0$ unter der $H_{0}$ angenommen wird erhalten wir die verkürzte Version:
+
+>$t=\frac{(\overline{X_{1}}-\overline{X_{2}}}{\hat{\sigma}_{(\overline{X_{1}}-\overline{X_{2}})}}$
+
+>$t=\frac{0.85}{0.3}=2.86$
+
+> (wir haben hier ein bisschen gerundet. Die Berechnung in R operiert mit den exakten Werten.)
+
+>Mit dem pt Befehl erhält man für die Prüfgrüße einen p-Wert von .007: Die beiden Stichproben bzw. Messzeitpunkte unterscheiden sich signifikant voneinander. Im Sinne unserer Hypothese können wir sagen, dass die Nutzung von MDMAs vor der Therapiesitzung den Negativitätsbias der Patienten signifikant verbessert hat.
+
+###  einfache Version
+
+> Der t-Test für abhängige Stichproben entspricht mathematisch dem Einstichproben-t-Test der Differenzwerte $D=(X_{1}-X_{2})$. Was bedeutet das für unsere Analyse? Statt den umständlichen Weg zu nehmen zur Signifikanzbestimmung können wir eine Differenzvariable für unsere Daten berechnen, bei welchem die Differenz zwischen den Werten vom ersten und zweiten Messzeitpunkt gebildet werden. Für unser Beispiel würde sich folgende Differenzvariable bilden:
+
+Proband m|1.MZP | 2. MZP| Diff.
+---------|------ | ------|-----
+1|8|7| 1
+2|10|8| 2
+3|7|8|-1
+4|9|9|0
+5|8|7|1
+6|6|6|0
+7|6|6|0
+8|9|7|2
+9|10|7|3
+10|7|7|0
+11|7|6|1
+12|6|5|1
+13|10|9|1
+
+Der Mittelwert der Differenzvariable $\overline{D}=0.85$ repräsentiert den Mittelwertsunterschied zwischen den beiden Messzeitpunkten. Indem wir diesen Wert durch einen Einstichproben-t-Test gegen 0 testen, überprüfen wir gleichzeitig die mittlere Unterschiedlichkeit der beiden Messzeitpunkte auf Signifikanz. Unsere Analysen würden dementsprechend folgendermaßen aussehen:
+
+(I) __Standardfehler__: Wir müssen bei der Berechnung des Standardfehlers die Kovarianz der beiden Messzeitpunkte nicht mehr berücksichtigen, sondern können stattdessen den __Standardfehler der Differenzvariable__ berechnen bzw. die Unsicherheit in der Schätzung der mittleren Differenz. Die Formel entspricht dem Standardfehler, welchen wir im Rahmen des Einstichproben-t-Tests kennengelernt haben:
+
+$\hat{\sigma}_{(\overline{X}_{1}-\overline{X_{2}})}=\sqrt{\frac{\hat{\sigma}^2_{D}}{n}}=\hat{\sigma}_{D}$
+
+
+(II) Die Formel für die Teststatistik ist identisch mit dem Einstichproben-t-Test, wenn bei diesem gegen ein Populationsparameter $\mu_{0}=0$ getestet wird:
+
+$t=\frac{\overline{D}}{\hat{\sigma}_{D}}$
+
+
+Im Rahmen unseres Beispiels würden wir mit den Formeln folgende Ergebnisse erhalten:
+
+Standardfehler: $\hat{\sigma}_{D}=\sqrt{\frac{\hat{\sigma}^2_{D}}{n}}=\sqrt{\frac{1.141}{13}}=0.296$
+
+t-Teststatistik: $t=\frac{0.85}{0.296}=2.86$
+
+Die Teststatistik ist unter der t-Verteilung mit einem p-Wert von 0.007 signifikant.
+
+###  Effektgröße und Konfidenzintervall
+
+Zur Berechnung der Effektgröße kann man Cohens $d$ heranziehen:
+
+$d'_{2}=\frac{\overline{D}}{\hat{\sigma}_{D}}$
+
+Bei Ahnungslosigkeit interpretiert man Cohens $d$ folgendermaßen:
+
+
+$|d'_{2}|=.14$ : kleiner Effekt
+
+$|d'_{2}|=.35$ : mittlerer Effekt
+
+$|d'_{2}|=.57$ : großer Effekt
+
+
+Für unser Beispiel würden wir ein Cohens $d$ von $d'_{2}=\frac{0.85}{1.07}=0.79$ erhalten. Somit ist der Effekt von MDMA groß.
+
+Das Konfidenzintervall für die Sicherheit in der Schätzung der mittleren Differenz der beiden Messzeitpunkte wird folgendermaßen berechnet:
+
+
+$\overline{D}\pm t_{(1-\frac{\alpha}{2};df)}\cdot \hat{\sigma}_{D}$
+
+
+###  Voraussetzungen
+
+Die Anwendung des t-Tests für abhängige Stichproben setzt folgende Punkte voraus:
+
+(I) Die Messwerte __innerhalb__ der Stichproben müssen unabhängig voneinander sein, d.h. der Negativitätsbias eines unter PTBS leidenden Probanden ist unabhängig vom Bias eines anderen Probanden zu beiden Zeitpunkten.
+
+(II) Die Differenzvariable D muss in der Population normaverteilt sein.
+
+###  Einfachste Version (wenn die Daten zur Verfügung gestellt werden)
+
+In R kann man den Befehl t.test() anwenden um die Signifikanz der Mittelwertsunterschiede sofort zu bestimmen. Hierfür muss man im Befehl lediglich paired=T definieren:
+
+```{r}
+
+mz_1<- c(8,10,7,9,8,6,6,9,10,7,7,6,10)
+mz_2<- c(7,8,8,9,7,6,6,7,7,7,6,5,9)
+
+t.test(mz_1,mz_2,
+       paired=T,
+       alternative='greater')
+
+```
+
+
+
+
+
+
+
+
+
+
+
+

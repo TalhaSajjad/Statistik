@@ -1,0 +1,242 @@
+# Multiple Regression Teil II
+
+## Voraussetzung der multiplen Regression
+
+Ähnlich wie bei der einfachen linearen Regression existieren auch für die multiple Regression Voraussetzungen, welche erfüllt sein müssen, damit man das Verfahren durchführen kann.
+
+1.) Normaverteiltheit der Residuen: Die Residuen müssen in der Population normalverteilt sein.
+
+2.) Unabhängigkeit der Beobachtungseinheiten: Die einzelne  Beobachtungen müssen unabhängig voneinander sein, d.h. der Wert einer Person i darf in keinster Weise den Wert von Person j sowohl im Prädiktor als auch im Kriterium beeinflussen. 
+
+3.) Homoskedastizität: Die Fehlerwerte sind für alle Ausprägungen im Prädiktor bzw. in den Prädiktoren normalverteilt. 
+
+4.) Kontinuierlich verteilte AV: Die abhängige Variable __muss__ bei der multiplen Regression mindestens metrisch skaliert sein. Für kategoriale Variablen existieren alternative Regressionsmodelle (beispielsweise gibt es die logistische Regression für kategoriale abhängige Variablen).
+
+## Optimierung des Regressionsmodells
+
+### Grundidee
+
+Ein guter Forscher ist stets darum bemüht, die von ihm aufgestellten Modelle so einfach wie möglich zu konstruieren. Dies bedeutet, dass alle überflüssige Elemente in einem Modell identifiziert und dementsprechend entfernt werden. Bei der multiplen Regression ist dies auch der Fall, d.h. man stellt sich nach der Berechnung des multiplen Determinationskoeffizienten nicht einfach so mit dem Ergebnis zufrieden, sondern stellt sich die Frage, inwiefern das $R^2$ beeinflusst wird, wenn einzelne Prädiktoren aus dem Modell entfernt werden. Stellen wir uns vor, wir möchten ein multiples Regressionsmodell aufstellten, bei welchem die ,,Eignung für eine Führungsposition'' die abhängige Variable ist. Ein naiver Forscher würde das Modell mit unzähligen Prädiktoren füllen - gehen wir mal beispielhaft von 150 aus -, welche alle zusammen .8 der Kriteriumsvarianz aufklären: 80% der Gesamtvarianz wird also durch das Modell erklärt! Leider Gottes wird aber keine Firma dieses Regressionsmodell jemals nutzen, da der Erhebungsprozess der 150 Prädiktoren zu aufwendig und kostspielig wäre, vor allem wenn es viele Bewerbende gibt. Es ist also ganz sinnvoll, sich mit der Frage zu beschäftigen, ob einzelne Prädiktoren in das Modell aufgenommen bzw. entfernt werden sollen. Wenn ein Prädiktor in das Modell aufgenommen wird, untersucht man, welcher Zuwachs ans erklärter Varianz durch die Hinzunahme entsteht (Varianzinkrement). Wenn ein Prädiktor aus dem Modell entfernt wid, untersucht man, wie sich der Determinationskoeffizient verringer (Varianzdekrement). Die Mantra eines guten Forschers ist: So einfach wie möglich, so komplex wie nötig! 
+
+### Verhältnis von Prädiktoren
+
+Wie untersucht man nun, ob ein Prädiktor in das Modell aufgenommen werden sollte oder nicht? Man könnte meinen, der Zusammenhang zwischen Prädiktor und Kriterium würde ausreichen, um seine Redundanz für das Regressionsmodell zu bestimmen. Dies ist leider nicht der Fall und zwar kann es dazu kommen, dass ein Prädiktor mit einem Kriterium hochkorreliert und trotzdem keinen signifikanten Varianzbeitrag leistet. Andersherum kann es auch dazu kommen, dass ein Prädiktor, welcher gering mit dem Kriterium korreliert, zu einem deutlichen Anstieg in erklärter Kriteriumsvarianz führt, nachdem er aufgenommen wurde. Wovon hängt also die Signifikanz eines Prädiktors ab. Die Hinzunahme eines Prädiktors in das Regressionsmodell führt nur dann zu einem Anstieg in erklärter Gesamtvarianz, wenn er zusätzliche nichtredundante Informationen erklärt bzw. Informationen erklärt, welche noch nicht durch die anderen Prädiktoren gedeckt wurde. Dies ist zu einem großen Teil davon abhängig, wie sehr der Prädiktor mit den bereits vorhandenen UVs im Regressionsmodell korreliert, Wenn der Prädiktor beispielsweise perfekt mit einem bereits im Modell enthaltenen, anderen Prädiktor korreliert, wird er keinen zusätzlichen Varianzbeitrag leisten, da er keine Informationen enthält, welche nicht bereits durch den anderen Prädiktor erklärt wird. __Wichtig__: Nachdem ein Prädiktor in das Modell aufgenommen wird, kann es dazu kommen, dass die Regressionsgewichte der anderen Prädiktoren verändert. Warum es dazu kommt, werden wir später in diesem Kapitel behandeln. Was ihr euch aber merken müsst, ist, dass man die Regressionsgewichte der Prädiktoren nur im Kontext der bereits enthaltenen Prädiktoren sinnvoll interpretieren kann: Ein Prädiktor m könnte möglicherweise in einem Modell, welches den Berufserfolg vorhersagt, komplett redundant sein, jedoch in einem anderen einen signifikanten Varianzbeitrag leisten, obwohl die abhängige Variable die gleiche ist.
+
+### Bestandteile der aufgeklärten Varianz
+
+Wenn der Determinationkoeffizient nicht nur von den Zusammenhängen zwischen den einzelnen Prädiktoren und dem Kriterium abhängt, sondern zusätzlich von den Zusammenhängen zwischen den Prädiktoren, wie ist dann $R^2$ mathematisch definiert? Eine Formel zur Bestimmung des multiplen Determinationskoeffizienten ist folgende:
+
+$R^2=var(\hat{y})=\hat{\beta_{1}^2}+...+\hat{\beta_{2}^2}+2\cdot \sum_{j<k}\hat{\beta_{j}}\hat{\beta_{k}}r_{jk}$
+
+Die Formel sagt folgendes aus. Der Determinationskoeffizient entspricht der Varianz der vorhergesagten Werte. Dieser kann berechnet werden über die Summe aller quadrierter __standardisierter__ Regressionsgewichte und dem Ausdruck $2\cdot \sum_{j<k}\hat{\beta_{j}}\hat{\beta_{k}}r_{jk}$. Der hintere Ausdruck in der Formel berücksichtigt die Zusammenhänge unter den Prädiktoren und zwar werden alle möglichenstandardisierten Prädiktorpaare miteinander multipliziert ($\hat{\beta_{j}}\hat{\beta_{k}}$). Das Produkt dieser Multiplikation wird dann mit der Korrelation zwischen den beiden Prädiktoren multipliziert ($\hat{\beta_{j}}\hat{\beta_{k}}r_{jk}$). Dies wird für alle Prädiktorpaare berechnet, die dann am Ende aufaddiert ($\sum_{j<k}\hat{\beta_{j}}\hat{\beta_{k}}r_{jk}$) und doppelt ins Gewicht genommen werden ($2\cdot \sum_{j<k}\hat{\beta_{j}}\hat{\beta_{k}}r_{jk}$). Wenn beispielsweise alle Prädiktoren miteinander nicht korrelieren, fällt der hintere Ausdruck komplett weg und der Determinatinoskoeffizient kann über die Summation aller quadrierter standardisierter Regressionsgewichte berechnet werden. Die quadrierten $\beta$-Gewichte repräsentieren den nichtredundanten Varianzbeitrag des Prädktors im Modell (welcher in Abhängigkeit von den restlichen Prädiktoren im Modell variieren kann).
+
+### Testen eines Varianzinkrements bei Hinzunahme eine oder mehrerer Prädiktoren
+
+Im Folgenden wird anhand von einem Beispiel erläutert, wie man die Signifikanz des Varianzinkrements mit Hilfe der F-Verteilung bestimmen kann. Stellen wir uns vor, wir möchten den Berufserfolg einer Person mit Hilfe mehrerer Prädiktoren vorhersagen. Wir haben uns letzlich für drei Prädiktoren entschieden: Den IQ, die Master-Abschlussnote sowie die Disziplin. Daraufhin haben wir das Regressionsmodell aufgestellt an einer Stichprobe von $n=104$ Personen, welches insgesamt $R^2=0.60$ der Kriteriumsvarianz aufklärt. Nun stellen wir uns die Frage, ob die Master-Abschlussnote wirklich relevant für das Regressionsmodell ist. Um dies zu prüfen kann man den F-Test für das Varianzinkrement anwenden. Die Nullhypothese lautet folgendermaßen:
+
+$H_{0}$: $R^2_{uncon}=R^2_{con}$
+
+Hierbei steht $R^2_{uncon}$ für den Determinationskoeffizienten desjenigen Regressionsmodells, welche alle Prädiktoren enthält. Für unser Beispiel sind das der IQ, die Abschlussnote sowie die Disziplin. $R^2_{con}$ hingegen steht für den Determinationskoeffizienten, welches auf eine bestimmte Anzahl an Prädiktoren aus dem unconstrained model reduziert wurde. In unserem Fall sind das der IQ und die Disziplin. Das constrained model erklärt in unserem Beispiel insgesamt $R^2_{con}=0.5$ der Kriteriumsvarianz. Inhaltlich sagt die Nullhypothese aus, dass sich in der Population der Determinationskoeffizient zwischen den beiden Regressionsmodellen nicht unterscheidet. Das würde bedeuten, dass die Prädiktoren, welche im unconstrained model jedoch nicht im constrained model sind (hier: Abschlussnote), für die Vorhersage des Berufserfolgs komplett redundant sind. Die Alternativhypothese postuliert natürlich, dass sich die beiden Modelle unterscheiden. __Interessant__: Die Alternativhpothese kann nur in eine Richtung definiert werden und zwar $R^2_{uncon}>R^2_{con}$. Der Grund hierfür ist, dass das constrained model unmöglich mehr Varianz aufklären kann als das unconstrained model, da dieses mehr Prädiktoren enthält. Folglich kann $R^2_{con}$ maximal so groß werden wie $R^2_{uncon}$. Die Signifikanz des Varianzinkrements kann über folgende Formel berechnet werden:
+
+$F=\frac{(R^2_{uncon}-R^2_{con})/df_{diff}}{(1-R^2_{uncon})/df_{uncon}}$ 
+
+In der Formel steht $df_{diff}$ für die Anzahl der zusätzlichen Prädiktoren im unconstrained model (im Vergleich zum constrained model). Für unser Beispiel ist im unconstrained model nur ein zusätzlichder Prädiktor, weshalb bei uns $df_{diff}=1$ ist. $df_{uncon}$ wird folgendermaßen berechnet: $df_{uncon}=n-(m+1)$ für $m=$ die Anzahl der Prädiktoren im unconstrained model. In unserem Beispiel sind im unconstrained model drei Prädiktoren, d.h. bei uns komme $df_{uncon}=104-(3+1)=100$ raus. Wenn wir alle Werte in die Formel eingeben, erhalten wir folgenden F-Wert:
+
+$F=\frac{(0.6-0.5)/1}{(1-0.6)/100}=25$
+
+Um bestimmen zu können, ob die Prüfgröße signifikant ist, muss folgendes gelten: $F> F_{(\alpha;df_{diff};df_{uncon})}$. Den kritischen Wert unter der F-Verteilung kann relativ simpel in R bestimmt werden:
+
+```{r}
+qf(0.95, #alpha-Niveau. Hier im Beispiel 0.05
+   1,    # df(diff)
+   100)  # df(uncon)
+```
+
+Da unsere F-Prüfgröße deutlich über dem kritischen F-Wert liegt, können wir die $H_{0}$ verwerfen, d.h. die Determinationskoeffizienten unterscheiden sich mit einer Irrtumswahrscheinlichkeit von 5% in der Population voneinader. Dies bedeutet auch, dass die Masterabschlussnote über den IQ und die Disziplin hinaus einen signifikanten Varianzbeitrag leistet. Da unser unconstrained model lediglich einen zusätzlichen Prädiktor hatte, könnte man seine Signifikanz auch über Konfidenzintervalle bestimmen. Dieses Verfahren ist jedoch relativ zum F-Test sehr ungenau. Allgemein kann mit diesem F-Test geprüft werden, ob ein Prädiktor in das Regressionsmodell zusätzlich aufgenommen werden sollte, oder ob ein bereits enthaltener Prädiktor entfernt werden kann
+
+### Der Omnibus-Test der Regression
+
+Der Omnibustest der Regression stellt eine Sonderform des gerade besprochenen F-Tests dar. Er wird angewendet, wenn man den Determinationskoeffizienten gegen den Wert 0 auf Signifikanz testen möchte. Im Bezug zu unserem Beispiel könnte man auch sagen, dass das unconstrained model aus drei Prädiktoren besteht (IQ, Abschlussnote, Disziplin) , während das constrained model aus null Prädiktoren besteht und dementsprechend einen Determinationskoeffizienten von Null hat. Folglich bedeutet ein signifikanter F-Wert im Test, dass das Regressionsmodell in der Population mit einer bestimmten Irrtumswahrscheinlichkeit sich von 0 unterscheidet und folglich das Kriterium (Berufserfolg) besser vorhersagen kann, als wenn man diesen einfach nur durch seinen Mittelwert vorhersagt. Die Teststatistik leitet sich aus der vorhin angegebenen Formel ab:
+
+$F_{omn}=\frac{R^2/m}{(1-R^2)/(n-(m+1))}$
+
+Für unser Beispiel würden wir folgenen F-Wert erhalten:
+
+$F_{Omn}=\frac{0.6/3}{0.4/100}=50$
+
+Wenn wir die Prüfgröße mit dem kritischen F-Wert ($F_{(\alpha;m;n-(m+1)}$)vergleichen: 
+
+```{r}
+qf(0.95,      #alpha-Niveau
+   3,         # Anzahl der Prädiktoren im Modell
+   100)       # df(uncon)
+```
+stellen wir fest, dass unsere Prüfgröße extremer ist als der kritische Wert. Dies bedeutet, dass unser Regressionsmodell einen signifikanten Varianzbeitrag leistet und den Berufserfolg besser vorhersagt, als wenn man einfach nur den Mittelwert im Kriterium zur Vorhersage heranziehen würde. Dies bedeutet jedoch nicht, dass jeder Prädiktor notwendig ist, um den Berufserfolg vorherzusagen. Dafür bedarf es spezifischer Selektionsverfahren.
+
+## Forward- und Backward-Selection
+
+Ein solches Selektionsverfahren stellen die sogenannte forward selection und backward selection dar. Im Folgenden wird die Logik der beiden Verfahren erklärt.
+
+### Forward-Selection
+
+In der forward selection im ersten Schritt wird derjenige Prädiktor in das Regressionsmodell aufgenommen, welches den höchsten Zusammenhang mit dem Kriterium aufweist. Daraufhin wird immer derjenige Prädikor als nächstes aufgenommen, welches das höchste Varianzinkrement ($R^2_{uncon}-R^2_{con}$) aufweist. Es wird jedoch immer nur dann ein Prädiktor augenommen, wenn sein Varianzinkrement mittels F-Test signifikant war. Wenn dies nicht der Fall ist, wird das Verfahren abgebrochen und keine weiteren Prädiktoren werden in das Modell augenommen. 
+
+### Backward-Selection
+
+Bei der backward selection wirs im ersten Schritt das Regressionsmodell mit allen Prädiktoren, die uns interessieren erstellt. Im nächsten Schritt werden immer diejenigen Prädiktoren aus dem Modell entfernt, die das geringste Varianzdekrement aufweisen. Die Prädiktoren werden so lange entfernt, bis der F-Test signifikant wird, denn dies bedeutet, dass der entfernte Prädiktor einen signifikanten Varianz-Beitrag leistet . Ab diesem Punkt wird das Verfahren beendet und es werden keine weiteren Prädiktoren in das Modell aufgenommen. Das Resultat ist ein Regressionsmodell, bei welchem keiner der Prädiktoren redundant ist.
+
+### Weiteres Selektionsverfahren
+
+Es gibt auch die stepwise Regression, die eine Mischung zwischen der forward- und backward selection darstellt. Im ersten Schritt wird ein Prädiktor nach den Kriterien der forward selection in das Regressionsmodell aufgenommen. Im nächsten Schritt wird dann geschaut, ob nach der Aufnahme eines Prädiktors möglicherweise eines der anderen Prädiktoren nach den Kriterien der backward selection redundant wurde. Dieser Prozess wiederholt sich dann für jeden aufgenommenen Prädiktor. In der Regel wird diese schrittweise Methode nur zur Datenexploration angewendet.
+
+## Diagnostik
+
+Mit Hilfe der folgenden Vorgehensweisen kann man unter anderem untersuchen, ob die Voraussetzungen der multiplen Regression erfüllt sind bzw. ob das Regressionsmodell durch bestimmte Faktoren verzerrt wird. 
+
+### Residuenplot
+
+In einem Residuenplot wird ein Streupunktdiagramm generiert, bei welchem auf der x-Achse die vorhergesagten Werte im Kriterium und auf der y-Achse die (möglicherweise z-standardisierten) Residuen geplottet werden. Man kann den Residuenplot nutzen, um die Voraussetzung der Homoskedastizität und des linearen Zusammenhangs zwischen Prädiktor und Kriterium zu überprüfen. Damit diese Voraussetzungen erfüllt sind, sollte man im Residuenplot keine Struktur in der Punktewolke erkennen und zusätzlich sollte die Streuung der Residuen für alle Stufen der vorhergesagten Werte gleich bleiben. Falls die Streuung über alle Stufen nicht gleichbleibt, spricht das für Heteroskedastizität. Wenn zusätzlich die Punktewolke eine klare Struktur aufweist, kann das bedeuten, dass es einen verdeckten, von der multiplen Regression nicht berücksichtigten Zusammenhang gibt.
+
+### Partielle (Partial) Plots
+
+Mit Hilfe von partiellen Plots kann man den Zusammenhang zwischen einem einzelnen Prädiktor und dem Kriterium genauer untersuchen. Allgemein wird bei der multiplen Regression angenommen, dass bei konstanthalten aller anderen Prädiktorne im Modell der Zusammenhang zwischen einem Prädiktor $x_{j}$ und dem Kriterium linear ist. Bezogen auf unser Beispiel bedeutet das, dass wenn ich den Wert für den IQ konstanthalte, die Beziehung zwischen der Masterabschlussnote und dem Berufserfolg einem linearen Trend folgt. Mit Hilfe von partiellen Plots kann man schauen, ob dem so ist.
+
+1.) Im ersten Schritt wird eine multiple Regression erstellt, bei welchem der Prädiktor $x_{j}$, deren Beziehung mit dem Kriterium wir untersuchen möchten, die abhängige Variable ist. Die unabhängige Variablen sind die restlichen Prädiktoren im Regressionsmodell. Stellen wir uns vor, wir möchten die Beziehung zwischen der Masterabschlussnote und dem Berufserfolg untersuchen. Im ersten Schritt erstellen wir ein Regressionsmodell, bei welchem die Abschlussnote die AV und der IQ die UV ist.
+
+2.) Die resultierenden Residuen aus diesem Regressionsmodell, repräsentiert den nichtredundanten Varianzanteil des Prädiktors, welcher nicht durch die anderen Prädiktoren vorhergesagt werden kann.
+
+3.) Im letzten Schritt wird der partielle Plot erstellt, bei welchem auf der y-Achse das ursprüngliche Kriterium (Berufserolg) und auf der y-Achse die Residuen der anderen Regression (Abschlussnote~IQ) geplottet wird.
+
+> Wenn in dem partiellen Plot ein nichtlinearer Zusammenhang zwischen dem Residuen und dem Kriterium zu beobachten ist, bedeutet dies, dass es zwischen dem Prädiktor und dem Kriterium Beziehungen gibt, die nicht durch das Regressionsmodell berücksichtigt werden.
+
+Für jeden Prädiktor kann man nach diesem Schema ein Regressionsmodell erstellen. Erinnert ihr euch nocht an das Beispiel aus Kapitel 16? Wenn nicht, könnt ihr gerne nochmal da nachschauen, denn wir werden im folgenden für dieses Beispiel die partiellen Plots erstellen.
+
+### Partial Plots in R
+
+Hier nochmal das Beispiel auf Kapitel 16 (damit die Plots schöner aussehen, wurde die Stichprobengröße erhöht): Stellt euch vor, wir haben das Jahr 2077. Vor kurzem wurde ein neues Psychotherapeutengesetz eingeführt hat, welche die Praktizierung des Berufs für illegal erklärt hat. Die Bundesregierung hat diese Entscheidung begründet mit der Tatsache, dass Psychotherapeuten irgendwie alle Probleme auf das Verhältnis zur Mutter zurückführen. Ihr ignoriert diese kleinkarierte Ansicht der psychotherapeutischen Tätigkeit und sucht verzweifelt nach Möglichkeiten, um das Gesetz aufzuheben. Dabei stolpert ihr über Daten der letzten 50-Jahre in welchem mehrmals die Einstellung gegenüber Psychologen ($x_{1}$), der Konsum von Medikamenten ($x_{2}$) sowie die allgemeine Lebenszufriedenheit ($y$) einzelner Personen erfasst wurde. Um die Wichtigkeit der Psychotherapie zu beweisen, wertet ihr die Daten aus und stellt eine multiple Regression auf mit folgenden Daten:
+
+Allgemeine Lebenszufriedenheit             |      Einstellung gegenüber Psychologen                  |     Medikamentenkonsum
+---------------------------------|----------------------------------------|-----------------------
+7|    10| 1
+8|    7|  3
+4|    5| 2
+2|    4| 8
+1| 1| 9
+5| 4|7
+7|6|2
+2|3|8
+9|8|2
+4|4|5
+8|8|2
+5|2|6
+3|8|8
+4|3|7
+8|8|2
+9|5|1
+2|2|7
+4|6|6
+6|7|3
+8|8|2
+9|9|1
+
+Im Folgenden untersuchen wir mit R, ob es eine verdeckte, nichtlineare Beziehung zwischen dem Prädiktor ,,Einstellung gegenüber Psychologen'' und dem Kriteirum ,,Allgemeine Lebenszufriedenheit'' gibt:
+
+```{r}
+# Erstellung des Datensatzes
+data_reg<- data.frame(y=c(7,8,4,2,1,5,7,2,9,4,8,5,3,4,8,9,2,4,6,8,9),
+                      x1=c(10,7,5,4,1,4,6,3,8,4,8,2,8,3,8,5,2,6,7,8,9),
+                  x2=c(1,3,2,8,9,7,2,8,2,5,2,6,8,7,2,1,7,6,3,2,1))
+# Erstellung des Regressionsmodells, bei welchem die Einstellung die AV und der Medikamentenkomsum die UV ist
+reg<- lm(x1~x2,data=data_reg)
+# Im Datensatz werden die Residuen als weitere Variable eingefügt
+data_reg$resid<- residuals(reg)
+# Mit Hilfe von ggplot werden die Residuen und die Kriteriumswerte geplottet
+library(ggplot2)
+ggplot(data_reg, mapping=aes(x=resid,y=y))+
+  geom_point()+
+  labs(x='Residuen des Modells EgP~Medikamentenkonsum',y='Allgemeine Lebenszufriedenheit')
+```
+Außer einer einzelnen Beobachtung, welche nicht in die Punktewolke reinpasst (vllt handelt es sich hier um eine Person, für die das Modell nicht angemessen ist), scheint es keinen verdeckten nichtlinearen Zusammenhang zwischen der Einstellung gegenüber Psychologen und der allgemeinen Lebenszufriedenheit.
+
+Im Folgenden erstellen wir nun das partielle Plot für den Medikamentenkonsum:
+
+```{r}
+# Erstellung des Regressionsmodells med~EgP
+reg2<- lm(x2~x1,data_reg)
+# Erstellung der Residuen als Variable
+data_reg$resid2<- residuals(reg2)
+# Erstellung des partial plots
+ggplot(data_reg, aes(x=resid2,y=y))+
+  geom_point()+
+  labs(x='Residuen des Modells Medikamentenkonsum~EgP',y='Allgemeine Lebenszufriedenheit')
+```
+Auch hier ist kein nichtlinearer Zusammenhang zu beobachten.
+
+### Studentisierte Residuen
+
+Es gibt eine weitere Form von Residuen neben den herkömmlichen, nämlich die studentisierten Residuen, welche näher an den Residuen in der Population liegen. Man kann mit Hilfe der studentisierten Residuen feststellen, ob ein Proband für ein Modell schlecht passt, da sein Wert anhand seiner Prädiktorausprägungen schlecht vorhergesagt wurde.
+
+```{r}
+# Erstellen des ursprünglichen Regressionsmodells
+reg_o <- lm(y~x1+x2,data_reg)
+# studentisierte Residuen
+estud<- rstudent(reg_o)
+estud
+
+```
+
+
+Werte, die im Betrag größer als 3.3 sind, gelten als auffällig. In unserem Fall gibt es jedoch keine Beobachtung, die diesen Wert überschreitet, das heißt keine Beobachtungeinheit passt schlecht zu unserem Regressionsmodell.
+
+### Multikollinearität
+
+Multikollinearität ist ein Problem in der multiplen Regression, bei welchem es hohe Korrelationen zwischen Prädiktoren gibt, die zu starken Redundanzen der Prädiktoren führt und sich verfälschend auf das Ergebnis der Regression auswirkt. Man berechnet für jeden Prädiktor einen Toleranzwert nach folgender Vorgehensweise:
+
+1.) Man berechnet eine weitere Regressions mit dem Prädiktor $x_{j}$, deren Toleranzwert wir bestimmen möchten, als AV und den restlichen Prädiktoren im Regressionsmodell als UV. Dabei repräsentiert $R^2_{j}$ die Redundanz des Prädiktors, da in diesem Fall der Determinationskoeffizient zeigt, welchen Anteil der Varianz des Prädiktors $x_{j}$ durch die restlichen Prädiktoren erklärt werden kann.
+
+2.) Mit diesem Determinationskoeffizient wird nun der Toleranzwert nach folgender Formel bestimmt: $T_{j}=1-R^2_{j}$
+
+Wenn der Toleranzwert geringer als 0.2 ausfällt, sollte man sich überlegen, diesen Prädiktor aus dem Regressionsmodell zu entfernen, da er starke Redundanzen aufweist.
+
+Wir berechnen nun die Toleranzwerte erneut für unser obiges Beispiel. Dabei haben wir die beiden Regressionsmodelle bereits für die partiellen Plots bestimmt:
+
+```{r}
+# Toleranzwert für den Prädiktor ,,Einstellung gegenüber Psychologen''
+t1<- 1-summary(reg)$r.squared
+t1
+# Toleranzwert für den Prädiktor ,,Medikamentenkonsum''
+t2<- 1-summary(reg2)$r.squared
+t2
+```
+
+In diesem Beispiel sind beide Toleranzwerte identisch da beide Regressionsmodelle einfache lineare Regressionen sind, wodurch der Determinationskoeffizient allein vom Zusammenhang der beiden Variablen abhängt. Man erkennt jedoch, dass diese Toleranzwerte oberhalbe von 0.2 liegen und somit keine hohen Redundanzen aufweisen.
+
+### Hebelwerte
+
+Da die Regressionsanalyse anfällig für Ausreißer sind, bedarf es einer Methode zur Identifikation von Ausreißern, welche die Hauptrichtung des Zusammenhangs verzerren bzw. außerhalb dessen liegen. Im Folgenden wird nicht erklärt wie die Hebelwerte bestimmt werden. Ihr müsst lediglich wissen, dass Hebelwerte einflussreiche Datenpunkte sind, welche das Ergebnis der Regression verzerren kann. Wenn der Hebelwert größer als $4/n$ ist, handelt es sich um ein Hebelwert.
+
+## Partial- und Semipartialkorrelation
+
+Bei der multiplen Regression spielen die Partialkorrelation und vor allem die Semipartialkorrelation eine wichtige Rolle. Als erstes betrachten wir die Partialkorrelation.
+
+### Partialkorrelation
+
+Bei der Partialkorrelation wird der Zusammenhang zwischen zwei Variablen bestimmt, während der Effekt einer dritten Variablen auf die beiden Variablen herausgerechnet bzw. herauspartialisiert wird. Als Resultat hat man einen Zusammenhang zwischen zwei Variablen x und y, welche um den Effekt von der Variablen z bereinigt wurde. Die Partialkorrelation kann man über folgende Formel berechnen:
+
+$r_{xy.z}=\frac{r_{xy}-r_{xz}\cdot r_{yz}}{\sqrt{1-r^2_{xz}}\sqrt{1-r^2_{yz}}}$
+
+Die Formel kann für den Fall erweitert werden, dass man für den Zusammenhang zweier Variablen den Effekt mehrerer Variablen herauspartialisieren möchte. Die Partialkorrelation kann geringer oder höher sein als die herkömmliche Korrelation $r_{xy}$. Wenn die Drittvariable z mit einer der beiden Variablen hochkorreliert, z.B. x, jedoch niedrig mit der anderen Variable korreliert, dann fällt die Partialkorrelation $r_{xy.z}$ höher aus als die Korrelation $r_{xy}$. Man spricht hier dann von einer Suppressorvariable z, welchen den Zusammenhang zwischen den Variablen x und y unterdrückt (*supressed*) hat.
+
+__Inwiefern steht die Patialkorrelation in Beziehung zur Regression?__
+
+1.) Es gibt eine alternative Methode, vor allem wenn man den Effekt mehrerer Drittvaraiblen herauspartialisieren möchte, um die Partialkorrelation zu erhalten: Man bestimmt zwei Regressionsmodelle in welchem jeweils die Variablen x und y, deren Zusammenhang wir bestimmen möchsten, die Avs sind und die Drittvariablen, deren Effekt wir herauspartialisieren möchten, die UVs bilden. Bei den beiden resultierenden Regressionsmodellen erhält man dann Residuen. Diese Residuen repräsentieren die Variation der Variablen x und y, die nicht durch die Drittvaraiblen erklärt werden können. Wenn man nun den Zusammenhang der Residuen der beiden Regressionsmodelle bildet, erhält man die Partialkorrelation der beiden Variablen, welche um den Effekt der UVs in den Regressionsmodellen bereinigt wurde: $r_{xy.z}=r_{e(x),e(y)}$. Man kann die Partialkorrelation heranziehen um  Supressorvariablen und Scheinkorrelationen aufzudecken.
+
+2.) Die Partialkorrelation spielt auch in der forward selection Methode der Prädiktorwahl eine Rolle. Wie bereits besprochen wird im ersten Schritt derjenige Prädiktor ins Regressionsmodell aufgenommen, welchen den höchsten Zusammenhang mit dem Kriterium aufweist. Nachdem das signifikante Varianzinkrement bestimmt wurde wird nun im nächsten Schritt derjenige Prädiktor ins Regressionsmodell aufgenommen, der die höchste Partialkorrelation mit dem Kriterium aufweist. Dabei wurde in dieser Partialkorrelation der Effekt aller bereits im Regressionsmodell enthaltenen Prädiktoren aus der Korrelation herauspartialisiert. Dieser Prozess wird immer weiter wiederholt, bis das Varianzinkrement nicht mehr signifikant ist. Mit Hilfe von Partialkorrelationen wird also bestimmt, welcher Prädiktor unter Berücksichtigung aller bereits vorhandenen Prädiktoren im Regressionsmodell das höchste Varianzinkrement aufweist ist.
+
+### Semipartialkorrelationen
+
+Bei Semipartialkorrelationen wid der Effekt einer Drittvariablen nur aus einer der beiden Variablen herauspartialisiert. Um mit Hilfe der Regression die Semipartialkorrelation zu bestimmen muss man folglich folgendes berechnen: $r_{y(x.z)}=r_{y,e(x)}$. Dabei repräsentiert $e(x)$ die Residuen derjenigen Regression, bei welchem die Variable x die AV und die Drittvariablen die UVs sind.
+
+__Inwiefern sind die Semipartialkorrelationen relevant für die multiple Regression?__
+
+Eine Eigenschaft des Determinationskoeffizienten ist die Tatsache, dass sie sich zusammensetzt aus der Summe der quadrierten Semipartialkorrelationen der Prädiktoren mit dem Kriterium, wobei der Effekt vorangegangener Prädiktoren nur für das hinzugefügte Kriterium herauspartialisiert wird. Betrachten wir dies an unserem Beispiel vom Begin des Kapitels. Stellen wir uns vor, wir haben als ersten Prädiktor das IQ in das Regressionsmodell eingebaut. In diesem Fall entspricht der Determinationskoeffizient dem quadrierten Zusammenhang zwischen dem einen Prädiktor und dem Kriterium ($R^2=r_{x_{1}y}$). Wenn wir nun die Masterabschlussnote als weiteren Prädiktor in das Regressionsmodell aufnehmen, besteht $R^2$ nun nicht mehr nur aus dem Zusammenhang zwischen dem ersten Prädiktor und dem Kriterium, sondern zusätzlich aus der quadrierten Semipartialkorrelation zwischen der Abschlussnote und dem Berufserfolg, wobei der Effekt des IQs aus der Abschlussnote herauspartialisiert wird ($R^2=r_{x_{1}y}+r_{y(x_{2}.x_{1})}$). Wenn wir nun einen weiteren Prädiktor, z.B. die Disziplin, in das Modell aufnehmen würden, würde sich der Determinationskoeffizient um die quadrierte Semipartialkorrelation zwischen der Disziplin und dem Berufserfolg, wobei der Effekt des IQs und der Abschlussnote aus der Disziplinvariable herauspartialisiert wird, erhöhen ($R^2=r_{x_{1}y}+r_{y(x_{2}.x_{1})}+r_{y(x_{3}.x_{1}x_{2})}$). Die quadrierten Semipartialkorrelationen repräsentieren dementsprechend das Varianzinkrement des Prädiktors, wenn dieser in das Modell aufgenommen wird. Dieser kann sich dementsprechend in Abhängigkeit von den zuvor ausgewählten Prädiktoren drastisch ändern.

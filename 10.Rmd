@@ -1,0 +1,307 @@
+#  Zweistichproben-t-Test, Wilcoxon-Rangsummen-Test, Mann-Whitney U Test, F-Test, Levene-Test
+
+## Zweistichproben-t-Test: Fortsetzung
+
+###  Standardfehler
+
+Zur Berechnung der t-Prüfgröße brauchen wir neben den empirischen Mittelwerten der beiden Stichproben zusätzlich den Standardfehler der Mittelwertsdifferenzen $\hat{\sigma}_{(\overline{X}_{1}-\overline{X}_{2})}$. Wenn die beiden Populationsvarianzen der Gruppen bekannt sind, kann man den Standardfehler nach folgender Formel bestimmen:
+
+
+$\sigma_{(\overline{X}_{1}-\overline{X}_{2})}=\sqrt{\frac{\sigma^2_{1}}{n_{1}}+\frac{\sigma^2_{2}}{n_{2}}}$
+
+
+In diesem Fall berechnet man nicht mehr den Zweistichproben-t-Test für unabhängige Stichproben, sondern den __Zweistichproben-Gauß-Test__, deren z-Prüfgröße der Standardnormalverteilung folgt. Die Formel zur Bestimmung der z-Prüfgröße ist identisch mit der Formel zur t-Teststatistik. Der einzige Unterschied liegt darin, dass der Standardfehler nicht aus den Daten geschätzt wird, da die Populationsvarianzen der beiden Gruppen bekannt sind.
+
+Sind die Populationsvarianzen jedoch unbekannt, so muss der Standardfehler aus den Daten geschätzt werden. Die Formel für den geschätzten Standardfehler der Mittelwertsdifferenzen sieht folgendermaßen aus:
+
+
+$\hat{\sigma}_{(\overline{X}_{1}-\overline{X}_{2})}=\sqrt{\frac{\hat{\sigma}^2_{inn}}{n_{1}}+\frac{\hat{\sigma}^2_{inn}}{n_{2}}}$
+
+
+Zur Schätzung des Standardfehlers brauchen wir also die gepoolte Varianz $\hat{\sigma}^2_{inn}$. Die gepoolte Varianz ist nicht zu verwechseln mit der Varianz der Gesamtstichprobe, denn diese fällt unterschiedlich aus.
+
+Was genau ist dann die gepoolte Varianz? Um die Grundidee der gepoolten Varianz zu verstehen, müssen wir vorher einen Umstand klären: Beim Zweistichproben-t-Test geht man davon aus, dass die Varianzen in den beiden Stichproben identisch sind bzw. sich auf Populationsebene nicht voneinander unterscheiden (Homoskedastizität, s. Abschnitt 1.2). Folglich sind die Varianzen der beiden Stichproben separate Schätzer der gleichen Populationsvarianz. Die gepoolte Varianz nimmt sich diese Information zunutze, aggregiert die Daten der beiden Stichproben um die __Populationsvarianz besser zu schätzen__. Die Formel für die gepoolte Varianz lautet:
+
+
+$\hat{\sigma}^2_{inn}=\frac{\hat{\sigma}^2_{1}\cdot(n_{1}-1)+\hat{\sigma}^2_{2}\cdot(n_{2}-1)}{(n_{1}-1)+(n_{2}-1)}$
+
+
+Nun haben wir alle nötigen Größen, um die t-Teststatistik zu berechnen. Die resultierende Prüfgröße kann man dann unter der t-Verteilung, welche beim Zweistichproben-t-Test $n_{1}+n_{2}-2$ Freiheitsgrade hat, auf Signifikanz prüfen.
+
+
+
+
+
+### Voraussetzungen
+
+Der Zweistichproben-t-Test hat folgende Voraussetzungen:
+
+(1) Die Messwerte __zwischen__ den beiden Gruppen müssen voneinander unabhängig sein. D.h. der Messwert einer Person in Stichprobe 1 darf nicht von einem Messwert einer beiliebigen Person in der zweiten Stichprobe beeinflusst werden.
+
+(2) Die Messwerte __innerhalb__ der beiden Gruppen müssen voneinander unabhängig sein. D.h. der Messwert einer Person in Stichprobe 2 darf nicht von einem Messwert einer beliebigen Person __aus der gleichen Stichprobe__ beeinflusst werden.
+
+(3) Das Merkmal X muss in den beiden Stichproben stetig und normalverteilt sein. Man überprüft diese Voraussetzung entweder optisch (bei kleinen Stichproben), beruft sich auf den zentralen Grenzwertsatz bei großen Stichproben oder wählt ein angemessenes inferenzstatistisches Verfahren aus (Shapiro-Wilk-Test)
+
+(4) Die Varianzen innerhalb der beiden Teilpopulationen müssen homogen sein. Ist diese Annahme erfüllt, liegt __Homoskedastizität__ vor.
+
+Wie verkehrt man, wenn die Voraussetzungen nicht gegeben sind?
+
+(1) __Verletzung der Normalverteilungsannahme__: Die Normalverteilungsannahme muss gelten, damit die Prüfgrößen beim Zweistichproben-t-Test der t-Verteilung und Zweistichproben-Gauß-Test der Standardnormalverteilung folgt. Bei einer Stichprobengröße von $n_{i}>30$ ist der t-Test robust gegenüber einer Verletzung der Normalverteilungsannahme (wenn die Verteilung zumindest symmetrisch ist).
+
+(2) __Verletzung der Homoskedastizitätsannahme__: der t-Test ist relativ robust gegenüber Verletzungen der Varianzhomogenitätsannahme, wenn die Stichprobengröße der beiden Gruppen identisch ist und die Normalverteilung des Merkmals in den Subpopulationen gegeben ist. Im Falle, dass die Stichprobengrößen ungleich sind und die Annahme verletzt wurde, kann der t-Test enweder zu liberal oder zu konservativ werden. In einem solchen Fall empfiehlt sich die Durchführung des Welch-Tests, bei welchem die Freiheitsgrade bei Heteroskedastizität korrigiert werden nach folgender Formel:
+
+
+$df_{korr}=\frac{(\frac{\hat{\sigma}^2_{1}}{n_{1}}+\frac{\hat{\sigma}^2_{2}}{n_{2}})^2}{\frac{(\frac{\hat{\sigma}^2_{1}}{n_{1}})^2}{n_{1}-1}+\frac{(\frac{\hat{\sigma}^2_{2}}{n_{2}})^2}{n_{2}-1}}$
+
+
+Die Welch-Korrektur reagiert sensitiv auf Verletzungen der Normalverteilungsannahme, insofern empfiehlt sich der Welch-Test, wenn zumindest die Merkmale in den Subpopulationen normalverteilt sind.
+
+__Anmerkung__: Die Formel für die t-Prüfgröße verändert sich beim Welch-Test:
+
+
+$t_{W}=\frac{\overline{X}_{1}-\overline{X}_{2}}{\sqrt{\frac{\hat{\sigma}^2_{1}}{n_{1}}+\frac{\hat{\sigma}^2_{2}}{n_{2}}}}$
+
+
+Im Zähler der Brüche in der Wurzel steht nicht mehr die gepoolte Varianz, sondern die geschätzten Populationsvarianzen der beiden Stichproben. Diese Umformung der Formel ergibt Sinn, da wir bei Heteroskedastizität nicht mehr davon ausgehen, dass die Varianzen der beiden Subpopulationen identisch sind. Insofern ergibt die Bestimmung der gepoolten Varianz keinen Sinn mehr, weshalb wir die individuellen Populationsvarianzen der Subpopulationen aus den einzelen empirischen Subgruppen schätzen.
+
+Die Effektgröße Cohen's d kann entweder über die Mittelwertsdifferenz und die gepoolte Standardabweichung oder über die t-Prüfgröße berechnet werden:
+
+
+
+$d'_{2}=\frac{\overline{x}_{1}-\overline{x}_{2}}{\hat{\sigma}_{inn}}$
+
+
+oder
+
+
+$d'_{2}=t\cdot \sqrt{\frac{n_{1}+n_{2}}{n_{1}\cdot n_{2}}}$
+
+## Wilcoxon-Test und Mann-Whitney U
+
+###  Einführung
+
+Es ist nicht immer sinnvoll, bei zwei Stichproben die Mittelwerte auf Signifikanz zu prüfen. Bei Reaktionszeiten wäre es beispielsweise weniger sinnvoll, die Rohdaten zu nehmen und deren Mittelwerte auf Signifikanz zu prüfen (vor allem wenn die Reaktionszeiten auf Milisekunde-Ebene registriert wurden). In solchen Fällen empfiehlt es sich, stattdessen die Mediane auf Signifikanz zu prüfen. Um die Mediane zweier Stichproben miteinander zu vergleichen kann man zwei inferenzstatistische Verfahren anwenden: Den Wilcoxon-Rangsummen Test oder den Mann-Whitney U Test
+
+### Voraussetzungen und Hypothesenpaare
+
+Die beiden Testverfahren haben folgende Voraussetzungen:
+
+(1) Die Messwerte __zwischen__ den beiden Gruppen müssen voneinander unabhängig sein. D.h. der Messwert einer Person in Stichprobe 1 darf nicht von einem Messwert einer beiliebigen Person in der zweiten Stichprobe beeinflusst werden.
+
+(2) Die Messwerte __innerhalb__ der beiden Gruppen müssen voneinander unabhängig sein. D.h. der Messwert einer Person in Stichprobe 2 darf nicht von einem Messwert einer beliebigen Person __aus der gleichen Stichprobe__ beeinflusst werden.
+
+(3) Die abhängige Variable muss mindestens singulär-ordinalskaliert sein (stetig)
+
+(4) Die abhängige Variable folgt in beiden Gruppen der gleichen Verteilung (die Verteilungsform muss nicht unbedingt normalverteilt sein --> Homoskedastizität wird also vorausgesetzt)
+
+$\rightarrow$ Im Idealfall sollte es keine Rangbindungen zwischen den Messwerten geben.
+
+#### Hypothesenpaare
+
+* Bei ungerichteten Hypothesen werden die statistischen Hypothesenpaare folgendermaßen formuliert:
+
+
+$H_{0}:\eta_{1}=\eta_{2}$  und $H_{1}:\eta_{1}\neq\eta_{2}$
+
+Inhaltlich: Die Nullhypothese besagt, dass die Populationsmediane der beiden Stichproben sich nicht signifikant voneinander unterscheiden. Die Alternativhypothese besagt, dass die Populationsmediane nicht identisch sind.
+
+* Bei gerichteten Hypothesen werden die statistischen Hypothesenpaare folgendermaßen formuliert:
+
+
+$H_{0}:\eta_{1}\ge\eta_{2}$  und $H_{1}:\eta_{1}<\eta_{2}$
+
+Inhaltlich: Die Nullhypothese besagt, dass der Median der ersten Gruppe größer oder gleich dem Populationsmedian der zweiten Gruppe entspricht. Die Alternativhypothese besagt, dass der Populationsmedian der ersten Gruppe kleiner als der Populationsmedian der zweiten Gruppe ist.
+
+###  Testverfahren
+
+* Bei großen Stichproben ($n_{g}>20$) nähert sich die Stichprobenkennwerteverteilung der Rangsummen der Normalverteilung , weshalb man den Erwartungswert der Rangsummen $\mu_{RS}$ und den Standardfehler der Rangsummen $\sigma_{RS}$ approximativ bestimmen kann. Diese beiden Größen kann man nutzen, um eine z-Prüfgröße der Rangsummen zu berechnen, welche man unter den Quantilen der Standardnormalverteilung auf Signifikanz bestimmen kann.
+
+Die Größen werden folgendermaßen berechnet:
+
+Erwartungswert der Rangsummen: $\mu_{RS}=\frac{n_{1}\cdot (n_{1}+n_{2}+1)}{2}$
+
+Standardfehler der Rangsummen: $\sigma_{RS}=\sqrt{\frac{n_{1}\cdot n_{2}\cdot (n_{1}+n_{2}+1)}{12}}$
+
+Die Rangsummen der Stichproben bestimmt man, indem dam die __Gesamtstichprobe__ in eine Rangreihe überführt. Danach wird die Gesamtstichprobe in ihre Subgruppen unterteilt und die Ränge der Subgruppen werden zur Rangsumme aufaddiert (wir haben also am Ende zwei Rangsummen). In der Regel wird die Rangsumme der kleineren Stichprobe genommen bei ungleich großen Stichproben. Bei gleich großen Stichproben kann man beliebig auswählen.
+
+Nachdem man alle Größen bestimmt hat, kann man die z-Prüfgröße mit folgender Formel bestimmen:
+
+
+$z=\frac{rs-\mu_{RS}}{\sigma_{RS}}$
+
+
+Die Testung auf Signifikant erfolgt wie beim herkömmlichen z-Test.
+
+### Mann-Whitney U Test
+
+Der U-Test ist algebraisch äquivalent zum WIlcoxon-Rangsummen Test: Beim U-Test wird die Gesamtstichprobe auch zuerst in eine Rangreihe überführt, woraufhin die Rangsummen der beiden Stichproben bestimmt werden. Im Gegensatz zum Wilcoxon-Test werden die Rangsummen in eine u-Prüfgröße überführt mit folgender Formel:
+
+
+$u_{g}=n_{1}\cdot n_{2}+\frac{n_{1}\cdot(n_{1}+1)}{2}-rs_{g}$
+
+
+Ein Wert $u_{1}$ entspricht der Anzahl der Fälle, in denen der Rangplatz einer Person in Stichprobe 1 von Personen in Stichprobe 2 überschritten wird. Ein Wert $u_{2}$ entspricht der Anzahl der Fälle, in denen der Rangplatz einer Person in Stichprobe 2 von Personen in Stichprobe 1 überschritten wird.
+
+Die weiteren Prüfgrößen, wie der Erwartungswert der u-Prüfgröße und der Standardfehler der u-Prüfgröße werden mit folgender Formel bestimmt:
+
+
+Erwartungswert der u-Prüfgröße: $\mu_{U}=\frac{n_{1}\cdot n_{2}}{2}$
+
+Standardfehler der u-Prüfgröße: $\sigma_{U}=\sqrt{\frac{n_{1}\cdot n_{2}\cdot (n_{1}+n_{2}+1)}{12}}$
+
+Aus diesen Größen kann man auch eine z-Prüfgröße berechnen und unter der Standardnormalverteilung auf Signifikanz überprüfen:
+
+
+$z=\frac{u-\mu_{u}}{\sigma_{u}}$
+
+
+Die Testung auf Signifikant erfolgt wie beim herkömmlichen z-Test.
+
+### Vergleich WIlcoxon und Mann-Whitney U
+
+Da beide Tests algebraisch äquivalent sind, kommen beide Testverfahren zum gleichen Ergebnis. In welchen Fällen würde man sich dann für den einen oder anderen Fall entscheiden? Der Wilcoxon-Test hat den Vorteil, dass er einfacher auf Fälle mit abhängigen Stichproben erweiterbar ist (bei abhängigen Stichproben spricht man vom Wilcoxon-Vorzeichen Test). Darüber hinause ist der Wilcoxon-Rangsummen Test häufiger in Statistiksoftware integriert (wilcoxon.test in R). Der Mann-Whitney U-Test hat den Vorteil, dass mit dem u-Wert eine sehr leichte Definition der Effektstärke möglich ist:
+
+
+$\hat{\emptyset}=\frac{u_{1}}{n_{1}\cdot n_{2}}$
+
+
+Der Wert dieser Effektstärke entspricht der relativen Anzahl von Rangplatzüberschreitungen.
+
+## Vergleich zweier Stichprobenvarianzen (Varianzhomogenitätstests)
+
+Im Folgenden Abschnitt werden zwei Tests zur Überprüfung von Varianzhomogenität/Homoskedastizität vorgestellt, d.h. man untersucht, ob zwei Stichprobenvarianzen aus Populationen stammen, deren Varianzen voneinander abweichen oder nicht.
+
+### Statistisches Hypothesenpaar und Efektgröße
+
+* Bei ungerichteten Hypothesen werden die statistischen Hypothesenpaare folgendermaßen formuliert:
+
+$H_{0}:\sigma_{1}^2=\sigma_{2}^2$ und $H_{1}:\sigma_{1}^2\neq \sigma_{2}^2$
+
+Inhaltlich: Die Nullhypothese sagt aus, dass die Populationsvarianz in der ersten Population nicht von der Populationsvarianz der zweiten Population abweicht. Die Alternativhypothese besagt, dass sich die Populationsvarianzen der beiden Populationen voneinander unterscheiden.
+
+* Die Hypothesen können auch gerichtet formuliert werden:
+
+$H_{0}:\sigma_{1}^2\le \sigma_{2}^2$ und $H_{1}:\sigma_{1}^2> \sigma_{2}^2$
+
+Zur Schätzung der Effektgröße kann der Varianzquotient $v'=\frac{\sigma_{1}^2}{\sigma_{2}^2}$ (i.d.R. kommt die größere Varianz in den Zähler, damit der Effekt stets größer als 1 ist). Da wir in den meisten Fällen nicht die Populationsvarianzen der beiden Stichproben kennen, werden diese aus den empirischen Daten geschätzt: $v'=\frac{\hat{\sigma}_{1}^2}{\hat{\sigma}_{2}^2}$
+
+Nach Cohens (1988) Taxonomie kann man die Effektgröße des Varianzquotienten bei Ahnungslosigkeit folgendermaßen bewerten:
+
+(I) $v'\approx 1.1$: kleiner Effekt
+(II) $v'\approx 1.5$: mittlerer Effekt
+(III) $v'\approx 2$: größer Effekt
+
+### F-Test auf Varianzhomogenität
+
+Die Prüfgröße für den F-Test zweier Stichprobenvarianzen:
+
+
+$F=\frac{\hat{\sigma}_{1}^2/\sigma_{1}^2}{\hat{\sigma}_{2}^2/\sigma_{2}^2}=\frac{\chi_{1}^2/df}{\chi_{2}^2/df}$
+
+
+Da unter der Nullhypothese angenommen wird, dass die beiden Populationsvarianzen $\sigma_{1}^2$ und $\sigma_{2}^2$ identisch sind bzw. ihr Quotient gleich 1 ergibt, kann die Formel für die Prüfgröße abgekürzt werden auf:
+
+
+$F=\frac{\hat{\sigma}_{1}^2}{\hat{\sigma}_{2}^2}=v'$
+
+
+
+, d.h. die geschätzten Stichprobenvarianzen werden in ein Verhältnis gesetzt.
+
+Die Prüfgröße folgt, wenn das Merkmal in den Subpopulationen einer Normalverteilung folgt, einer F-Verteilung, das anhand von zwei Größen modelliert werden kann: an den Zählerfreiheitsgraden $df_{1}=n_{1}-1$ und den Nennerfreiheitsgraden $df_{2}=n_{2}-1$
+
+### Alternative zum F-Test: Levene Test
+
+Eine Einschränkung der Anwendbarkeit des F-Tests ist seine Normalverteilungsannahme: Der F-Test reagiert sehr sensibel auf Verletzungen dieser Annahme. Ein alternatives, robusteres Verfahren zum F-Test ist der Levene-Test, dessen Formel auch auf mehr als zwei Stichproben erweitert werden kann. \newline
+Formel für den Levene-Test:
+
+
+$w=\frac{\sum_{i=1}^{p=2}n_{i}\cdot (\overline{y}_{i}-\overline{y})^2}{\sum_{i=1}^{p=2}\sum_{m=1}^{n_{i}}(y_{mi}-\overline{y}_{i})^2}$
+
+
+Was passiert in der Formel eigentlich?
+
+
+(1.) Aus den Werten wird ein Wert $y_{mi}$ und zwar nach folgender Formel (bei symmetrischen Verteilungen): $|x_{mi}-\overline{x}_{i}|$. Es wird also der Betrag der Differenz zwischen jedem Messwert $x_{mi}$ und dem __spezifischen Gruppenmittelwert $\overline{x}_{i}$__ bestimmt.
+
+(2.) Für die y-Werte werden zwei weitere Dinge berechnet: der allgemeine Mittelwert der y-Werte $\overline{y}$ (es wird bei der Berechnung dieses Mittelwerts nicht zwischen den beiden Gruppen unterschieden) und der spezifische Gruppenmittelwert.
+
+(3.) Im Nenner der Formel wird die Quadratsumme der spezifischen y-Messwerte $y_{mi}$ und dem Gruppenmittelwert bestimmt.
+
+(4.) Im Zähler der Formel wird die Differenz zwischen dem Gruppenmittelwert und dem Gesamtmittelwert bestimmt, quadriert und mit der Besetzungszahl der spezifischen Gruppe $n_{1}$ gewichtet. Dies geschieht für alle Gruppen und ihre Produkte werden dann am Ende aufsummiert.
+
+Nachdem dir Prüfgröße bestimmt wurde, kann man unter der F-Verteilung mit $df_{1}=1$ und $df_{2}=n_{1}+n_{2}-2$ auf Signifikanz testen.
+
+### F-Test und Levene-Test an einem kleinen Beispiel
+
+Wir haben folgende Daten erhalten auf einer Skala von 1-10(wir gehen davon aus, dass das von uns untersuchte Merkmal in der Population der Normalverteilung folgt):
+
+Versuchsperson  | Gruppenzugehörigkeit  |   Messwert
+------|---------|-----------
+1               | 1  |6.7
+2              |  1  |7.3
+3                |1|5.2
+4|1|4.1
+5|1|8.8
+6|2|5.6
+7|2|6
+8|2|5.9
+9|2|4.6
+10|2|5.5
+11|2|7
+12|2|6.4
+
+#### F-Test (ungerichtete Hypothesentestung)
+
+Zuallererst berechnen wir die Varianzen der beiden Variablen, welche wir gegeneinander testen möchten:
+
+```{r}
+n1<- 5
+n2<- 7
+
+df1<- n1-1
+df2<- n2-1
+
+group_1<- c(6.7,7.3,5.2,4.1,8.8)
+group_2<- c(5.6,6,5.9,4.6,5.5,7,6.4)
+
+var1<- var(group_1)
+var1
+var2<- var(group_2)
+var2
+```
+
+Im nächsten Schritt wird die F-Prüfgröße bestimmt (und gleichzeitig auch die Effektgröße) und auf Signifikanz überprüft:
+
+```{r}
+F_val<- var1/var2
+F_val
+
+2*pf(F_val,df1,df2, lower.tail=F)
+```
+Da die Prüfgröße größer als .05 ist, ist der F-Wert nicht signifikant und die $H_{0}$ (Homoskedastizität) wird weiterhin angenommen.
+
+#### F-Test mit dem var.test Befehl
+
+Wenn die Daten für den F-Test vorliegen, kann man den F-Test mit dem var.test() Befehl in R direkt berechnen:
+
+```{r}
+var.test(group_1,group_2,
+         alternative='two.sided')
+```
+
+__Anmerkung__: Beim konkreten Wert der F-Prüfgröße ($F=5.9$) kann man sehen, wie 'liberal' die Prüfung auf Varianzhomogenität wegen dem 'strikten' $\alpha$-Niveau ist (,da wir in diesem Fall kein signifikantes Ergebnis haben wollen). __Obwohl die Varianz der ersten Stichprobe fast 6-mal größer ist als die Varianz der zweiten Gruppe, ist der Test nicht signifikant__.
+
+#### Levene-Test
+
+Wenn die Daten für den Test vorliegen, kann man den Levene-Test mit dem leveneTest() Befehl in R direkt berechnen:
+
+```{r}
+data<- data.frame(val=c(6.7,7.3,5.2,4.1,8.8,5.6,6,5.9,4.6,5.5,7,6.4),
+                  group=c('1','1','1','1','1','2','2','2','2','2','2','2'))
+
+###Bestimmung des Tests: Wichtig hierbei ist, dass die Gruppenvariable ein factor ist und nicht numeric
+car::leveneTest(data$val~data$group, center='mean')
+```
+
+Da die Prüfgröße größer als .05 ist, ist der F-Wert nicht signifikant und die $H_{0}$ (Homoskedastizität) wird weiterhin angenommen.

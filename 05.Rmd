@@ -1,0 +1,285 @@
+#   Einfache lineare Regression
+
+##  Zusamenhangsmaße für dichotome Variablen
+
+###  Informationen über dichotome Variablen
+
+> Nennenswert: Dichotome Variablen sind __immer__ nominalskaliert. Mit der Dichotimisierung werden die Merkmalsträger in zwei unterschiedliche Kategorien unterteilt, die sich qualitativ nicht voneinander unterscheiden.
+
+>Es gibt künstlich dichotome und natürlich dichotome Variablen. Ein Beispiel für eine künstlich dichotome Variable ist, wenn man Merkmalsträger im Bezug zum IQ in zwei Gruppen unterteilt: Intelligente Menschen und nicht intelligente Menschen. Konzeptuell ist das IQ eine intervallskalierte Variable, jedoch wird sie durch die oben definierte Kategorisierung in einem künstlich erzeugten dichotomen Format abgefragt. Ein Beispiel für eine natürlich dichotome Variable ist die Frage, ob eine Person männlich ist. Die Person antwortet entweder mit Ja oder Nein: Hinter der Variable steckt keine andere Skalierung.
+
+> In der Regel werden dichotome Variablen dummy kodiert, d.h. eine Merkmalsausprägung wird mit null und die andere mit eins kodiert.
+
+>Interessant: Bei dichotomen Variablen kann der Mittelwert und die Varianz bestimmt und sinnvoll interpretiert werden.
+
+> Die Formel für den Mittelwert:
+
+>$\overline{x}=\frac{1}{n}\sum_{j=1}^{k}n_{j}\cdot a_{j}=\sum_{j=1}^{k}h_{j}\cdot a_{j}$
+
+> Berechnen wir den Mittelwert für folgendes Beispiel:
+
+|        |   keine Party (0) |   Party(1)   | Randsummen    |
+|---------| -----------------| -----------| ----|
+|kein Sport (0)| 51 | 54 | 105 |
+|Sport (1)| 1 | 9 |  10|
+|Randsummen| 52 | 63 | 115
+
+> Für die Variable Uniparty ergibt sich folgender Mittelwert:
+
+>$\overline{y}=\frac {1}{115}(0\cdot 52+1\cdot 63)=\frac{63}{115}=0.55$
+
+>Für die Variable Unisport ergibt sich folgender Mittelwert:
+
+>$\overline{x}=\frac {1}{115}(0\cdot 105+1\cdot 10)=\frac{10}{115}=0.09$
+
+>Inhaltlich kann man den Mittelwert bei dichotomen Variablen interpretieren als die relative Häufigkeit derjenigen Gruppe, die mit eins kodiert wurde. Im Bezug zu den Uniparties bedeutet der Wert 0.55, dass 55% der Merkmalsträger aus der Stichprobe zu Uniparties gehen. Im Bezug zu der Variable Unisport bedeutet der Wert 0.09, dass 9% der Merkmalstrager das Unisport Angebot nutzen.
+
+>Auch die Varianz kann bei dichotomen Variablen bestimmt werden. Sie entspricht dem Produkt der beiden relativen Häufigkeiten der Merkmalsausprägungen.
+
+>Formel: $s_{x}^2= h_{1}\cdot h_{2}$
+
+>Beispielhaft für die Variable Uniparty:
+
+>$s_{y}^2= 0.45 \cdot 0.55= 0.2475$
+
+> 0.45 entspricht der relativen Häufigkeit der Merkmalsausprägung ,,keine Uniparty''.
+
+###  Korrelationskoeffizient $\phi$
+
+> Da man bei dichotomen Variablen die Varianz und den Mittelwert bestimmen und interpretieren kann, lässt sich auch die Produkt-Momen-Korrelation bestimmen. Die Formel für die Produkt-Moment-Korrelation wurde für dichotome Variablen vereinfacht: Der Korrelationskoeffizienz $\phi$ (phi).
+
+>Formel: $\hat{\phi}=\frac{s_{XY}}{s_{X}\cdot s_{Y}}=\frac{n_{11}\cdot n_{22}- n_{12}\cdot n_{21}}{\sqrt{(n_{11}+n_{12})\cdot(n_{11}+ n_{21})\cdot (n_{12}+n_{22})\cdot (n_{21}+n_{22})}}$
+
+>Eigenschaften des Korellationskoeffizienten $\phi$ :
+
+>* Grenzwerte liegen bei 1 und -1
+
+>* ein absoluter Betrag von 1 wird nur bei einem tatsächlich perfekten Zusammenhang und einer Gleichverteilung der beiden Variablen ausgeprägt.
+
+>* Das Vorzeichen muss bei der Interpretation von $\phi$ mit Vorsicht genossen werden. Der Grund hierfür ist, dass das Vorzeichen lediglich von der Kodierung der Merkmalskategorien abhängt und dementsprechend __nicht__ invariant unter den bei Nominalskalen zulässigen Transformationen ist.
+
+>Berechnung von $\phi$:
+
+>$\phi=\frac{51\cdot 9 - 54\cdot 1}{\sqrt{(51+54)\cdot (51+1)\cdot (54+9)\cdot (1+9)}}=\frac{459-54}{\sqrt{ 105\cdot 52 \cdot 63 \cdot 10}}=\frac{405}{1854.67}=0.218$
+
+>Interpretation: Es besteht ein geringer bis mittlerer positiver Zusammenhang zwischen den beiden Variablen.
+
+###  Yules Q
+
+>Fun fact: Yule hat den Korrelationskoeffizient zu Ehren des Statistikers Quetelet Q genannt.
+
+>Formel: $Q=\frac{n_{11}\cdot n_{22}-n_{12} \cdot n_{21}}{n_{11}\cdot n_{22}+n_{12} \cdot n_{21}}=\frac{n_{K}-n_{D}}{n_{K}+n_{D}}$
+
+> Yules Q entspricht einer für dichotome Variablen vereinfachte Version des Korrelationskoeffizienten $\gamma$ . Dementsprechend hat der Korrelationskoeffizient die gleichen Eigenschaften.
+
+>* Wertebereich liegt bei -1 und 1
+
+>* Das Vorzeichen von Yules Q ist abhängig von der Kodierung der Merkmalskategorien. Bei Angabe der Vorzeichen muss folglich auch die Kodierung der Ausprägungen angegeben werden.
+
+###  Vergleich von Yules Q und $\phi$
+
+> Beide Korrelationskoeffizienten unterscheiden sich darin, wie strikt der Zusammenhang sein muss, um zu einem maximalen Wert zu gelangen. Bei Yules Q muss nur eine Zelle mit 0 Probanden gefüllt sein, um einen maximalen Wert zu erreichen und bei $\phi$ müssen die Variablen gleichverteilt sein (und es muss natürlich auch einen perfekten Zusammenhang geben)
+
+>Welcher der beiden Korrelationskoeffizienten genutzt wird, ist eine pragmatische Entscheidung:
+
+>Bei künstlich dichotomen Variablen würde man eher Yules Q anwenden (Ein Vorschlag des Eid,Gollwitzers)
+
+>Mit Hilfe von Yules Q lässt sich die Ordnung der Zellenbesetzung aufdecken: Eine Korrelation von 1 oder -1 sagt uns eindeutig, dass eine Zelle mit 0 Probanden besetzt ist, während die anderen Zellen eine Betzungszahl ungleich 0 aufweisen.
+
+>Mit Hilfe des Korrelationskoeffizienten $\phi$ können wir die Richtung der Eindeutigkeit bzw. die Richtung der Vorhersagbarkeit bestimmen.
+
+>Schauen wir uns das anhand vom Beispiel aus der Vorlesung an:
+
+![](Abbildungen/phi.png)
+
+>Der Q Wert von -1 sagt uns eindeutig, dass einer der beiden konkordanten Zellen, in diesem Fall Sport (1) und Party (1) mit null Probanden besetzt ist. Der $\phi$ Wert von -.5 sagt uns, dass wir im Bezug zu einer der beiden Variablen eindeutig die Merkmalskombination vorhersagen können. In dem Beispiel können wir für Sport (1) eindeutig eine Zugehörigkeit zu keine Party (0) vorhersagen, jedoch können wir bei kein Sport (0) nicht eindeutig vorhersagen, in welche der beiden Gruppen (keine Party oder Party) eine Person gehören würde.
+
+###  Odds-Ratio
+
+> Das Odds-Ratio ist ein Verhältnis, das zwei Chancen miteinander vergleicht.
+
+>An einem Beispiel kann man sich die Odds und das Odds-Ratio gut veranschaulichen.
+
+|| keine Therapie (0)|Therapie(1)|Summe|
+|-----|-----------|-------|-----|
+|Gesetzlich (0)| 94| 55| 149|
+|Privat (1)| 24 | 34 | 58|
+|Summe | 118| 89 | 207
+
+>Wenn wir die Odds bei gesetzlich krankenversicherten Merkmalsträger berechnen, kommt folgendes raus:
+
+>$Odds=\frac{n_{11}}{n_{12}}=\frac{94}{55}=1.71$
+
+>Interpretation: Die Chance/Wahrscheinlichkeit, keine Therapie zu beginnen ist 1.71 mal so hoch, wie eine Therapie zu beginnen (bei gesetzlich versichterten Personen).
+
+>Das Odds bei privat versichterten Personen können wir analog bestimmen:
+
+>$Odds=\frac{n_{21}}{n_{22}}=\frac{24}{34}=.71$
+
+>Interpretation: Die Chance, keine Therapie zu beginnen ist 0.71 mal so hoch, wie eine Therapie zu beginnen (bei privat versicherten Personen).
+
+>Mithilfe dieser Daten können wir nun das Odds-Ratio bestimmen:
+
+>$OR=\frac{\frac{n_{11}}{n_{12}}}{\frac{n_{21}}{n_{22}}}=\frac{n_{11}\cdot n_{22}}{n_{12}\cdot n_{22}}=\frac{94\cdot 34}{55\cdot 24}=2.421$
+
+>Interpretation: Die Chance, keine Therapie zu beginnen, ist bei gesetzlich versicherten 2.421 mal so hoch wie bei privat versicherten Personen.
+
+>Nebenbei: Die alternative Formel $\frac{n_{11}\cdot n_{22}}{n_{12}\cdot n_{22}}$ bezeichnet man als Kreuzproduktverhältnis.
+
+>Eigenschaften des Odds-Ratio
+
+>* Die Untergrenze liegt bei 0
+
+>* Das Odds-Ratio hat keine Obergrenze
+
+>* OR ist asymmetrisch: beim Tauschen der Gruppen wird das Odds-Ratio zu seinem Kehrwert (1/OR)
+
+>* Das Odds Ratio und Yules Q sind mathematisch miteinander verwandt und zwar stehen sie in folgender Beziehung:
+
+>$Q=\frac{OR-1}{OR+1}$
+
+>* OR=1: Die Chance zwischen den beiden Gruppen ist identisch. Es besteht folglich auch kein Zusammenhang zwischen den beiden Variablen.
+
+>* OR<1: Die Chance ist in der unteren Gruppe höher als in der oberen.
+
+>* OR>1: Die Chance ist in der oberen Gruppe höher als in der unteren.
+
+##  Einfache Lineare Regression
+
+> Bisher haben wir und damit beschäftigt, mit bestimmten statistischen Verfahren unsere vorliegende Datengrundlage so gut wie möglich zu __beschreiben__. Jedoch ist das Beschreiben allein nur ein Teilaspekt der psychologischen Forschung. Ein weiterer, äußerst wichtiger Aspekt ist die __Vorhersage__ von Verhalten. Zu diesem Zweck wurde die Regressionsanalyse entwickelt, wobei wir uns auf eine spezifische Form dieser fokussieren werden: Die einfache lineare Regression.
+
+###  Begrifflichkeiten und Symbole
+
+>Unabhängige Variable (UV, Prädiktor, Regressor): Diejenige Variable X, mit deren Hilfe eine Variable Y vorhergesagt wird.
+
+>Abhängige Variable (AV, Kriterium, Regressand):Diejenige Variable Y, deren Variabilität auf eine unabhängige Variable X zurückgeführt wird.
+
+>$\hat{y}$: vorhergesagter Wert für die abhängige Variable
+
+>$y_{m}$: der konkrete Wert eines Merkmalsträgers m in der abhängigen Variable.
+
+>$x_{m}$: der konkrete Wert eines Merkmalsträger m in der unabhängigen Variable
+
+###  Grundlage der linearen Regression: bedingte Mittelwerte
+
+>Stellen wir uns vor, wir möchten den Abitudurchschnitt einer Person namens Hannah vorhersagen. Über Hannah wissen wir nichts. Wir wissen jedoch, dass der mittlere Abiturdurchschnitt an ihrer Schule bei 2.2 liegt.
+
+>Unbedingter Mittelwert: In dem oben angegebenen Beispiel würden wir für Hannah den mittleren Abiturdurchschnitt von 2.2 vorhersagen, da der Mittelwert ein Maß der zentralen Tendenz ist, mit deren Hilfe wir den __repräsentativsten__ Wert bestimmen können. Man spricht bei diesem Mittelwert auch von einem unbedingten Mittelwert, da seine Ausprägung von keiner weiteren Variable anhängt.
+
+>Gehen wir einen Schritt weiter. Als nächstes nehmen wir an, dass Hannah einen IQ von 150 aufweist und auch ein Mitglied in der Hochbegabtenverbindung MENSA ist. Würden wir immer noch davon ausgehen, dass Hannah einen Abiturdurchschnitt von 2.2 erhalten wird?
+
+>Bedingter Mittelwert: Bereits rein intuitiv wird ersichtlich, dass Hannah höchstwahrscheinlich einen besseren Abiturdurchschnitt als 2.2 haben wird aufgrund ihrer überdurchschnittlichen Intelligenz.
+
+>Wir haben unter Berücksichtigung des IQs für Hannah einen Abiturdurchschnitt bestimmt, der besser ist als 2.2 (z.B. ein Abtirudurchschnitt von 1.5). Wir haben also einen bedingten Mittelwert $(y|\overline{x})$ bestimmt bzw. sagen einen Abiturdurchschnitt von 1.5 für diejenigen Personen vorher, die einen IQ von 150 aufweisen.
+
+>Mit Hilfe der Regression lassen sich diese bedingten Mittelwerte für alle Ausprägungen auf der Prädiktorvariable bestimmen.
+
+###  Regressionsgleichung und ihre Bestimmung
+
+>Die Regressionsgleichung bzw. die Gleichung für die Bestimmung der bedingten Mittelwerte ist folgendermaßen aufgebaut:
+
+>$\hat{y}=b_{0}+b_{1}\cdot x_{m}$
+
+>Regressionsgewicht $b_{1}$: Das Regressionsgewicht ist die Steigung der Regressionsgerade bzw. gibt sie an, um wie viel sich $\hat{Y}$ verändert, wenn X um eine Einheit zunimmt. Das Regressionsgewicht wird auch Steigunskoeffizient oder Slope genannt und ist für alle Merkmalsträger gleich.
+
+>Achsenabschnitt $b_{0}$: Der Achsenabschnitt entspricht dem $\hat{y}$-Wert am Schnittpunkt der Regressionsgerade mit der Ordinate (die y-Achse im Koordinatensystem). $b_{0}$ ist also der vorhergesagte Wert für denjenigen Merkmalsträger, der einen Prädiktorwert von null hat.
+
+>Bestimmung der Regressionsgleichung:
+
+>$b_{1}=\frac{s_{XY}}{s_{x}^2}=r_{XY}\cdot \frac{s_{Y}}{s_{X}}$
+
+>$b_{0}=\overline{y}-b_{1}\cdot \overline{x}$
+
+>Die Formel zur Bestimmung der einzelnen Elemente der Regressionsgleichung erfüllen das Kleinste-Quadrate Kriterium.
+
+### Regressionsresiduen und das Kleinste-Quadrate Kriterium
+
+>Je größer der Zusammenhang zwischen zwei Variablen ist, desto besser kann man Vorhersagen generieren. Bei einem perfekten Zusammenhang kann man sogar perfekt die konkrete Ausprägung einer Person auf der abhängigen Variablen vorhersagen, wenn man ihre Ausprägung auf der unabhängigen Variablen kennt. Jedoch findet man in der psychologischen Forschung nie einen perfekten Zusammenhang. Dementsprechend werden die durch die lineare Regression generierten Vorhersagen immer fehlerbehaftet sein: Das heißt die beobachteten Werte werden höchstwahrscheinlich vom vorhergesagten Wert abweichen. Dieser Vorhersagefehler wird als Regressionsresiduum ($e_{m}$) bezeichnet und wird definiert als die Abweichung des vorhergesagten Werts vom tatsächlichen beobachteten Wert ($e_{m}=y_{m}-\hat{y_{m}}$)
+
+>Das Ziel der linearen Regression ist es also, diesen Fehler minimal zu halten. Die Regressionsgerade soll so in den Punkteschwarm gelegt werden, dass die Summe der quadrierten Abweichungen der beobachteten Kriteriumswerte von der Regressionsgerade minimal ist.
+
+>Formal bedeutet dies folgendes:
+
+>$\sum_{m=1}^{n}(y_{m}-\hat{y})^2 \to\ min$
+
+>Man nimmt die quadrierte Abweichung, damit negative Vorhersagefehler (eine Überschätzung der Ausprägung im Kriterium) und positive Vorhersagefehler (eine Unterschätzung der Ausprägung im Kriterium) sich nicht gegenseitig beeinflussen.
+
+>Als Konsequenz der Erfüllung des Kleinste-Quadrate Kriteriums haben die Residualwerte folgende Eigenschaften.
+
+> (1) Die Sume aller Regressionsresiduen ist gleich 0:
+
+>$\sum_{m=1}^{n}e_{m}=\sum_{m=1}{n}(y_{m}-\hat{y_{m}})=0$
+
+> (2) Die Summe aller quadrierten Regressionsresiduen ist minimal:
+
+>$\sum_{m=1}^{n}e_{m}^2=\sum_{m=1}^{n}(y_{m}-\hat{y_{m}})^2 \to\ min!$
+
+>Diese beiden Eigenschaften entsprechen den ersten beiden Eigenschaften der Mittelwerte.
+
+>(3) Die Korrelation zwischen X und E ist gleich 0: $r_{XE}=0$
+
+>Man kann sich diese Eigenschaft logisch ableiten. Auf der Basis der Prädiktorwerte versuchen wir, das Kriterium so gut wie möglich vorherzusagen. Da das Kriterium und der Prädiktor nicht perfekt miteinander korrelieren, wird die Vorhersage fehlerbehaftet sein. Das heißt die Kriteriumsvariable weist ein gewisses Maß an Variabilität auf, welches nicht auf den Prädiktor zurückzuführen ist: Dadurch entstehen die Regressionsresiduen. Deswegen korrelieren die Residuen nicht mit dem Prädiktor, da sie die Konsequenz der fehlerbehafteten Vorhersage durch den Prädiktor sind.
+
+>(4) Die Korrelation zwischen $\hat{Y}$ und E ist ebenfalls gleich 0: $r_{\hat{Y}E}=0$
+
+###  Varianzzerlegung
+
+>Bei der Varianzzerlegung ist nicht die Herleitung das Wichtigste, sondern ihr Resultat:
+
+> Die Varianz der Kriteriumswerte (y-Werte) lässt sich in zwei Varianzkomponente aufteilen, nämlich die systematische Varianz $s_{\hat{Y}}^2$, die durch den Prädiktor X determiniert wird, und die unsystematische Varianz $s_{E}^2$ (Fehlervarianz). Ein Teil der Variabilität in Y kann also auf die Variabilität in X zurückgeschlossen werden, aber nicht komplett. Es gibt also ein Teil der Varianz von Y die nicht durch X prädiziert werden kann, sondern von anderen Einflüssen auf Y abhängt, die jedoch nicht mit erhoben wurden. Diese durch den Prädiktor X nicht erklärbare Varianz der Kriteriumswere entsprechen der unsystematischen Varianz bzw. dem Messfehler.
+
+>Allgemein gilt: Je größer die Varianz $s_{\hat{Y}}^2$ im Vergleich zur Varianz $s_{E}
+^2$ ist, umso genauer gelingt die Prognose.
+
+###  Determinationskoeffizient
+
+>Aus der Grundidee der Varianzzerlegung lässt sich nun ein standardisiertes Maß für die Güte der Vorhersage konstruieren: Der Determinationskoeffizient.
+
+>Determinationskoeffizient: Entspricht dem Anteil der erklärten Varianz $s_{\hat{Y}}^2$ an der Gesamtvarianz $s_{Y}^2$.
+
+>$R^2=\frac{s_{\hat{Y}}^2}{s_{Y}^2}$
+
+>Bei der einfachen linearen Regression entspricht der Determinationskoeffizient der quadrierten Produkt-Moment-Korrelation:
+
+>$R^2=r_{XY}^2$
+
+>Der Indeterminationskoeffizient ist das Gegenstück zum Determinationskoeffizient und entspricht dem Anteil der unvorhergesagten Varianz $s_{E}^2$ and der Gesamtvarianz $s_{Y}^2$.
+
+>$1-R^2=\frac{s_{E}^2}{s_{Y}^2}$
+
+>Der Determinationskoeffizient kann nur Werte zwischen 0 und 1 annehmen. Ein $R^2$ von 1 würde bedeuten, dass alle Unterschiede im Kriterium durch den Prädiktor vorhergesagt werden können, sprich $s_{Y}^2=s_{\hat{Y}}^2$
+
+>Ein $R^2$ von 0 würde bedeuten, dass beide Variablen nicht miteinander korrelieren und der Prädiktor X nicht in der Lage ist, Unterschiede in Y zu erklären, d.h. :$S_{Y}^2=s_{E}^2$
+
+### Standardisierte Regression
+
+>Eine Problematik der unstandardisierten Regression ist, dass die Elemente der Regressionsgleichung ($b_{1}$ und $b_{0}$) abhängig von der Metrik der erhobenen Variablen sind. Durch zulässige Transformatinen intervallskalierter Variablen ist es also möglich, die Regressionsparameter zu verändern. Die standardisierte Regression ist ein Verfahren, bei welcher die Metrik der Variablen keine Auswirkung auf die Parameter haben.
+
+>Bei der standardisierten Regression handelt es sich um die Regression von z-transformierten Variablen, d.h. die Messwerte des Prädtiktors und des Kriteriums werden z-transformiert. Dementsprechend haben die Variablen einen Mittelwert von 0 und eine Standardabweichung von 1.
+
+>Eigenschaften der standardisierten Regression:
+
+>Der Achsenabschnitt ist 0, d.h. die Regressionsgerade geht durch den Ursprung (0/0) des Koordinatensystems. Im Sinne der Vorhesage bedeutet dies, dass ein Merkmalsträger mit einer durchschnittlichen Ausprägung im Prädiktor den durchschnittlichen Wert im Kriterium vorhergesagt bekommt.
+
+>Das Regressionsgewicht der standardisierten Regression entspricht der Produkt-Moment Korrelation der beiden Variablen.
+
+>Wofür verwendet man die unstandardisierte Regression?
+
+>1.) Wenn man eine konkrete Vorhersage für einen Merkmalsträger*in aufstellen möchte. Beispiel: Die Vorhersage des Abiturdurchschnitts von Hannah.
+
+>2.) Wenn man Gruppen miteinander vergleichen möchte, bei welchem die Erhebungsmethoden der Merkmale __übereinstimmen__. Beispiel: Der Vergleich des Zusammenhangs zwischen der Intelligenz und dem Schulerfolg zwischen Frauen und Männer, wobei wir die Intelligenz und den Schulerfolg bei beiden Gruppen auf die gleiche Weise erfasst haben.
+
+>Wofür verwendet man die standardisierte Regression?
+
+>Wenn man über verschiedene Studien hinweg den Zusammenhang zwischen zwei Variablen untersuchen möchte, die Erhebung der Merkmale jedoch über diese Studien hinweg sich unterscheiden.
+
+###  Beschränkungen der einfachen linearen Regression
+
+>Additiv-Lineare Zerlegung: Die Zerlegung ist nur bei einer metrisch skalierten AV sinnvoll. Wenn die AV nicht metrisch skaliert ist, muss eine andere Form der Regression herangezogen werden.
+
+>Eine unabhängige Variable: Aufgrund der Multideterminiertheit des Verhaltens und Erlebens benötigt man zur Vorhersage und Erklärung i.d.R. mehrere unabhängige Variablen.
+
+>Linearität: Die einfache lineare Regression nimmt an, dass der Zusammenhang zwischen zwei Variablen einem linearen Trend folgt. Jedoch ist dies nicht immer gegeben. Hierfür existieren in Abhängigkeit des Zusammenhangs unterschiedliche Regressionsverfahren.
+
+>Kleine Anmerkung: Die Regressionsgleichung wird auf der Basis des Zusammenhangs zwischen zwei Variablen generiert. Da man bei der Bestimmung des Zusammenhangs nicht auf eine Kausalität schließen kann, ist dies bei der Regression auch nicht möglich.
+

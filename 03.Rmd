@@ -1,0 +1,175 @@
+#  Univariate Deskriptivstatistik II
+
+## Eigenschaften des Median
+
+>$\sum_{m=1}^{n}(|x_{m}-Md|)=min$
+
+>Wenn man die Werte aller absoluten Abweichungen (d.h. den Betrag der Differenzen) aufsummiert, ist die Summe kleiner als die Summe der absoluten Abweichungen von irgendeinem anderen Wert.(Kriterium der kleinsten Absolutabweichung)
+
+## Arithmetische Mittel
+
+### Formel des arithmetischen Mittels
+
+>$\overline{x}=\frac{\sum_{m=1}^{n} x_{m}}{n}=\frac{1}{n}\sum_{m=1}^{n}x_{m}$
+
+>Beispiel für die Berechnung des Mittelwerts: Im Rahmen einer Untersuchung hast du 20 Personen nach ihrem Alter gefragt. Dabei hast du folgende Werte erhalten: 20, 19, 18 ,20 ,20 ,21, 25, 25, 33, 34, 34, 34, 28, 26, 24, 26, 27, 26, 56, 18
+
+> Der Mittelwert des Alters deiner Stichprobe wird folgendermaßen bestimmt:
+
+>$\overline{x}=\frac{\sum_{m=1}^{n} x_{m}}{n}=\frac{1}{n}\sum_{m=1}^{n}x_{m}=\frac{20+19+18+20+20+21+25+25+33+34+34+34+28+26+24+26+27+56+18}{20}=26.7$
+
+>Berechnung des arithmetischen Mittels in R:
+
+```{r}
+#Definierung des Vektors
+age<- c(20, 19, 18 ,20 ,20 ,21, 25, 25, 33, 34, 34, 34, 28, 26, 24, 26, 27, 26, 56, 18)
+#Durchschnitt
+mean(age)
+```
+
+> Formel des arithmetischen Mittels für gruppierte/ kategorisierte Daten: $\overline{x}=\frac{\sum_{j=1}^{k}a_{j}\cdot n_{j}}{n}$
+
+>Beispiel: Stellen wir uns vor, wir haben die Daten über das Alter der Teilnehmenden nicht einzeln, sondern in Tabellen, die die Daten bereits zusammengefasst haben, erhalten.
+
+Alter   |     $n_{j}$ |
+-----   |    ------- |
+18      |     2 |
+19      |     1 |
+20      |     3 |
+21      |     1 |
+24      |     1 |
+25      |     2 |
+26      |     3 |
+27      |     1 |
+28      |     1 |
+33      |     1 |
+34      |     3 |
+56      |     1 |
+
+> Das arithmetische Mittel bei gruppierten Daten wird folgendermaßen bestimmt:
+$\overline{x}=\frac{\sum_{j=1}^{k}a_{j}\cdot n_{j}}{n}=\frac{(2\cdot 18)+(1\cdot 19)+(3\cdot 20)+(1\cdot 21)+(1\cdot 24)+(2\cdot 25)+(3\cdot 26)+(1\cdot 27)+(1\cdot 28)+(1\cdot 33) +(3\cdot 34)+(1\cdot 56)}{20}=26.7$
+
+>Wie man erkennen kann, kommen beide Formeln auf das gleiche Ergebnis. Aus mathematischer Sicht berechnen beide Formeln das Gleiche, nur wird in Abhängigkeit von der Datenlage, d.h. ob die Daten einzeln oder in Kategorien angegeben wurden, die eine oder andere Formel verwendet.
+
+### Eigenschaften des Mittelwerts
+
+>I.) $\sum_{m=1}^{n}(x_{m}-\overline{x})=0$
+
+> Die Summe der Abweichungen aller Merkmalsausprägungen vom Mittelwert beträgt 0.
+
+>II.) $\sum_{m=1}^{n}(x_{m}-\overline{x})^2=min$
+
+>Die Summe der quadrierten Abweichungen der Messwerte vom Mittelwert ist stets kleiner als die Summe der quadrierten Abweichungen von irgendeinem anderen Wert. (Kriterium der kleinsten Quadratabweichung)
+
+>III.) $y_{m}=x_{m}+a \to\ \overline{y}=\overline{x}+a$
+
+>Wenn zu einer Variablen eine Konstante a addiert wird, verändert sich der Mittelwert additiv um eben diese Konstante a.
+
+>IV.) $y_{m}=b\cdot x_{m}\to\ \overline{y}=b \cdot \overline{x}$
+
+>Wenn eine Variable mit einem Faktor b multipliziert wird, verändert sich der Mittelwert multiplikativ um diesen Wert.
+
+>Wenn man Eigenschaften 3.) und 4.) miteinander verbindet, erhält man die lineare Transformation von mind. intervallskalierten Variablen.
+
+### Verhältnis von Modus, Median und arithmetische Mittel
+
+>![](Abbildungen/Modus_Median_Am.png)
+
+
+>* Bei symmetrischen unimodalen Verteilungen  sind Modus, Median und der Mittelwert identisch
+
+>* unimodal: Die Verteilung hat nur einen Hochpunkt
+
+>* Bei symmetrischen bi- und multimodalen Verteilungen sind Median und Mittelwert identisch. Der Modus ist in solchen Situationen nicht sinnvoll.
+
+>* bi bzw. multimodal= Die Verteilung hat zwei bzw. mehrere Hochpunkte
+
+>* bei linksgipfligen unimodalen Verteilungen gilt: Mo < Md < $\overline {x}$
+
+>* bei rechtsgipfligen unimodalen Verteilungen gilt: Mo > Md > $\overline{x}$
+
+> Der Modus:
+
+>* reagiert sensibel auf leichte Veränderungen der Verteilung im Gipfelbereich
+
+>* ist unsensibel gegen Ausreißer
+
+>* ist bei Gleichverteilungen (alle Kategorien sind gleichbesetzt) und bei multimodalen Verteilungen nicht definiert
+
+>Der Median:
+
+>* ist bei Gleichverteilungen definiert
+
+>* ist gegenüber Ausreißern unsensibel
+
+>Der Mittelwert:
+
+>* ist auch bei Gleichverteilungen definiert
+
+>* ist gegenüber Ausreißern sensibel
+
+### Beispiel für die Sensibilität des Mittelwerts
+
+> Stellen wir uns vor, wir haben in einer Firma 10 Personen im Bezug zu ihrem Jahreseinkommen abgefragt und folgende Werte erhalten:
+
+> 60.000 EURO , 55.000 EURO, 70.000 EURO, 80.000 EURO, 60.000 EURO, 50.000 EURO, 30.000 EURO, 65.000 EURO, 45.000 EURO, 1.500.000 EURO
+
+>Das arithmetische Mittel der vorliegenden Datenlage beträgt 201.500 EURO. Durch den Extremwert von 1.500.000 EURO kam es zu einer Verzerrung des Mittelwerts, welcher nun nicht mehr optimal die Datenlage repräsentiert. Als Maß der zentralen Tendenz, dessen Aufgabe die optimale Repräsentation der Datenlage ist, ist der Mittelwert dementsprechend ungeeignet. Der Mittelwert ohne den Extremwert liegt bei 57.222,22 EURO, welcher die Datenlage deutlich besser darstellt.
+
+> In einem solchen Fall sind alternative Maße der zentralen Tendenz sinnvoller, wie beispielsweise der Median. Dieser ist unsensibel gegenüber Ausreißer.
+
+## Dispersionsmaße für metrisch skalierte Variablen
+
+### Varianz und Standardabweichung
+
+> $s^2_{x}=\frac{\sum_{m=1}^{n}(x_{m}-\overline {x})^2}{n}$
+
+> Die Varianz ist definiert als die mittlere quadrierte Abweichung aller Einzelwerte vom Mittelwert.
+
+> $s_{x}=\sqrt{s^2_{x}}=\sqrt{\frac{\sum_{m=1}^{n}(x_{m}-\overline {x})^2}{n}}$
+
+> Die Standardabweichung ist die (positive) Quadratwurzel aus der Wurzel.
+
+> Die Standardabweichung hat gegenüber der Varianz einen entscheidenden Vorteil: Sie ist besser interpretierbar. Bei der Varianz ist durch die Quadrierung die Originalmetrik (ursprüngliche Maßeinheit) der Merkmalsausprägungen verloren gegangen. Durch das Ziehen der Quadratwurzel gelangt man wieder in die ursprüngliche Metrik.
+
+> Beispiel: Wir bestimmen die Varianz der Variable ,,Anzahl erinnerter Vokabeln'' und erhalten den Wert 16. Inhaltlich würde dieser Wert bedeuten, dass die Varianz der Verteilung 16 quadrierte Vokabeln beträgt. Durch das Ziehen der Wurzel erhalten wir eine SD von 4. Die inhaltliche Aussage in dem Fall wäre: ,, Die Standardabweichung beträgt 4 Vokabeln'' und ist dementsprechend besser interpretierbar.
+
+### Eigenschaften von Varianz und Standardabweichung
+
+> I.) Reagieren empfindlich auf Ausreißer
+
+> II.) $y_{m}=x_{m}+a \to\ s^2_{y}=s^2_{x}$
+
+>Wird zur Variablen X eine Konstante a addiert, bleiben die Varianz und die SD davon gänzlich unberührt.
+
+>III.) $y_{m}=b\cdot x_{m}\to\ s^2_{y}=b^2 \cdot s^2_{x}$
+
+> $s_{y}= b\cdot s_{x}$
+
+> Wird die Variable X mit einer Konstante b multpliziert, verändert sich die Varianz um den Faktor $b^2$, die SD um den Faktor b.
+
+## Standardisierung
+
+> In der Psychologie besteht ein Problem der Vergleichbarkeit von Merkmalsausprägungen. Damit ist gemeint, dass ohne ein Referenzrahmen die Interpretation von Werten kaum möglich ist. Beispielsweise kann man nicht sagen, ob ,,30 Punkte in einer Klausur'' eine gute oder schlechte Leistung ist ohne ein Referenzrahmen zu haben. Eine solche Referenz stellt der Mittelwert dar.
+
+> Zentrierung: $(x_{m}-\overline{x})$
+
+> Durch die Zentrierung werden alle Merkmalsausprägungen eingeteilt in zwei grundlegende Kategorien; überdurchschnittliche (positive zentrierte Werte) und unterdurchschnittliche (negativ zentrierte Werte) Werte. Im Beispiel der Punkte der Statistikklausur wäre 30 eine unterdurchschnittliche Leistung, wenn der Mittelwert bei 35 liegt (denn der zentrierte Wert liegt dann bei -5), aber überdurchschnittlich, wenn der Mittelwert bei 25 liegt (denn der zentrierte Wert liegt dann bei 5). Zentrierte Werte sind jedoch immer noch abhängig von der Metrik der Variable. Dies erschwert ein Vergleich von zwei Variablen, die sich im Bezug zu ihrer Skalierung drastisch voneinander unterscheiden. Wenn man beispielsweise die IQ Werte zweier Personen miteinander vergleichen möchte, die jedoch jeweils an einem anderen IQ Test teilgenommen haben, wird der Vergleich durch die unterschiedliche Metrik der Tests erschwert. In dem Fall muss ein weiterer Bezugsrahmen herangezogen werden, nämlich die Streuung der Variable.
+
+> Standardisierung $\frac{x_{m}-\overline{x}}{s_{x}}$
+
+>Durch die Standardisierung wird die Metrik der Variablen auf ein einheitliches Maß reduziert. Der Mittelwert liegt bei 0 und die Varianz bei 1. Somit wird die Vergleichbarkeit von Merkmalsausprägungen über verschiedene Metriken hinweg ermöglicht.
+
+>Nehmen wir ein Beispiel: Urs und Hans haben beide jeweils einen Fragebogen zur Erfassung ihrer Lebenszufriedenheit ausgefüllt. Urs hat eine Ausprägung von 2.3 und Hans eine Ausprägung von 27. Diese Fragebögen unterscheiden sich jedoch in ihrer Metrik: Bei Urs Fragebogen kann man Werte zwischen 1 und 5 ausprägen. Der Mittelwert liegt bei 2 und die Standardabweichung des Tests liegt bei 0.6. Bei Hans Fragebogen kann man Werte zwischen 1 und 50 ausprägen, wobei der Mittelwert hier bei 30 liegt und die Standardabweichung bei 12.
+
+> Man kann bereits anhand dieser Informationen erkennen, dass man nicht einfach behaupten kann, Hans sei nervöser als Urs, nur weil er eine höhere Ausprägung aufweist. Hans hat eine deutlich höhere Ausprägung als Urs, weil Urs wegen der Metrik des Tests allgemein keinen Wert über 5 erreichen kann. Um also Urs und Hans bzgl. ihrer Nervösität zu vergleichen, brauchen wir ein gemeinsames Bezugssystem. Diese wird durch die Standardisierung gegeben.
+
+> Z-Standardisierung von Urs: $z_{Urs}=\frac{x_{m}-\overline{x}}{s_{x}}=\frac{2.3-2}{0.6}=0.5$
+
+>Urs ist 0.5 Standardabweichungen vom Mittelwert entfernt. Zusätzlich weist Urs eine überdurchschnittliche Nervosität auf.
+
+>Z-Standardisierung von Hans:$z_{Hans}=\frac{x_{m}-\overline{x}}{s_{x}}=\frac{27-30}{12}=-0.25$
+
+>Hans ist 0.25 Standardabweichungen vom Mittelwert entfernt. Zusätzlich weist Hans eine unterdurchschnittliche Nervosität auf, da sein z-Wert negativ ist.
+
+>Anhand dieses Beispiels zeigt sich, dass obwohl Hans eine dem Augenschein nach höhere Merkmalsausprägung aufweist, diese lediglich ein Resultat der Skalierung der Variable ist. Tatsächlich weist Urs eine höhere Nervosität auf, wenn man die beiden z-Werte betrachtet.

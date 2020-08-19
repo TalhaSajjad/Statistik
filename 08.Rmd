@@ -1,0 +1,404 @@
+# Inferenzstatistik und Einstichproben-t-Test
+
+## Grundidee der Inferenzstatistik
+
+> Inferenzstatistik bedeutet nichts anderes als ,,schließende Statistik', d.h. aufgrund der in der Stichprobe gewonnenen Ergebnisse wird auf die Grundgesamtheit bzw. die Population geschlossen.Die Deskriptivstatistik beschreibt also die Ergebnisse der Stichprobe, die Inferenzstatistik prüft auf der Grundlage der Wahrscheinlichkeitsrechnung, inwieweit man von den Ergebnissen der Stichprobe auf die Population schließen darf.
+
+> Mit Hilfe inferenzstatistischer Analysen versucht man also folgende Fragestellung zu beantworten: Entspricht die Merkmalszusammensetzung in meiner Stichprobe der Merkmalszusammensetzung in der Population oder sind die deskriptivstatistischen Ergebnisse ein Resultat meiner zufälligen Stichprobenziehung?
+
+## Wie muss psychologische Forschung betrieben werden?
+
+### Erkenntnistheoretische Ansätze
+
+>Aus der PsyBSc 1 Vorlesung habt ihr bereits die Ansichten von Popper, Kuhn und Lakatos gelernt. All diese Ansichten bezüglich der grundlegenden Fragestellung, was wahr ist, ist, dass wissenschaftliche Forschung im Kern ein Falsifikationsprozess sein soll. Nach Poppers kritischem Rationalismus werden aus der Theorie Hypothesen abgeleitet, die in der Empirie auf die Probe gestellt werden. Falls die Hypothese falsifiziert wurde, wird die Theorie gegen eine bessere verworfen. Wenn die Hypothese nicht falsizifiert werden konnte, wird die zugrunde liegende Theorie korroboriert, aber nicht bestätigt. Bei Lakatos Forschungsprogrammen existiert ein harter Kern (Hard core) in welchem die zentralen Überzeugungen des Forschungsvorhabens liegen, die nicht einem Falsifikationsprozess unterzogen werden (analog zur Theorie bei Popper). Der protective belt, welcher die Zusatzhypothesen, die aus dem harten Kern generiert wurde, wird einem Falsifikationsversuch unterzogen.
+
+> Im Allgemeinen kann man aus diesen Ansichten eine spezielle Form der wissenschaftlichen Forschung ableiten: Forschungshypothesen können nicht verifiziert werden durch unsere Untersuchung, sondern müssen falsifiziert werden. Die zugrunde liegende Theorie wird so lange beibehalten, bis eine bessere Theorie diese ersetzt.
+
+> Jetzt stellt sich für unsere Zwecke eine zwei simple Fragen:
+
+> 1.) Wir müssen Hypothesen formuliert werden, damit es sich um einen Falsifikationsprozess handelt?
+
+> 2.) Anhand welcher Kriterien kann ich bestimmen, ob eine Hypothese falsifiziert wurde oder nicht?
+
+> Um diese Fragestellungen zu beantworten hat der gute Herr Fischer den Nullhypothesentest entwickelt.
+
+### Nullhypothesentest nach Fischer
+
+> Um den Nullhypothesentest nach Fischer besser zu verstehen, wird im Folgenden ein fiktives Beispiel angeführt. Stellen wir uns vor, ein Psychologe möchte die Effektivität nationalsozialistischer Propaganda bei Jugendlichen untersuchen. Da jedoch die Ethikkommission die Ausstrahlung nationalsozialistischer Inhalte nicht duldet, untersuchst du stattdessen die Effektivität von Mafia Propaganda (Die Probanden schauen die ,,der Pate'' Trilogie) auf die Einstellung von Personen zur Mafia. Deine Vorhersage istm dass die Einstellung der Personen gegenüber der Mafia positiver wird, nachdem sie der Intervention unterzogen wurden.
+
+> Die allgemeine Einstellung gegenüber der Mafia in der Population auf einer Skala von 1-100 ist folgende: $\mu=50$ und $\sigma=25$
+
+> Wir haben insgesamt 70 Personen der (meiner Meinung nach qualitativ hochwertigen) ,,Mafia-Propaganda'' ausgesetzt und im Nachhinein einen Mittelwert von 58 erhalten bzgl. der Einstellung zur Mafia.
+
+> __Wie formuliere ich meine Nullhypothese?__
+
+> Nach Fischer definiert die Nullhypothese immer denjenigen Fall, dass es in der Population zu keiner Veränderung gekommen ist nach der Intervention. Kurzgefasst repräsentiert die Nullhypothese die Annahme, dass potentiell beobachtete Abweichung des Stichprobenmittelwerts vom Populationsmittelwert allein darauf zurückgeführt werden kann, dass die Stichprobe per Zufall aus der Population gezogen wurde.
+
+> In unserem Beispiel ist $H_{0}$= Die Einstellung von Personen gegenüber der Mafia verändert sich nicht oder wird negativer.
+
+> Da die Hypothese gerichtet ist, sieht die statistische Nullhypothese folgendermaßen aus: $H_{0}= \mu \le \mu_{0}$ bzw. $H_{0}= \mu \le 50$
+
+
+> Ziel unserer Untersuchung ist nicht mehr die Verifikation unserer Forschungshypothese (Die Einstellung wird positiver), sondern die Falsifikation der Nullhypothese (Die Einstellung wird negativer). Auf Populationsebene wird dementsprechend zwischen zwei Verteilungen differenziert: der Populationsverteilung unter der Nullhypothese $\mu_{0}$ und der Populationsverteilung derjeniger, die der Intervention unterzogen wurden $\mu$.
+
+> __Was ist in diesem Zusammenhang der Fallibilismus?__
+
+> Unter Fallibilismus versteht man den Umstand. dass keine Erkenntnis absolut wahr ist und nichts verifiziert werden kann. In diesem Sinne ist es folglich nie möglich, psychologische Hypothese jemals zu bestätigen. Stattdessen kann man anhand der Hypothesenformulierung die Aussagekraft von Theorien erhöhen. Je leichter eine Hypothese zu falsifizieren ist, desto höher ist die Aussagekraft der Theorie, wenn die Hypothese, trotz ihrer einfachen Falsifizierbarkeit, nicht falsifiziert werden konnte.
+
+> Anhand eines Beispiels wird diese Tatsache ersichtlich.
+
+> Hypothese 1: Das Präsentieren von Mafia Propaganda verändert die Einstellung von Personen gegenüber der Mafia.
+
+> Hypothese 2: Das Präsentieren von Mafia Propaganda verbessert die Einstellung von Personen gegenüber der Mafia.
+
+> Welche der beiden Hypothesen ist leichter zu falsifizieren? Selbstäverständlich die zweite Hypothese, weil in dem Fall nicht nur ein Effekt definiert wird, sondern auch ihre Richtung. Wenn die zweite Hypothese also nicht falsifiziert werden konnte, ist die Aussagekraft der zugrunde liegende Theorie höher als ein fehlgeschlagener Falsifikationsversuch der ersten Hypothese.
+
+> __Anhand welcher Kriterien kann ich bestimmen, dass eine Hypothese falsifiziert wurde oder nicht?__
+
+> __I.) Signifikanz und Signifikanzniveau__
+
+> Ausgangspunkt des Falsifikationsversuchs ist die Annahme, dass die Nullhypothese $H_{0}$ gültig ist. Im Bezug zu unserem Beispiel gehen wir also davon aus, dass Mafia Propaganda die Einstellung gegenüber der Mafia nicht verändert. Eine Falsifikation der Nullhypothese wird generiert, indem wir ein empirisches Ergebnis erhalten, welches unter der Annahme der Gültigkeit der Nullhypothese extrem unwahrscheinlich ist. Die Problematik hierbei ist, dass bei stetigen Populationsverteilungen die Wahrscheinlichkeit eines einzelnen empirischen Ergebnisses gegen 0 strebt ($P(E/H_{0})\to\ 0^+$). Folglich bestimmt man die Signifikanz nicht anhand eines Ergebnisses, sondern man betrachtet das Intervall (Signifikanzniveau), in welchem das Ergebnis gefallen ist. Fischer hat für die Größe des Intervalls arbiträre Wahrscheinlichkeiten ausgewählt. Fällt die empirische Beobachtung E in das 5% Intervall der Beobachtungen, die am stärksten gegen die Nullhypothese sprechen, ist das Ergebnis signifikant unterschiedlich. Fällt die empirische Beobachtung E in das 1% Intervall der Beobachtungen, die am stärksten gegen die Nullhypothese sprechen, ist das Ergebnis sogar sehr signifikant unterschiedlich.
+
+> __II.) P-Wert__
+
+> Fischer gefiel jedoch nicht die arbiträre Auswahl des Signifikanzniveaus und hat diese Vorgehensweise kurze Zeit später gegem den p-Wert ersetzt. Der p-Wert entspricht der Wahrscheinlichkeit, ein empirisches Ergenis (oder ein noch stärker gegen die Nullhypothese sprechendes Ergebnis zu finden), unter der Annahme, dass die Nullhypothese wahr ist. Statt zu schauen, ob das empirische Ergebnis in einem bestimmten Ablehnungsbereich fällt, wird der p-Wert bestimmt und direkt im Bezug zur Fragestellung interpretiert.
+
+> Interpretation des p-Werts: Der p-Wert entspricht __nicht__ der Wahrscheinlichkeit der Gültigkeit der Nullhypothese unter der Bedingung, das empirische Ergebnis E erhalten zu haben ($P(H_{0}/E)$), sondern der Wahrscheinlichkeit, ein empirisches Ergebnis E (oder ein extremeres Ergebnis zu erhalten) unter der Annahme der Gültigkeit der Nullhypothese ($P(E/H_{0})$).
+
+###  Kritik am Nullhypothesentest
+
+> 1.) Die Annahme des Nullhypothesentests, dass es auf Populationsebene keinen Effekt gibt, ist in vielen Fällen eine sehr strenge und unrealistische Annahme.
+
+> 2.) Da nur die Nullhypothese getestet wird und nichts anderes, muss der Forschende keine weiteren Überlegungen bezüglich seiner eigentlichen Forschungshypothese anstellen (Beispielsweise muss er sich keine Gedanken über den Effekt seiner Intervention machen).
+
+
+### binäres Entscheidungskonzept nach Neyman/Pearson
+
+> Das binäre Entscheidungskonzept nach Neyman und Pearson berücksichtigt die Kritikpunkte vom Nullhypothesentest bis zu einem gewissen Grad.
+
+> __I.) Erweiterung der Hypothesenformulierung__
+
+> Im Bezug zur Hypothesenformulierung wird nicht nur die Nullhypothese formuliert, sondern auch eine Alternativhypothese als komplementäre Gegenstück zur Nullhypothese, welche in den meisten Fällen der eigentlichen Forschungshypothese entspricht. In unserem Beispiel entspricht die Alternativhypothese $H_{1}$ folgender Aussage: Das Präsentieren von Mafia Propaganda verbessert die Einstellung von Personen zur Mafia. Die Alternativhypothese ist in diesem Sinne das Gegenstück zur Nullhypothese. Wenn also die Nullhypothese falsifiziert und verworfen wird, nimmt man auf Populationsebene die Alternativhypothese an. Dadurch entstehen jedoch Diskrepanzen zwischen der Entscheidung, ob man die Null- oder Alternativhypothese annimmt, und ob die Null- bzw. Alternativhypothese in der Realität tatsächlich gilt.
+
+> Man kann dies an folgender Vier-Felder-Tafel darstellen:
+
+|     |     | Wahrheit|       |
+|---- |-----|----------|----    |
+|     |     | $H_{0}$  | $H_{0}$ |
+Entscheidung| $H_{1}$ | Fehler 1. Art $\alpha$ | Korrekte Entscheidung $1-\beta$ |
+||$H_{1}$| Korrekte Entscheidung $1-\beta$ | Fehler 2. Art $\beta$|
+
+> __II.) Fehler 1. Art__
+
+> Die Irrtumswahrscheinlichkeit $\alpha$ ist die Wahrscheinlichkeit, mit der ein Test ein signifikantes Ergebnis ergibt, obwohl in Wirklichkeit die $H_{0}$ gilt. Durch das $\alpha$-Niveau wird vor Beginn der Untersuchung die Höhe des $\alpha$-Fehlers festgelegt (i.d.R. werden .05, .01 und .001 als Niveau festgelegt). Durch die Wahl des $\alpha$-Niveaus wird ein kritischer Wert unter der Verteilung der Nullhypothese festgelegt, die, abhängig vom festgelegten Niveau, den prozentualen Anteil des $\alpha$-Fehlers unter der Verteilung abschneidet.
+
+> __Was ist der Unterschied zwischen dem $\alpha$-Fehler und dem p-Wert?__
+
+> Der $\alpha$-Fehler wird vor Beginn der Untersuchung festgelegt, während der p-Wert das Resultat einer empirischen Untersuchung ist (und zwar die Wahrscheinlichkeit, diesen empirischen Wert oder ein stärker gegen die Nullhypothese sprechendes Ergebnis zu erhalten). Mit dem kritischen Wert kann man die statistische Bedeutsamkeit eines empirischen Ergebnisses bestimmen: Ist das empirische Ergebnis extremer als der kritische Wert, ist das Ergebnis statistisch bedeutsam.
+
+> Einfache und Zusammengesetzte Hypothesen: Welche Konsequenz haben diese Hypothesen für den $\alpha$-Fehler
+
+> Einfache Hypothese: Im Rahmen der Signifikanztestung wird nur gegen einen fixen Wert getestet
+
+> Zusammengesetzte Hypothese: Im Rahmen der Signifikanztestung wird gegen ein Bereich aus mehreren Werten besteht.
+
+> Bei der zusammengesetzten Hypothese resultiert ein Problem für die Festlegung des kritischen Werts. Theoretisch gesehen kann für jeden Wert im Intervall, gegen den getestet wird, eine theoretische Verteilung unter der Nullhypothese generiert werden. In jedem Fall würde sich dann auch der konkrete kritische Wert verändern. Für die konkrete Festlegung auf einen $\alpha$ Fehler braucht man eine einfache Hypothese. Um dieses Problem zu umgehen, betrachtet man eine einfache Hypothese, bei welchem man denjenige Wert als zentralen Punkt der Verteilung annimmt, ab welchem die Populationsverteilung der Nullhypothese sofort in die Verteilung der Alternativhypothese umschlägt.
+
+
+> __III.) Fehler 2. Art__
+
+> Die Irrtumswahrscheinlichkeit $\beta$ ist die Wahrscheinlichkeit, mit der ein statistischer Test ein nicht-signifikantes Ergebnis ergibt, obwohl in Wirklichkeit die $H_{1}$ gilt. Das Gegenstück zum $\beta$-Fehler ist die Teststärke einer Unteruschung, welches der Wahrscheinlichkeit entspricht, mit der ein Test ein signifikantes Ergebnis ergibt, wenn ein Populationseffekt einer bestimmten (hypothetisch festgelegten) Größe tatsächlich existiert.
+
+> __Wovon hängt $\beta$ ab?__
+
+> 1.) Signifikanzniveau $\alpha$: Je kleiner das $\alpha$- Niveau ausgewählt wurde, desto größer ist der $\beta$-Fehler.
+
+> 2.) Größe des Effekts: Je größer der Effekt einer Intervention ist (in unserem Fall die Mafia-Propaganda), desto einfacher ist es, diesen Effekt zu entdecken. Dementsprechend ist der $\beta$-Fehler kleiner.
+
+> 3.) Streuung der Populationsmerkmalsverteilung: Je geringer die Streuung des Merkmals in der Population ist, desto kleiner ist der $\beta$ Fehler.
+
+> 4.) Art des Tests: Wenn zweiseitig getestet wird, wird der $\alpha$ Fehler halbiert und auf beiden Seiten der Verteilung berücksichtigt. Dementsprechend wird auch auf beiden Seiten der Verteilung der $\beta$-Fehler berücksichtigt, welcher kumuliert größer ist als bei einer einseitigen Testung.
+
+> 5.) Stichprobengröße: Je größer die Stichprobengröße ist, desto kleiner ist der $\beta$-Fehler (näheres dazu im Abschnitt der Stichprobenkennwerteverteilung)
+
+> IV.) Effektstärke und Cohens $\delta$
+
+> Die Effektstärke einer Intervention ist definiert über die Differenz der beiden Erwartungswerte unter der Verteilung der Nullhypothese und der Alternativhypothese ($\epsilon = \mu -\mu_{1}$). Vor einer Untersuchung ist man sich der konkreten Größe des Effekts nicht bewusst, was seine apriori Festlegung erschwert. Deshalb wird in der psychologischen Praxis i.d.R. ein Minimaleffekt postuliert, ab welchem uns der Effekt überhaupt interessiert. Beispielsweise würde uns die Effektivität einer Therapiemethode zur Behandlung einer psyschischen Krankheit überhaupt nicht interessieren, wenn ihr Effekt extrem klein ist. Die Problematik bei der Interpretation der Effektstärke ist ihre Abhängigkeit von der Skalierung der Variable. Ein standardisiertes Maß der Effektstärke ist Cohens $\delta$. Der Wert von Cohens $\delta$ wird folgendermaßen interpretiert: Die Differenz zwischen den Mittelwerten in Standardabweichungen.
+
+### Stichprobenkennwerteverteilung
+
+> Die Signifikanz einer Intervention anhand einer einzelnen Beobachtung zu bestimmen birgt mehrere Probleme. Das größte Problem hierbei ist die hohe Variation der einzelnen. zufällig aus der Population gezogenen Werte, d.h. es gibt eine unsystematische Variation zwischen Personen, die das Ergebnis einer inferenzstatistischen Untersuchung verzerren könnten. Deshalb werden in der psychologischen Praxis nicht mit einzelnen Beobachtungen Analysen betrieben, sondern mit Stichproben. Der grundliegende Vorteil hierbei ist, dass unsystematische Variationen zwischen Probanden gemittelt werden über die anderen Probanden in der Stichprobe.
+
+> Die Wahrscheinlichkeitsverteilung dieser Stichprobenittelwerte $\overline{x}$ aus Stichproben der Größe n heißt Stichprobenkennwerteverteilung. Die SKV ist eine theoretische Verteilung der Zufallsvariable $\overline{X}$, deren Werte die Mittelwerte zufällig gezogener Stichproben derselben Population sind. Es existiert für jeden Kennwert einer Stichprobe eine Zufallsverteilung, wobei wir uns im Folgenden auf die SKV der Stichprobenmittelwerte beschränken.
+
+> __Was ist der Unterschied zwischen der Stichprobenkennwerteverteilung und der Populationsmerkmalsverteilung?__
+
+> Kurzgefasst: Die Analyseeinheit der Zufallsvariablen. Bei der Populationsverteilung des Merkmals entspricht eine konkrete Ausprägung der Zufallsvariable X der potentiellen Ausprägung einer Person. Bei der Stichprobenkennwerteverteilung von Mittelwerten entspricht eine konkrete Ausprägung der Zufallsvariable $\overline{X}$ der potentiellen Ausprägung eines Stichprobenmittelwerts.
+
+> Eigenschaften der SKV bei Mittelwerten: Der Erwartungswert $\mu_{\overline{X}}$ ist für alle n gleich. Da der Mittelwert ein erwartungstreuer Schätzer des Populationsmittelwerts ist gilt folgende Eigenschaft: $\mu_{\overline{X}}=\mu_{X}$.
+
+> Das Dispersionsmaß für die SKV von Stichprobenmittelwerte ist der Standardfehler, der folgendermaßen berechnet wird: $\sigma_{\overline{X}}=\frac{\sigma_{X}}{\sqrt{n}}$
+
+> Inhaltlich entspricht der Standardfehler der Standardabweichung der Stichprobenkennwerteverteilung und repräsentiert die Unsicherheit in der Schätzung des Populationsmittelwerts $\mu_{X}$ durch den Stichprobenmittelwert. Anhand der Formel wird ersichtlich, dass der Standardfehler kleiner wird, je größer unsere Stichprobengröße n wird.
+
+### Konfidenzintervall
+
+> Man möchte sich nicht nur auf die Unsicherheit der Schätzung des Populationsmittelwerts beschränken, sondern auch die Sicherheit der Schätzung quantifizieren. Das Konfidenzintervall entspricht der Quantifizierung. Das (1-$\alpha$) Konfidenzintervall bezeichnet den Bereich um einen geschätzten Populationsparameter, für den gilt, dass er mit einer Wahrscheinlichkeit von $1-\alpha$ den Populationsparameter überdeckt.
+
+> Das Unter- und Obergrenze des Konfidenintervalls wird folgendermaßen bestimmt:
+
+> $\overline{x} \pm \sigma_{\overline{X}}\cdot z_{(1-\frac{\alpha}{2})}$
+
+> Also: Empirischer Mittelwert $\pm$ Standardfehler $\cdot$ Quantil der SNV bzw. kritische Wert
+
+> Aus Konfidenzintervallen können nur Aussagen über die Wiederholung der gleichen Untersuchung extrahiert werden. Man kann also sagen, dass bei k Wiederholungen der gleichen Untersuchung in $1-\alpha$ der Fälle der tatsächliche Populationsparameter im Konfidenzintervall enthalten ist. Man kann __nicht__ sagen, dass mit einer $1-\alpha$ Wahrscheinlichkeit der Populationsparameter innerhalb der Grenzen a und b liegt.
+
+### Poweranalysen
+
+> Wir haben festgestellt, dass im Rahmen der Inferenzstatistik folgende Parameter eng miteinander zusammenhängen: der $\alpha$-Fehler, der $\beta$-Fehler, die Stichprobengröße n, die Effektstärke $\epsilon$ und die Varianz des Merkmals in der Population.
+
+> Für jeder dieser Parameter (außer der Varianz, da diese nicht direkt beeinflusst werden kann), existieren sogenannte Poweranalysen, um sie unter Konstanthaltung der anderen Parameter zu bestimmen.
+
+> __I.) Apriori Poweranalyse__:Wenn der Fehler 1. Art und 2. Art, sowie die Effektstärke vor Beginn der Untersuchung festgelegt wurden, kann man mit diesen Parameter den optimalen Stichprobenumfang n bestimmen.
+
+> __II.) Sensitivitätsanalyse__: Mit Hilfe der Sensitivitätsanalyse kann man vor der Untersuchung den minimalen, auf Grundlagend der Daten aufdeckbaren Effekt bestimmen. Die Sensitivitätsanalyse kann auch nach einer Untersuchung durchgeführt werden. Dann beschäftigt man sich mit der Frage, welchen Effekt die Intervention gehabt haben müsste, um sie mit der Stichprobengröße n bestimmt haben zu können.
+
+> __III.) Post-Hoc-Poweranalyse__: Wird zur Bestimmung der Teststärke herangezogen, vor allem nach einem fehlgeschlagenen Falsifikationsversuchs der Nullhypothese.
+
+> __IV.) Kriteriumsanalyse__: Wird zur Bestimmung der tatsächlichen $\alpha$-Fehlerwahrscheinlichkeit herangezogen. Diese Analyse findet sehr selten statt, da der $\alpha$ Fehler meist via Konvention festgelegt wird.
+
+
+## Einstichproben-z-Test am Beispiel der Mafia Propaganda
+
+### Ungerichtete Hypothese
+
+#### statistische Hypothesen
+
+> $H_{0}$: Das Präsentieren von Mafia-Propaganda verändert die Einstellung von Personen gegenüber der Mafia nicht.
+
+> $H_{1}$: Das Präsentieren von Mafia-Propaganda verändert die Einstellung von Personen gegenüber der Mafia.
+
+#### Berechnung der z-Prüfgröße
+
+> 1.) Berechnung des Standardfehlers: $\sigma_{\overline{X}}=\frac{\sigma}{\sqrt{n}}=\frac{25}{\sqrt{70}}=2.99$
+
+> 2.) Berechnung der z-Prüfgröße
+Formel: $z=\frac{\overline{X}-\mu_{0}}{\sigma_{\overline{X}}}=\frac{58-50}{2.99}=2.68$
+
+> 2.1) Vergleich mit dem kritischen Wert: Da die z-Prüfgröße von 2.68 extremer als der kritische Wert von 1.96 (für ungerichtete Hypothesen das 0.975-Quantil der SNV) ist, ist das empirische Ergebnis statistisch bedeutsam.
+
+> 2.2) Bestimmung des p-Werts der empirischen Größe (siehe unten): Da der p-Wert von 0.007 kleiner als 0.05 ist, ist das empirische Ergebnis statistisch signifikant.
+
+> 3.) Konfidenzintervall
+
+> Bei ungerichteten Hypothesen sichert man sich in beide Richtungen ab.
+
+> $\overline{X}\pm \sigma_{\overline{X}}\cdot z_{(1-\frac{\alpha}{2})}= 58 \pm 2.99 \cdot 1.96$
+
+> Obergrenze: $58 + 2.99 \cdot 1.96=63.86$
+
+> Untergrenze: $58 - 2.99 \cdot 1.96=52.14$
+
+> Konfidenzintervall bei einer ungerichteten Irrtumswahrscheinlichkeit von 5%: [63.86; 52.14]. Auch anhand des Konfidenzintervalls kann man Signifikanzaussagen generieren. Da der Populationsmittelwert unter der Nullhypothese ($\mu_{0}=50$) nicht im Intervall liegt, ist das empirische Ergebnis statistisch bedeutsam.
+
+> ungerichteter Einstichproben-z-Test in R:
+
+```{r}
+#Standardfehler
+se<- 25/sqrt(70)
+se
+#Berechnung der z-Prüfgröße
+z<- (58-50)/se
+z
+#Überprüfung der Signifikanz durch zwei Wege
+
+#1.) Bestimmung des kritischen Werts und Vergleich mit der z-Prüfgröße
+
+# da unsere Hypothese ungerichtet ist wird das 1-alpha/2 Quantil der SNV herangezogen:
+
+q<- qnorm(1-0.025)
+q
+
+#Die z-Prüfgröße ist extremer als der kritische Wert --> das empirische Ergebnis
+
+#ist mit einer 5% Irrtumswahrscheinlichkeit statistisch bedeutsam
+
+# 2.) Berechnung des p-Werts der z-Prüfgröße
+
+# Da unsere z-Prüfgröße positiv ist, schauen wir uns die Wahrscheinlichkeit
+
+#oberhalb des Werts an. Dies wird mit dem lower.tail=F Element sichergestellt.
+pnorm(z, lower.tail=F)
+# Da unsere Hypothese ungerichtet ist, muss der p-Wert kleiner als .025 sein, um
+
+#statistisch signifikant zu sein. In diesem Fall ist dieser Umstand gegeben.
+
+#Zur Vereinfachung wird der p-Wert i.d.R. verdoppelt und dann gegen .05 getestet:
+2*pnorm(z, lower.tail=F)
+
+#Konfidenzintervall
+##Obergrenze
+58+se*q
+##Untergrenze
+58-se*q
+```
+
+###  Gerichtete Hypothesen (entspricht unserem eigentlichen Beispiel)
+
+#### statistische Hypothesen
+
+> $H_{0}$: Das Präsentieren von Mafia-Propaganda verändert die Einstellung von Personen zur Mafia nicht oder sie wird negativer.
+
+> $H_{1}$:Das Präsentieren von Mafia Propaganda verbessert die Einstellung von Personen zur Mafia.
+
+#### Berechnung der z-Prüfgröße
+
+> 1.) Berechnung des Standardfehlers:
+
+> Das gleiche Verfahren wie bei der ungerichteten Testung.
+
+> $\sigma_{\overline{X}}=\frac{\sigma}{\sqrt{n}}=\frac{25}{\sqrt{70}}=2.99$
+
+> 2.) Berechnung der z-Prüfgröße
+
+> Das gleiche Verfahren wie bei der ungerichteten Testung
+
+> Formel: $z=\frac{\overline{X}-\mu_{0}}{\sigma_{\overline{X}}}=\frac{58-50}{2.99}=2.68$
+
+> 2.1) Vergleich mit dem kritischen Wert: Da die z-Prüfgröße von 2.68 extremer als der kritische Wert von 1.645 (für gerichtete Hypothesen wird das 0.95-Quantil der SNV herangezogen) ist, ist das empirische Ergebnis statistisch bedeutsam.
+
+> 2.2) Bestimmung des p-Werts der empirischen Größe (siehe unten): Da der p-Wert von 0.007 kleiner als 0.05 ist, ist das empirische Ergebnis statistisch signifikant.
+
+> 3.) Konfidenzintervall
+
+> Bei gerichteten Hypothesen sichert man sich in nur eine Richtung ab. Da unsere Alternativhypothese einen positiven Effekt postuliert, sichern wir uns nur in den negativen Bereich ab.
+
+> $\overline{X}- \sigma_{\overline{X}}\cdot z_{(1-\alpha)}= 58 \pm 2.99 \cdot 1.645$
+
+> Untergrenze: $58 - 2.99 \cdot 1.645=53.08$
+
+> Konfidenzintervall bei einer ungerichteten Irrtumswahrscheinlichkeit von 5%: [53.08; $\infty$].  Da der Populationsmittelwert unter der Nullhypothese ($\mu_{0}=50$) nicht im Intervall liegt, ist das empirische Ergebnis statistisch bedeutsam.
+
+> gerichteter Einstichproben-z-Test in R:
+
+
+```{r}
+#Standardfehler
+se<- 25/sqrt(70)
+se
+#Berechnung der z-Prüfgröße
+z<- (58-50)/se
+z
+#Überprüfung der Signifikanz durch zwei Wege
+
+##1.) Bestimmung des kritischen Werts und Vergleich mit der z-Prüfgröße
+
+# da unsere Hypothese gerichtet ist, wird das 1-alpha Quantil der SNV herangezogen:
+
+q<- qnorm(1-0.05)
+q
+
+#Die z-Prüfgröße ist extremer als der kritische Wert
+
+
+#--> das empirische Ergebnis ist mit einer 5% Irrtumswahrscheinlichkeit statistisch bedeutsam
+
+# 2.) Berechnung des p-Werts der z-Prüfgröße
+
+#Da unsere Hypothese gerichtet ist, müssen wir die Wahrscheinlichkeit oberhalb der
+
+#Prügröße betrachten Dies wird mit dem lower.tail=F Element sichergestellt.
+pnorm(z, lower.tail=F)
+## Da der p-Wert von .003 kleiner als .05 ist, ist das empirische Ergebnis statistisch signifikant.
+
+
+#Konfidenzintervall
+##Untergrenze
+58-se*q
+```
+
+> Der grundlegende Unterschied zwischen der gerichteten und ungerichteten inferenzstatistischen Analyse ist der konkrete Wert für den kritischen Wert und die Breits des Konfidenzintervalls. Ansonsten unterscheiden sich die Analysen (in diesem Fall) nicht.
+
+
+## Unbekannte Populationsparameter
+
+> Der Einstichproben-z-Test kann nur angewendet werden, wenn zwei Bedingungen erfüllt sind:
+
+> 1.) Wenn das Merkmal in der Population normalverteilt ist und
+
+> 2.) wenn die Populationsparameter bekannt sind.
+
+> In den meisten Fällen sind die Populationsparameter einer Variable nicht bekannt, weshalb sie aus den Daten geschätzt werden müssen. Die Eignung einer Statistik (Stichprobenkennwert) als Schätzer eines Parameters (Populationskennwert) wird anhand von vier Gütekriterien bemessen: der Erwartungstreue, der Konsistenz, der Effizienz und der Erschöpftheit.
+
+> Im Folgenden werden diese vier Gütekriterien definiert:
+
+###  Erwartungstreue
+
+> Eine Statistik schätzt einen Parameter __erwartungstreu__, wenn der Erwartungswert der Stichprobenkennwerteverteilung der Statistik mit dem Parameter identisch ist.
+
+
+> Das arithmetische Mittel ist ein erwartunstreuer Schätzer des Populationsmittelwerts, denn wenn man die Anzahl gezogener Stichproben k der Größe n gegen unendlich laufen lässt, entspricht der Mittel über alle Datenerhebungen dem Populationsmittelwert. Sprich: $\overline{X}_{\overline{x}}=\mu$ für $k\to\ \infty$
+
+> Die empirische Standardabweichung bzw. die empirische Varianz ist kein erwartungstreuer Schätzer der Populationsvarianz. Der Grund hierfür ist die Tatsache, dass die empirische Varianz nur die Variation der Daten um den empirischen Mittelwert berücksichtigt, jedoch nicht die Varianz der empirischen Mittelwerte um den Populationsmittelwert (quadrierte) Standardfehler $\sigma_{\overline{X}}^2$). Da die empirische Varianz die Populationsvarianz systematisch unterschätzt, kann man diesen Fehler mit einem Umrechnungsfaktor einfach beheben (das kleine Hütchen über dem Sigma bedeutet, dass der Parameter geschätzt wurde):
+$s_{x}^2˚\cdot \frac{n}{n-1}=\hat{\sigma}_{x}$
+
+> Mathematische Herleitung des Umrechnungsfaktors:
+
+> Umformung des Standardfehlers:
+
+> $\sigma_{\overline{X}}=\frac{\sigma_{x}}{\sqrt{n}}$
+
+> $= \sqrt{\frac{\sigma_{x}^2}{n}}$  (Jetzt quadrieren wir die Formel um den quadrierten Standardfehler zu erhalten)
+
+> $\sigma_{\overline{X}}^2=\frac{\sigma_{x}^2}{n}$
+
+> Die empirische Varianz unterschätzt die Populationsvarianz um den quadrierten Standardfehler. Es gilt also:
+
+> $E(S^2)=\sigma_{x}^2 - \sigma_{\overline{x}}^2$
+
+> Wir setzen die obige Formel für den quadrierten Standardfehler in die Formel ein.
+
+> $E(S^2)=\sigma_{x}^2 - \frac{\sigma_{x}^2}{n}$
+
+> Wir klammern die Populationvarianz aus und erhalten:
+
+> $E(S^2)= \sigma_{x}^2 \cdot (1-\frac{1}{n})$
+
+> Wir erweitern die 1 mit n.
+
+> $E(S^2)= \sigma_{x}^2 \cdot (\frac{n}{n}-\frac{1}{n})$
+
+> Jetzt vereinfachen wir die Formel und erhalten folgendes Resultat:
+
+> $E(S^2)= \sigma_{x}^2 \cdot \frac{n-1}{n}$
+
+> Wenn man diese Formel umformt erhält man also folgende Formel zur Bestimmung der Populationsvarianz:
+
+> $E(S^2)\cdot \frac{n}{n-1}=\sigma_{x}^2$
+
+> Für die empirische Varianz erhalten wir dementsprechend folgende Formel zur Schätzung der Populationsvarianz:
+
+> $\hat{\sigma}_{x}^2= s_{x}^2\cdot \frac{n}{n-1}$
+
+
+###  Konsistenz
+
+> Eine Statistik heißt __konsistent__ , wenn sie mit wachsender Stichprobengröße stochastisch gegen den Parameter konvergiert. Mit anderen Worten, die Wahrscheinlichkeit, dass die Statistik beliebig nahe an dem Parameter liegt, strebt mit wachsender Stichprobengröße gegen 1.
+(Gollwitzer, 2018, S. 247)
+
+### Effizienz
+
+> Eine Statistik ist als Schätzer eines Populationsparameters __effizient__, wenn sie den geringsten Standardfehler aller erwartungstreuen Schätzer aufweist.
+(Gollwitzer, 2018. S.247)
+
+> Bei symmetrischen Verteilung ist der Median eine erwartungstreuer Schätzer des Populationsmittelwerts. Das arithmetische Mittel ist jedoch im Vergleich zum Median ein effizienterer Schätzer des Populationsmittelwerts, da sein Standardfehler kleiner ist, als der des Medians. Der Standardfehler des Medians lauter nämlich:
+
+> $\sigma_{Md}=\frac{1,253\cdot \sigma_{x}}{\sqrt{n}}$
+
+> , d.h. der Median hat einen um 1,253 höheren Standardfehler als das arithmetische Mittel.
+
+### Suffizienz
+
+> Eine Statistik ist __suffizient__ (__erschöpfend__ oder __exhaustiv__), wenn sie alle in den Daten enthaltenen Informationen nutzt, sodass die Berechnung einer weiteren Statistik keine zusätzliche Information über den Parameter enthält. (Gollwitzer, 2018, S. 248)
+
+> Vergleich Median und arithmetische Mittel: Der Median ist kein suffizienter Schätzer des Populationsmittelwert, da er Informationen nur über Rangunterschiede zwischen den Messwerten enthält, während der Populationsmittelwert auch Informationen über Messwertdifferenzen enthält. Der Stichprobenmittelwert ist jedoch ein suffizienter Schätzer, da er diese Messwertdifferenzen berücksichtigt.

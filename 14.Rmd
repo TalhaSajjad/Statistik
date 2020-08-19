@@ -1,0 +1,208 @@
+# Studiendesigns und weitere Korrelationen
+
+## Arten von Stichproben
+
+Name                 |  Beschreibung
+---------------------| -------------------------------------------
+Zufallsstichprobe    | Die Personenrekrutierung erfolgt zufälig und nach keinen definierten Kriterien. Dementsprechend haben alle Elemente innerhalb der Grundgesahmtheit die gleiche Auswahlwahrscheinlichkeit. Stichproben, die aus einer Zufallsziehung gewonnen wurden sind bei einem ausreichend großen n repräsentativ für die Grundgesamtheit.
+Angefallene Stichprobe| Die Stichprobe wird abhängig von Umgebungsfaktoren gezogen. Das problematische bei der angefallenen Stichprobe ist der Umstand, dass durch die Umgebungsfaktoren eine Selbst-Selektion stattfindet, welche die Repräsentativität der Stichprobe verzerren kann. Wenn beispielsweise bei einer Trump-Rallye Personen zu ihrer Meinung zu Trump gefragt werden, ist es sehr wahrscheinlich, dass nahezu jeder den U.S. Präsidenten positiv bewertet. Aus dem Beispiel wird jedoch ersichtlich, dass die Ergebnisse dieser Befragung nicht auf alle U.S. Amerikaner übertragen werden kann.
+Matched Pairs Design| In diesem Studiendesign werden vor Beginn der Untersuchung sogenannte matched pairs gebildet, d.h. man findet Personen, die sich im Hinblick auf die relevanten Kontrollvariablen ähneln. Im nächsten Schritt werden diese Paare getrennt und rein zufällig einer der Studienbedingungen zugeordnet. Dies hat zur Folge, dass die unterschiedlichen Experimentalgruppen sich in den Kontrollvariablen ähneln bzw. homogen sind. Somit ist es möglich, spätere Gruppenunterschiede auf das untersuchte Kriterium zurückzuführen. Die Effektivität dieses Studiendesigns setzt natürlich voraus, dass die Kontrollvariablen sinnvoll gewählt werden. Wenn ich beispielsweise die Effektivität von zwei Therapiemethoden miteinander vergleichen möchte, jedoch matched pairs im Hinblick auf die Kontrollvariable ,,Interesse an Käse'' bilde, spätere Gruppenunterschiede möglicherweise durch eine weitere, nicht berücksichtigte Variable verursacht wurde.
+Der Randomized Controlled Trial (RCT) | Es findet eine randomisierte Zuordnung der Probanden auf die Experimentalbedingungen statt. Die Logik hierbei ist, dass durch die zufällige Gruppenzuteilung Personenvariablen statistisch unabhängig sind von den Treatment-Zuordnungen und somit eine kausale Interpretation von Gruppenunterschieden zulässt. Der Nachteil hierbei ist, wie bei der Zufallsstichprobe, dass der Homogenitätseffekt der zufälligen Zuordnung erst bei einer ausreichend großen Stichprobe eingreift.
+Das Case-Control-Design| Eine Gruppe von Personen, die eine bestimmte Besonderheit (wie eine seltene Krankheit) aufweisen, werden mit einer angemessenen Kontrollgruppe verglichen. Im ersten Schritt werden die Personen der Kontrollgruppea ausgewählt nach ihrer Ausprägung in den definierten Kontrollvariablen und zwar müssen diese mit den Ausprägungen in der Fallgruppe übereinstimmen. Dadurch wird gewährleistet, dass die beiden Gruppen homogen sind. Dieses Design kann man heranziehen um beispielsweise die Risikofaktoren von bestimmten Krankheiten aufzudecken, da bei einer __angemessenen Wahl der Kontrollvariablen__ diese mit einer höheren Teststärke aufgedeckt werden können. 
+
+
+## Verzerrende Effekte beim Zustandekommen einer Stichprobe
+
+I.) Selection Bias: Ein Selection Bias besteht in der Regel, wenn Probanden die Möglichkeit der Selbstselektion gegeben wird. Kommen wir zurück zur Trump-Rallye. Ihr habt aus den Fehlern der Vergangenheit gelernt und habt euch stattdessen entschieden, in der Innenstadt Personen im Hinblick zu ihrer politischen Orientierung zu befragen. Statt jedoch auf die Leute zuzugehen und sie zu befragen, stellt ihr einen Stand auf, auf dem fettgedruckt auf einem Plakat steht ,,5 Euro Entzahlung für eine kurze Fragebogenstudie''. Das Problem hierbei ist, dass die Probanden sich selbst herausselektieren aufgrund von bestimmten Personenvariablen: Vielleicht sind sie nicht sehr gewissenhaft und schulden einem Freund noch Geld oder sie sind einfach nur sehr geldgierig. Wie dem auch sei, stellt diese Form der Stichprobenziehung ein Problem für die Repräsentativität dar, da man nicht mehr davon ausgehen kann, dass die Ergebnise eurer Studie, sprich die politische Meinung eurer Befragten, auf die Grundgesamtheit übertragbar ist.
+
+II.) Aquieszenz (soziale Erwünschtheit): Eine Antworttendenz von Probanden,Antworten abzugeben, von denen sie glauben, dass sie eher von der Gesellschaft akzeptiert werden, statt ihre ehrliche Meinung zu geben, aus Furcht vor sozialer Ablehnung. Ein Beispiel hierfür wäre die Bearbeitung eines Fragebogens im Rahmen der Personalwahl. Um sich möglichst positiv darzustellen, antwortet die Person stets im Sinne sozialer Erwünschtheit. Es gibt Fragebögen mit Validierungsskalen, um zu untersuchen, ob eine Person sozial erwünscht geantworter hat oder nicht)
+
+III.) Systematisch fehlende Werte: Tritt auf, wenn Daten fehlen, die auf systematische Probleme zurückgeführt werden können. Stellt euch vor, ihr wollt die Bildungsqualität in den 16 Bundesländern überprüfen. Hierfür sendet ihr eure 16 Praktikanten und Praktikantinnen an jeweils eine Schule in jedem Bundesland. Leider ist es jedoch dazu gekommen, dass der Praktikant für Nordrhein-Westfalen die Daten in einem Hausbrand verloren hat. Das systematische hierbei ist, dass alle Daten aus Nordrhein-Westfalen fehlen, da der jeweilige Praktikant für den Standort zuständig war. Ein weiteres Beispiel sind Probanden, die im Rahmen von Längsschnittstudien aus der Studie ausscheiden aufgrund von ähnlichen Gründen.
+
+## Verfälschung der Korrelation
+
+Es gibt eine Vielzahl von psychologischen Untersuchungen, die auf die Berechnung von Korrelationen basiert. Insofern ist es äußerst wichtig, potenzielle Verzerrungen durch bestimmte Faktoren zu vermeiden, da die Korrelation ansonsten eine falsche Repräsentation des Zusammenhangs darstellt. Im Folgenden werden mehrere dieser Verzerrungseffekte angegeben und definiert.
+
+
+Name                |Beschreibung
+--------------------|----------------------------------------------
+geringe Reliabilität| Unter dem Begriff der Reliabilität versteht man, dass ein Maß die jeweilige Variable genau misst. Stellt euch vor, ihr möchtet euer Gewicht mit Hilfe einer Waage bestimmen, jedoch gibt dieser jedes Mal ein anderes Gewicht an. Folglich scheint die Waage die Variable ,,Körpergewicht'' nicht genau zu messen. Genau so können psychologische Tests eine bestimmte Eigenschaft ungenau messen. Dass dies zu einer Verzerrung der Korrelation führt, ist verständlich: Wenn mind. einer der beiden Variablen ungenau bzw. messfehlerbehaftet gemessen wird, kann niemals der tatsächliche Zusammenhang zwischen den beiden Variablen festgestellt werden. Es existieren hierfür jedoch Korrekturformeln, bei welchem die Reliabilität der Maße berücksichtigt wird.
+eingeschränkte Varianz| Eine eingeschränkte Varianz bedeutet, dass für einer der beiden Variablen nur ein Teil der Gesamtvariabilität berücksichtigt wird. Wäre man beispielsweise daran interessiert, den IQ mit dem Berufserfolg zu korrelieren, wäre es nicht im Interesse eurer Untersuchung, exklusiv Professoren und Professorinnen als Probanden zu rekrutieren, da diese meist eine hohe Intelligenz aufweisen und gleichzeitig erfolgreich sind.
+Boden- oder Deckeneffekte | Boden- oder Deckeneffekte entstehen, wenn eine Variable im Hinblick auf ihre möglichen Ausprägungen nicht das angemessene Spektrum der Stichprobe deckt. Stellt euch vor, ihr wollt die Mathematikkenntnisse von Schülern aus der neunten Klasse erfassen. Hierfür legt ihr den Kindern Aufgaben zur Analyse für Abiturienten vor. Natürlich werden die meisten Kinder nicht einen einzigen Punkt erzielen, da sie noch nie das Thema behandelt haben und es demtentsprechend zu herausfordernd für sie ist. Folglich handelt es sich hierbeit um ein Bodeneffekt, da die Leistung der Kinder kollektiv negativ bewertet wurde. Ein Deckeneffekt wäre für dieses Beispiel Matheaufgaben, die für Neuntklässler zu einfach wären.
+Ausreißer   | Ausreißer sind Datenpunkte die außerhalb der erwarteten Messung liegt bzw. nicht in das Muster der restlichen Daten passt. Dise können zu einer Verzerrung der Korrelation führen, da sie den Mittelwert der Variablen stark beeinflussen. Stellt euch vor, ihr möchtet in einem Unternehmen den Zusammenhang zwischen der Arbeitzufriedenheit und dem aktuellen Einkommen erfassen. Dabei scheint es einen leicht positiven Trend zu geben. Nun erfasst ihr auch das Einkommen des Multimilliardär CEO sowie seine Arbeitszufriedenheit. Allein aufgrund seines Einkommens allein wird er ein Ausreißer in den Daten sein. Nun ist der Zusammenhang nicht mehr leicht positiv, sondern äußerst positiv, da der CEO auch äußerst zufrieden mit seiner jetzigen Lage ist.
+Ökologischer Fehlschluss| Ein ökologischer Fehlschluss liegt vor, wenn Zusammenhänge auf Clusterebene mit Zusammenhängen auf Individualebene verwechselt. Wenn beispielsweise die Arbeitszufriedenheit sowie das Einkommen in einem Unternehmen isoliert für jede Abteilung erfasst wird, kann es sein, dass man keine Korrelationen aufdeckt. Der Grund hierfür jedoch ist das Abteilungs-Cluster da Personen innerhalb einer Abteilung gleich zufrieden mit ihrer Arbeit sind und auch einen sehr ähnlichen Gehalt aufweisen. Isoliert nur innerhalb der Cluster den Zusammenhang zwischen den beiden Variablen zu bestimmen und allgemein zu behaupten, dass die Arbeitszufriedenheit sich nicht durch eine Lohnerhöhung verändern wird, stellt einen Fehlschluss dar. Möglicherweise gibt es einen Zusammenhang, wenn man alle Daten für eine Korrelation heranzieht.
+
+## Spearman-Rank-Korrelaiton
+
+Ein von Spearman entwickeltes Korrelationsmaß für ordinalskalierte Variablen ist die Spearman-Rang-Korrelation. Dabei ist diese nichts anderes als die Produk-Moment-Korrelation zweier Rangreihen. Im Folgenden wird die Spearman-Rang-Korrelation für zwei Fälle angewendet: Im ersten Beispiel gibt es innerhalb der Rangreihe keine Rangbindungen, die es jedoch im zweiten Beispiel geben wird.
+
+### Spearman-Rang-Korrelation ohne Rangbindungen
+
+Stellt euch vor, ihr möchtet den Zusammenhang zwischen dem sozioökonomischen Status euer Mitstudierenden und ihrer Statistiknote berechnen. Den sozioökonomischen Status habt ihr mit Hilfe eines Fragebogens, der in mehreren qualitativ unterschiedlichen Abstufungen diesen misst, erfasst. Da es sich folglich um eine ordinalskalierte Variable handelt, könnt ihr nicht mehr die Pearson-Korrelation bestimmen und bildet stattdessen für die Statistiknote ein Rangreihe und berechnet die Spearman-Rang-Korrelation. Für eure Berechnung erhebt ihr folgende Daten (TIPP: Beim sozioökonomischen Status repräsentiert ein hoher Wert einen besseren Status):
+
+Rangplatz SÖS  | Statistiknote| Rangplatz in der Statistikprüfung
+------------|---------------|---------
+1|4.0|8
+2|1.7|3
+3|1.0|1
+4|1.3|2
+5|2.3|5
+6|2.7|6
+7|2.0|4
+8|5.0|9
+9|3.7|7
+
+Wenn es innerhalb der beiden Variablen keine Rangbindungen gibt, kann man folgende Formel zur Berechnung der Korrelation heranziehen:
+
+$r_{s}=1-\frac{6\cdot \sum_{m=1}^{n}d_{m}^2}{n\cdot(n^2-1)}$
+
+In der Formel repräsentiert der Wert $d$ die Rangplatzdifferenz eines Merkmalsträgers $m$ zwischen der Rangzahl in der ersten Variable und der zweiten Variable. Für die erste Person würden wir demnach als Differenzwert $-7$ erhalten, da er einen Wert 1 im SÖS hat sowie den achten Platz in der Statistikprüfung ($d=1-8=-7$). Die Vorzeichen spielen hierbei keine Rolle, da die Differenzwerte in der Formel quadriert werden. Für unsere Daten erhalten wir folgende Differenzwerte:
+
+Rangplatz SÖS  | Statistiknote| Rangplatz in der Prüfung|Differenzwerte d | quadrierte Differenzwerte $d^2$
+------------|---------------|------------------------|------------------|-------------------
+1|4.0|8|-7|49
+2|1.7|3|-1|1
+3|1.0|1|2|4
+4|1.3|2|2|4
+5|2.3|5|0|0
+6|2.7|6|0|0
+7|2.0|4|3|9
+8|5.0|9|-1|1
+9|3.7|7|2|4
+
+Mit Hilfe dieser Informationen können wir nun die Spearman-Korrelation bestimmen:
+
+$r_{s}=1-\frac{6\cdot \sum_{m=1}^{n}d_{m}^2}{n\cdot(n^2-1)}=1-\frac{6\cdot (49+1+4+4+0+0+9+1+4)}{9\cdot (81-1)}=1-\frac{432}{720}=1-0.6=0.4$
+
+Die Spearman-Rangkorrelation entspricht konzeptuell der Produkt-Moment-Korrelation von Rangreihen. Insofern können Spearman-Korrelationen in ihrem Ausmaß wie Produkt-Moment-Korrelationen interpretiert werden. Folglich entsprich die Korrelation von $.4$ einer mittleren bis hohen Korrelation zwischen dem sozioökonomischen Status und der Statistiknote. __Achtung__: Eine positive Korrelation in dem Beispiel bedeutet nicht, dass Personen mit einem höheren SÖS besser in der Prüfung abschneiden, sondern, dass diese Personen schlechter in der Statistik-Prüfung sind. Das mag sich vielleicht sehr verwirrend anhören, ist es aber inhaltlich nicht. Wenn wir den Kontext unserer Korrelationsberechnung komplett ignorieren, haben wir lediglich zwei Variablen, deren Zusammenhang wir bestimmten möchten. Wir haben einen positiven Zusammenhang festgestellt, d.h. ein __hoher Wert in der einen Variablen bedeutet auch, dass die Person wahrscheinlich einen hohen Wert in der anderen Variablen haben wird__. Hohe Werte bedeuten bei uns __betraglich hohe Rangplätze__: Der Rangplatz 8 ist ein höherer Rang als der Rangplatz 1. Übertragen auf unser Beispiel bedeutet dieser positiver Zusammenhang, dass Personen mit einem hohen SÖS schlechter in der Prüfung abgeschnitten haben als Personen mit einem niedrigen SÖS. da ein hoher Rangplatz in der Statistikvariable äquivalent ist mit einer schlechteren Bewertung. In diesem Sinne wäre es immer sinnvoll, sich Gedanken darüber zu machen, was ein hoher Rangplatz für die jeweilige Variable bedeutet.
+
+### Spearman-Rangkorrelation mit Rangbindungen
+
+Betrachten wir das gleiche Beispiel von oben, nur mit einem kleinen Unterschied und zwar mit Rangbindungen in der Statistikprüfung:
+
+Rangplatz SÖS (x) | Statistiknote (y)| Rangplatz in der Prüfung
+------------|---------------|---------
+1|4.0|8.5
+2|1.7|3
+3|1.0|1
+4|1.3|2
+5|2.3|5
+6|2.7|6
+7|2.0|4
+8|4.0|8.5
+9|3.7|7
+
+Nun ist es leider nicht mehr möglich, die oben genannte Formel heranzuziehen, um die Spearman-Korrelation zu berechnen. Es gibt hierfür auch keine Korrekturformel, die eingebaut werden kann. Dafür gibt es glücklicherweise eine Alternative: Man berechnet die Produkt-Moment-Korrelation der Rangplätze. Da die Spearman-Korrelation mathematisch äquivalent zur Produkt-Moment Korrelation für Rangplätze ist, kann diese Formel herangezogen werden, um den Zusammenhang zwischen den beiden Variablen zu berechnen:
+
+$r_{xy}=\frac{s_{xy}}{s_{x}\cdot s_{y}}$
+
+Im Folgenden wenden wir diese Formel an:
+
+
+Mittelwerte:
+
+$\overline{x}=\frac{45}{9}=5$
+
+$\overline{y}=\frac{45}{9}=5$
+
+Varianzen:
+
+$s_{y}^2=\frac{\sum_{m=1}^{n}(x_{m}-\overline{x})^2}{n}=\frac{16+9+4+1+0+1+4+12.25+12.25}{9}=\frac{59.5}{9}=6.61$
+
+
+$s_{x}^2=\frac{\sum_{m=1}^{n}(x_{m}-\overline{x})^2}{n}=\frac{16+9+4+1+0+1+4+9+16}{9}=\frac{60}{9}=6.67$
+
+Kovarianz:
+
+$s_{xy}=\frac{\sum_{m=1}^{n}(x_{m}-\overline{x})\cdot (y_{m}-\overline{y})}{n}=\frac{-14+6+8+3+1-2+10.5+8}{9}=\frac{20.5}{9}$
+
+Produkt-Moment-Korrelation/Spearman-Korrelation:
+
+$r_{xy}=\frac{s_{xy}}{s_{x}\cdot s_{y}}=\frac{20.5/9}{2.57\cdot 2.58}=0.34$
+
+Es besteht ein mittlerer positiver Zusammenhang zwischen der Statistiknote und dem SÖS.
+
+### Spearman-Korrelation in R
+
+Unabhängig davon, ob Rangbindungen bestehen oder nicht, kann die Spearman-Rangkorrelation mit dem cor() Befehl berechnet werden. Dafür müsst ihr lediglich als Element method='spearman' einfügen.
+
+Beispiel ohne Rangbindungen:
+
+```{r}
+# Datensatz
+data<- data.frame(ses=c(1,2,3,4,5,6,7,8,9),note=c(4.0,1.7,1.0,1.3,2.3,2.7,2.0,5.0,3.7))
+data
+# Spearman-Rang-Korrelation
+cor(data$ses,data$note,method='spearman')
+```
+
+Beispiel mit Rangbindungen:
+
+```{r}
+# Datensatz
+data_2<- data.frame(ses=c(1,2,3,4,5,6,7,8,9),note=c(4.0,1.7,1.0,1.3,2.3,2.7,2.0,4.0,3.7))
+data_2
+# Spearman-Rang-Korrelation
+cor(data_2$ses,data_2$note,method='spearman')
+```
+## Tetrachorische Korrelation
+
+### Einführung
+
+Die tetrachorische Korrelation benötigt man, wenn man 2 dichotome Variablen hat, die jedoch konzeptuell kontinuierlich bzw. stetig sind. Mit diesem Korrelationskoeffizienten wird der unter der dichotomen Kodierung liegende Zusammenhang der beiden kontinuierlichen Variablen bestimmt. Stellen wir uns vor, wir möchten den Zusammenhang zwischen dem IQ und der Einstellung zur Zeichentrickserie Spongebob Schwamkopf (SS). Hierfür codieren wir beide Variablen dichotom, obwohl sie konzeptuell kontinuierlich sind. Die IQ Variable wird unterteilt in Hochintelligente Personen mit einem IQ von mind. 130 und den Rest, die einen IQ von unter 130 aufweisen. Die Spongebob Schwammkopf Variable wird unterteilt in ,,Ich mag SS'' und ,,Ich mag SS nicht''. Für diese beiden Variablen erhalten wir folgende Vierfeldertafel:
+
+|             |       $X=0$ Ich mag SS nicht  | $X=1$ Ich mag SS
+|-------------|---------------------------|------------------------
+|$Y=1$ Hochintelligent| $a=20$            |  $b=10$
+|$Y=0$ Niedrigintelligent| $c=5$          |  $d=15$
+
+Und $px=(b+d)/n_{tot}= (10+15)/50=0.5$ , $py=(a+b)/n_{tot}=(20+10)/50=0.6$
+
+Um die tetrachorische Korrelation bestimmen zu können, brauchen wir folgende Formeln:
+
+$r_{tet}=\frac{bc-ad}{u_{x}u_{y}n_{tot}^2}$
+
+mit $u_{x}=\frac{1}{\sqrt{2\pi}}e^{-zx^2/2}$ und $u_{y}=\frac{1}{\sqrt{2\pi}}e^{-zy^2/2}$
+
+Zuallererst bestimmen wir die Werte für $u_{x}$ und $u_{y}$. Hierbei müssen wir berücksichtigen, dass zx derjenige z-Wert ist, welcher zu einer Wahrscheinlichkeit von px gehört. Da px in unserem Beispiel 0.5 ist, müssen wir nun das 0.5-Quantil der Standardnormalverteilung herausfinden, welcher bekanntermaßen bei null liegt. Folglich erhalten wir folgende Lösung:
+
+$u_{x}=\frac{1}{\sqrt{2\pi}}e^{-zx^2/2}=\frac{1}{\sqrt{2\pi}}e^{0}=\frac{1}{\sqrt{2\pi}}=0.399$
+
+Für $u_{y}$ müssen wir nun dasjenige Quantil unter der SNV bestimmen, welcher zu einer Wahrscheinlichkeit von $py=0.6$ gehört. Über R kann man diesen Wert relativ simpel erhalten:
+
+```{r}
+qnorm(0.6)
+```
+
+Somit erhalten wir als Ergebnis für $u_{y}$:
+
+$u_{y}=\frac{1}{\sqrt{2\pi}}e^{-zy^2/2}=\frac{1}{\sqrt{2\pi}}e^{-0.25^2/2}=0.387$
+
+Mit diesen Informationen können wir nun die tetrachorische Korrelation bestimmen:
+
+
+$r_{tet}=\frac{bc-ad}{u_{x}u_{y}n_{tot}^2}=\frac{10\cdot 5- 20\cdot 15}{0.399\cdot0.387\cdot 50^2}=-0.64$
+
+Es besteht ein negativer Zusammenhang zwischen dem IQ und der Einstellung zu Spongebob Schwammkopf, d.h. je intelligenter man ist, desto eher wird man Spongebob Schwammkopf nicht mögen. 
+
+### Die tetrachorische Korrelation in R
+
+Die tetrachorische Korrelation kann auch relativ unkompliziert in R berechnet werden mit Hilfe der tetrachoric()-Funktion im Paket psych. __WICHTIG__: Die tetrachorische Korrelation in R verlangt eine spezifische Anordnung der Vierfeldertafel in Abhängigkeit von der Kodierung unserer dichotomen Variablen, welche bei unserem Beispiel in dieser Form nicht gegeben ist:
+
+|             |       $X=0$ Ich mag SS nicht  | $X=1$ Ich mag SS
+|-------------|---------------------------|------------------------
+|$Y=0$ Niedrigintelligente| $5$            |  $b=15$
+|$Y=1$ Hochintelligente| $c=20$          |  $10$
+
+```{r}
+library(psych)
+tafel<- matrix(c(5,15,20,10),2)
+dimnames(tafel)<-list(c('Niedrigintelligente','Hochintelligente'),
+                      c('Ich mag SS nicht','Ich mag SS'))
+tafel
+
+#tetrachorische Korrelation. 
+#Unterschiede in der zweiten Nachkommastelle sind auf Rundungsunterschiede zurückzuführen.
+tcc<- tetrachoric(tafel)
+tcc
+```

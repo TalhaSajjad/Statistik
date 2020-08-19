@@ -1,0 +1,285 @@
+# Multiple Regression Teil I
+
+## Von der einfachen zur multiplen Regression
+
+### Einführung
+
+Wir haben bereits in Kapitel 6 von der einfachen linearen Regression erfahren, in welchem versucht wird, ein Kriterium durch ein Prädiktor vorherzusagen bzw. die Variation im Kriterium durch die Variation im Prädiktor zu erklären. Die Modellgleichung der einfachen linearen Regression sah folgendermaßen aus:
+
+$Y=\beta_{0}+\beta_{1}\cdot x_{1}+\epsilon$
+
+Wie bereits im Kapitel 6 besprochen weist dieses spezifische Regressionsmodell mehrere Mängel auf. Eines dieser Probleme ist die Multideterminiertheit von Verhalten: Mehrere Faktoren zusammen sind ursächlich für das Verhalten eines Individuums. Insofern scheint es wenig Sinn zu ergeben, für die Vorhersage eines Kriteriums lediglich ein Prädiktor heranzuziehen. Die multiple Regression behebt dieses Problem, indem beliebig viele Prädiktoren zur Varianzaufklärung des Kriteriums ins Regressionsmodell aufgenommen werden können. Die allgemeine Modellgleichung der multiplen Regression lautet folgendermaßen:
+
+$Y=\beta_{0}+\sum_{j=1}^{m}\beta_{j}\cdot x_{ij}+\epsilon_{i}$
+
+Der konkrete Unterschied zur einfachen linearen Regression ist der Ausdruck $\sum_{j=1}^{m}\beta_{j}\cdot x_{ij}$ und zwar steht dieser für die Summe aller m Prädiktoren, welche in das Regressionsmodell aufgenommen wurden. Darüber hinaus repräsentieren die restlichen Elemente der Modellgleichung das gleiche wie in der einfachen linearen Regression: $\beta_{0}$ steht für die Regressionskonstante bzw. derjenige Wert im Kriterium, welchen man vorhersagen würde, wenn die Ausprägungen in allen Prädiktoren 0 entsprechen würde. $\epsilon_{i}$ steht für die Ausprägung des i-ten Probanden in der Fehlervariable, d.h. dieser Ausdruck repräsentiert den Anteil nicht aufgeklärter Varianz im Kriterium.
+
+Das Ziel der multiplen Regression ist deckungsgleich mit der der einfachen linearen Regression: Man möchte die Werte in der abhängigen Variable mit Hilfe einer Modellgleichun vorhersagen. Dies wird erreicht, indem die Variation in der AV auf Unterschiede bzw. Variation in der UV zurückgeführt wird, d.h. man zielt darauf ab, möglichst viel Kriteriumsvarianz aufzuklären.Die resultierende Regressionsgleichung modelliert einen Mittelwertszusammenhang zwischen den Prädiktoren und der AV. Ein wichtiger Unterschie dzur einfachen linearen Regression ist, dass durch die multiple Regressionsgleichung der Zusammenhang zwischen einer abhängigen Variable und einer vielzahl von unabhängigen Variable modelliert wird. Dadurch lässt sich die sogenannte multiple Korrelation R bestimmen. Auf die multiple Korrelation werden wir später näher eingehen. 
+
+### Interpretation der Regressionskoeffizienten
+
+Allgemein kann man sagen, dass die Regressionsgewichte $\beta_{j}$ modellieren, wie sehr die Ausprägungen im Kriterium auf die Regressionskonstante und die Prädiktoren zurückgeführt werden kann. Später werden wir uns mit der standardisierten multiplen Regression sowie der inferenzstatistischen Prüfung der Regressionsgewichte beschäftigen, um zu schauen, wie groß der Effekt eines einzelnen Prädiktors auf das Kriterium ist und ob dieser Effekt per Zufall entdeckt wurde oder sich signifikant von Null unterscheidet. Die spezifischen Werte der Regressionsgewichte interpretiert man folgendermaßen: Die Paramter $\beta_{j}$ geben an, um wie viel sich im Mittel der y-Wert verändern wird, wenn sich die Ausprägung im Prädiktor um den Wert 1 erhöht, unter der Bedingung, dass die restlichen Prädiktorausprägungen gleichbleiben. Stellen wir und vor, wir haben folgende Regressionsgleichung mit zwei Prädiktoren: $\hat{y}=0+1\cdot x_{1}+4\cdot x_{2}$. Das Regressionsgewicht im ersten Prädiktor gibt an, dass sich der y-Wert im Mittel um den wert 1 erhöht, wenn man einen Probanden betrachtet, deren Ausprägung im Prädiktor $x_{1}$ um 1 erhöhrt ist, jedoch muss hierbei die Ausprägung im zweiten Prädiktor unverändert bleiben. An folgendem Beispiel erkennt man dies:
+
+$\hat{y_{1}}=0+1\cdot 3 + 4\cdot 2=11$
+
+$\hat{y_{2}}=0+1\cdot 4 + 4\cdot 2=12$
+
+$12-11=1$ $\to$ Da die zweite Person im ersten Prädiktor einen höheren Wert hatte (und zwar einen Punkt mehr), hat sich sein vorhergesagter Wert um das Regressionsgewicht 1 erhöht.
+
+Die Regressionskonstante wurde bereits oben definiert: Sie repräsentiert lediglich denjenigen Wert y, welchen man vorhersagen würde, wenn alle Prädiktoren den Wert 0 aufweisen. I.d.R. wird dieser Parameter nicht näher interpretiert.
+
+### Kleinstquadrate-Schätzung
+
+Wie bereits in Kapitel 6 besprochen werden die Regressionsparameter über die Kleinste-Quadrate-Schätzung gewonnen:
+
+$\hat{y}=\hat{\beta_{0}}+\sum_{j=1}^{m}\hat{\beta_{j}x_{ij}}$
+
+Die Logik der Kleinstquadrate-Schätzung lautet folgendermaßen: Man wählt die Regressionsparameter so, dass die tatsächlichen Werte der Kriteriumsvariable y möglichst nah an den durch das Modell vorhergesagten Werte liegt bzw. die Fehlerwerte auf ein Minimum beschränkt werden. Jegliche Abweichungen der vorhegesagten Werten von den tatsächlichen Werten wird als Fehler bezeichnet ($e_{i}=y_{i}-\hat{y_{i}}$). Konkret wird versucht, die Fehlerquadratsumme $QSE=\sum_{i=1}^{n}e^2_{i}$ minimal zu halten.
+
+## Schätzung der Regressionsgewichte
+
+Die Regressionsparameter werden anhand folgender Formel geschätzt: 
+
+$\hat{\beta}=(X'X)^{-1}\cdot X'y$
+
+Die Berechnung der Regressionsgewichte ist ein äußerst aufwendiger und relativ komplizierter Prozess, weshalb im Folgenden die Rechnung anhand von einem Beispiel erklärt wird. Daraufhin wird im nächsten Unterabschnitt die Regressionsgleichung beispielhaft in R berechnet.
+
+### Schätzung der Regressionsgewichte manuell
+
+Stellt euch vor, wir haben das Jahr 2077. Vor kurzem wurde ein neues Psychotherapeutengesetz eingeführt hat, welche die Praktizierung des Berufs für illegal erklärt hat. Die Bundesregierung hat diese Entscheidung begründet mit der Tatsache, dass Psychotherapeuten irgendwie alle Probleme auf das Verhältnis zur Mutter zurückführen. Ihr ignoriert diese kleinkarierte Ansicht der psychotherapeutischen Tätigkeit und sucht verzweifelt nach Möglichkeiten, um das Gesetz aufzuheben. Dabei stolpert ihr über Daten der letzten 50-Jahre in welchem mehrmals die Einstellung gegenüber Psychologen ($x_{1}$), der Konsum von Medikamenten ($x_{2}$) sowie die allgemeine Lebenszufriedenheit ($y$) einzelner Personen erfasst wurde. Um die Wichtigkeit der Psychotherapie zu beweisen, wertet ihr die Daten aus und stellt eine multiple Regression auf mit folgenden Daten:
+
+Allgemeine Lebenszufriedenheit             |      Einstellung gegenüber Psychologen                  |     Medikamentenkonsum
+---------------------------------|----------------------------------------|-----------------------
+7|    10| 1
+8|    7|  3
+4|    5| 2
+2|    4| 8
+1| 1| 9
+
+
+Beachte: Höhere Werte auf allen Variablen ist gleichbedeutend mit einer höheren Ausprägung auf der Variable, d.h. je höher der Wert für die Einstellung gegenüber Psychologen ist, desto positiver ist sie, je höher der Wert für die Medikamenteneinnahme ist, dest mehr wurden eingenommen usw.
+
+Es gibt mehrere Vorgehensweisen, um die oben genannte Formel anzuwenden. Um möglichst geringe Abweichungen aufgrund von Rundungen zu haben, werden wir im folgenden die dafür angemessenste Methode vorstellen:
+
+1.) Berechnung von X'X: Im ersten Schritt wir die Matrix der Prädiktoren mit ihrer Transponierten multipliziert. Wichtig hierbei ist, dass die erste Spalte in der Matrix ein Einsenvektor ist, da dieser ,,Platz'' in der Regressionsgleichung für die Regressionskonstante eingenommen wird.
+
+$X=\begin{pmatrix} 1&10&1 \\ 1&7&3\\ 1&5&2 \\ 1&4&8 \\ 1&1&9 \end{pmatrix}$
+
+In Kapitel 14.) Matrixagebra wird eine empfohlene Darstellung zur Berechung des Matrizenprodukts vorgestellt, die die Berechnung deutlich leichter macht. Auf diese visuelle Hilfe wird im folgenden verzichtet und die Berechnung werden formal durchgeführt.
+
+$X'X=\begin{pmatrix} 1&1&1&1&1 \\ 10&7&5&4&1 \\ 1&3&2&8&9 \end{pmatrix}\cdot \begin{pmatrix} 1&10&1 \\ 1&7&3\\ 1&5&2 \\ 1&4&8 \\ 1&1&9 \end{pmatrix}=\begin{pmatrix}5&27&23\\27&191&82\\23&82&159\end{pmatrix}$
+
+2.) Im nächsten Schritt wird das Produkt $X'y$ bestimmt. Dabei ist $y$ der Vektor der Kriteriumswerte:
+
+$y=\begin{pmatrix} 7\\8\\4\\2\\1 \end{pmatrix}$
+
+$X'y=\begin{pmatrix} 1&1&1&1&1 \\ 10&7&5&4&1 \\ 1&3&2&8&9 \end{pmatrix}\cdot \begin{pmatrix} 7\\8\\4\\2\\1 \end{pmatrix}=\begin{pmatrix} 22\\155\\64\end{pmatrix}$
+
+3.) Die Inverse von $X'X$ wird berechnet: Für genauere Erklärungen, wie man die Inverse von Matrizen bestimmt, lest bitte das Kapitel 14.
+
+3.1) Berechnung der Determinante:
+
+$|Y|=\sum_{j=1}^{m} y_{1j}\cdot (-1)^{1+j}\cdot |M_{1j}|=5\cdot \begin{vmatrix} 191&82\\ 82&159 \end{vmatrix} - 27 \cdot \begin{vmatrix} 27&82 \\ 23&159\end{vmatrix}+ 23 \cdot \begin{vmatrix} 27&191 \\ 23&82\end{vmatrix}$
+
+$= 5\cdot (191\cdot 159-82^2)-27 \cdot (27\cdot 159-23\cdot 82)+23\cdot (27\cdot 82-23\cdot 191)=3119$
+
+3.2) Berechnung der Kofaktorenmatrix K und ihre Transposition:
+
+$k_{ij}=(-1)^{i+j}\cdot |M_{ij}|$
+
+
+$K=K'=\begin{pmatrix} \begin{vmatrix}191&82\\ 82&159 \end{vmatrix}& -\begin{vmatrix}27&82 \\ 23&159 \end{vmatrix}& \begin{vmatrix} 27&191 \\23&82 \end{vmatrix}  \\ -\begin{vmatrix}27&23 \\ 82&159\end{vmatrix}& \begin{vmatrix} 5&23\\23&159 \end{vmatrix}& - \begin{vmatrix} 5&27\\23&82 \end{vmatrix}\\ \begin{vmatrix} 27&23 \\ 191&82 \end{vmatrix}& -\begin{vmatrix} 5&23 \\ 27&82\end{vmatrix}& \begin{vmatrix} 5&27 \\ 27&191 \end{vmatrix} \end{pmatrix}$
+
+$=\begin{pmatrix}23645& -2407 & -2179\\-2407 & 266& 211 \\-2179&211&226\end{pmatrix}$
+
+Bevor wir die Determinante mit der transponierten Kofaktorenmatrix verrechnen, werden wir die Kofaktorenmatrix $K'$ mit der Matrix $X'y$ verrechnen. Nach dem Assoziativgesetz der Multiplikation ist dies möglich, da die Reihenfolge der Multiplikation formal keine Auswirkungen auf das Ergebnis hat. Durch diese Methode wird vermieden, dass die resultierenden Regressionsgewichte durch zu viele Rundungen verzerrt werden.
+
+4.) Multipliktaion der transponierten Kofaktorenmatrix mit der Matrix $X'y$:
+
+$K'X'y=\begin{pmatrix}23645& -2407 & -2179\\-2407 & 266& 211 \\-2179&211&226\end{pmatrix}\cdot \begin{pmatrix} 22\\155\\64\end{pmatrix}=\begin{pmatrix} 7649\\1780\\-769 \end{pmatrix}$
+
+5.) Im letzen Schritt in der Schätzung der Regressionsgewichte wird nun das eben berechnete Matrizenprodukt mit dem Kehrwert der Determinante $|Y|^{-1}=\frac{1}{|Y|}$ verrechnet:
+
+$\hat{\beta}=(X'X)^{-1}\cdot X'Y=\frac{1}{|Y|} K'X'y= \frac{1}{3119}\cdot \begin{pmatrix} 7649\\1780\\-769 \end{pmatrix}= \begin{pmatrix} 2.45\\0.57\\-0.25\end{pmatrix}$
+
+Unser Regressionsmodell zur Vorhersage der allgemeinen Lebenszufriedenheit sieht also folgendermaßen aus: $\hat{y}=2.45+0.57\cdot x_{1}-0.24\cdot x_{2}$
+
+Aus der Regressionsgleichung wird bereits ersichtlich, dass die Einstellung zu Psychologen einen positiven Effekt hat, d.h. je positiver die Einstellung der Gesellschaft gegenüber Psychologen ist, dest höher ist im Mittel ihre Lebenszufriedenheit. Im Gegensatz dazu hat der Medikamentenkonsum einen negativen Effekt auf die allgemeine Lebenszufriedenheit: Je mehr Medikamente eingenommen werden, desto geringer fällt im Mittel die Lebenszufriedenheit aus.
+
+
+### Schätzung der Regressionsgewichte in R
+
+Der manuelle Weg die Regressionsgewichte zu erhalten ist, um es vorsichtig zu formulieren, sehr umständlich. Glücklicherweise ist die Schätzung in R extrem simpel und bedarf nur weniger Befehle, um die Regressionsparameter zu erhalten:
+
+```{r}
+data_reg<- data.frame(y=c(7,8,4,2,1),x1=c(10,7,5,4,1),x2=c(1,3,2,8,9))
+data_reg
+## Berechnung der Regressionsgleichung 
+reg<- lm(y~x1+x2, data=data_reg)
+
+## Angabe der Regressionsgewichte sowie die Signifikanz der Parameter. Als letztes wird auch der Determinationskoeffizient berichtet.
+summary(reg)
+```
+
+Mit Hilfe des Befehl lm() kann man die Regresionsgleichung aufstellten und mit dem Befehl summary() erhält man eine Zusammenfassung des Regressionsmodell, sprich man erhält Informationen über die Regressionsparameter, ihre statistische Signifikanz, sowie den Anteil aufgeklärter Kriteriumsvarianz. Was es mit dem Determinationskoeffizienten auf sich hat, wird im folgenden besprochen.
+
+### Vorhersage und Fehler
+
+Um für eine Person i oder eine beliebige Personengruppe ein Wert im Kriterium auf der Grundlage der Prädiktorwerte vorherzusagen, gibt es folgende Formel: $\hat{y}=X\hat{\beta}$. Stellen wir uns vor, wir würden die Kriteriumswerte aus der obigen Tabelle nicht kennen und versuchen, mit Hilfe der Prädiktorwerte diese vorherzusagen. Wir würden folgenden Vorhersagevektor erhalten:
+
+$\hat{y}=\begin{pmatrix} 1&10&1 \\ 1&7&3\\ 1&5&2 \\ 1&4&8 \\ 1&1&9 \end{pmatrix}\cdot \begin{pmatrix} 2.45\\0.57\\-0.25\end{pmatrix}=\begin{pmatrix} 7.91\\5.71\\4.81\\2.76\\0.8\end{pmatrix}$  
+
+Somit haben wir für jede Beobachtungseinheit einen vorhergesagten Wert für die abhängige Variable, welcher jedoch von der tatsächlichen allgemeinen Lebenszufriedenheit abweicht. Diese Abweichung kann man durch den sogenannten Fehlervektor quantifizieren, welcher mit folgender Formel berechnet werden kann: $e=y-X\hat{\beta}=y-\hat{y}$. Für diesen Fehlervektor gilt, ass seine Elemente das kleinste Quadrate Kriterium erfüllt. Für unser Beispiel lautet der Fehlervektor:
+
+$e=y-X\hat{\beta}=y-\hat{y}=\begin{pmatrix} 7\\8\\4\\2\\1 \end{pmatrix}-\begin{pmatrix} 7.91\\5.71\\4.81\\2.76\\0.81\end{pmatrix}=\begin{pmatrix} -0.91\\2.29\\ -0.81\\-0.76\\0.19 \end{pmatrix}$
+
+Die Fehlerwerte haben darüber hinaus folgende Eigenschaften:
+
+1.) Der Mittelwert der Fehlerwerte ist immer null: $\overline{e}=0$
+
+2.) Die Fehlerwerte korrelieren nicht mit den Prädiktorwerten. Allein aus theoretischen Überlegungen leuchtet diese Eigenschaft ein, da der Fehlervektor denjenigen Anteil der Gesamtvarianz verdeutlicht, welcher die Prädiktoren im Regressionsmodell nicht aufklären kann: $r_{ex_{j}}=0$
+
+3.) Die Fehlerwerte korrelieren nicht mit den vorhergesagten Werten: $r_{e\hat{y}}=0$
+
+### Schätzung der Regressionsparameter in der einfachen linearen Regression
+
+Die einfache lineare Regression stellt eine Sonderform der multiplen Regression dar, und zwar wenn versucht wird, ein Kriterium mit Hilfe von nur einem Prädiktor vorherzusagen. Für die Schätzung der Regressionsparameter bei der Einfachregression ist es möglich, die in diesem Kapitel bisher besprochenen Formeln anzuwenden. Jedoch wurden diese für den Fall von nur einem Prädiktor vereinfacht. Für die konkrete Anwendung der Formel in der Einfachregression würde ich euch empfehlen, diese in Kapitel 6 nachzulesen:
+
+$\hat{\beta_{1}}=r\frac{s_{y}}{s_{x}}$ und $\hat{\beta_{0}}=\overline{y}-\hat{\beta_{1}}\cdot \overline{x}$
+
+## Quadratsummenzerlegung und der Determinationskoeffizient
+
+### Quadratsummen und ihre Relevanz
+
+In der Statistik werden Quadratsummen herangezogen, um bestimmte Variationen mathematisch zu quantifizieren bzw. zu beschreiben. In vielen inferenzstatistischen Verfahren spielt sie eine grundlegende Rolle, unter anderem bei der Berechnung des Determinationskoeffizienten in der multiplen Regression oder in der Varianzanalyse (ANOVA). Bei der multiplen Regression unterscheidet man drei Quadratsummen im Kriterium: die totale Quadratsumme $Q_{t}$, welche die Gesamtvariation im Kriterium repräsentiert, die Regressionsquadratsumme $Q_{d}$, welche die Variation der vorhergesagten Werte um den Mitelwert repräsentiert und die Fehlerquadratsumme $Q_{e}$, welche die Variation der tatsächlichen Werte um den vorhergesagten Wert quantifiziert. Diese drei Quadratsummen stehen in folgendem Verhältnis zueinander:
+
+$Q_{t}=Q_{d}+Q_{e}$ bzw. $\sum_{m=1}^{n}(y_{i}-\overline{y})^2=\sum_{m=1}^{n}(\hat{y_{i}}-\overline{y})^2+\sum_{m=1}^{n}(y_{i}-\hat{y_{i}})^2$
+
+An diesem Verhältnis kann man erkennen, dass ein größerer Anteil der Kriteriumsvarianz aufgeklärt wird je größer die Regressionsquadratsumme $Q_{d}$ in Relation zu $Q_{t}$ ist. Wenn $Q_{t}=Q_{d}$ gilt, bedeutet dies, dass das Regressionsmodell die gesamte Kriteriumsvarianz vollständig erklärt und vorhersagen kann. Für die Inferenzstatistischen Analysen wird hier kurz die Freiheitsgrade der Quadratsummen angegeben: 
+
+$df{t}= n-1$, $df_{d}=m$, $df_{e}=n-m-1$ , wobei $n$ für die Stichprobengröße steht und $m$ für die Anzahl an Prädiktoren im Regressionsmodell.
+
+### Der multiple Determinationskoeffizietn $R^2$
+
+Es gibt nicht nur bei der einfachen linearen Regression einen Determinationskoeffizienten, sondern auch für den allgemeinen Fall der multiplen Regression, wobei man hier von einem multiplen Determinationskoeffizienten $R^2$ spricht. Die Definition des Determinationskoefizienten bleib jedoch unverändert: Es handelt sich bei $R^2$ um ein Maß der Vorhersagbarkeit der Kriteriumswerte bzw. sie gibt an, wie hoch der Anteil der erklärten Varianz an der Gesamtvarainz ist. Man kann den multiplen Determinationskoeffizienten mit folgender Formel berechnen:
+
+$R^2=\frac{Q_{d}}{Q_{t}}=\frac{\hat{\beta}X'y-n\overline{y}^2}{y'y-n\overline{y}^2}$
+
+Für unser Beispiel würden wir folgenden multiplen Determinationskoeffizienten erhalten (Einzelne Elemente der Fomel wurden ab einem Punkt in diesem Kapitel berechnet, weshalb wir nur auf diese zurückgreifen müssen):
+
+$X'y=\begin{pmatrix} 11\\155\\64\end{pmatrix}$
+
+$\overline{y}=\frac{7+8+4+2+1}{5}=4.4$
+
+$Q_{d}=\hat{\beta}X'y-n\overline{y}^2=\begin{pmatrix} 2.45&0.57&-0.25\end{pmatrix}\cdot \begin{pmatrix} 11\\155\\64\end{pmatrix} - 5\cdot 4.4^2=126.631-5\cdot 4.4^2=29.83$
+
+$Q_{t}=y'y-n\overline{y}^2=\begin{pmatrix} 7&8&4&2&1 \end{pmatrix}\cdot \begin{pmatrix} 7\\8\\4\\2\\1 \end{pmatrix}-5\cdot 4.4^2=134-5\cdot4.4^2=37.2$
+
+$R^2=\frac{Q_{d}}{Q_{t}}=\frac{29.83}{37.2}=0.802$
+
+Nebenbei: Man kann die Fehlerquadratsumme aus der Differenz von $Q_{t}$ und $Q_{t}$ berechnen: $Q_{e}=37.2-29.83=7.37$
+
+Es kann sein, dass der $R^2$-Wert von $0.802$ euch bekannt vorkommt. Das liegt daran, dass bei der Schätzung der Regressionsgewichte in R dieser bereits im summary() output ausgegeben wird unter Multiple R-squared. Inhaltlich drückt er aus, dass ca. 80.2% der Kriteriumsvarianz erklärt werden kann durch die Prädiktoren des Regressionsmodells. Das mag sich nach einem hohen prozentualen Anteil anhören, jedoch werden wir in der inferenzstatistischen Prüfung feststellen, dass dieser nichts besonderes ist. Im Allgemeinen wird der Determinationskoeffizient herangezogen um die Vorhersagegüte eines Regressionsmodell zu beurteilen.
+
+Falls euch die nötigen Informationen fehlen bzw. dieses Vorgehen zur Berechnung des multiplen Determinationskoeffizienten zu umständlich ist, könnt ihr diesen auch über folgende Formel schätzen:
+
+$R^2\approx \frac{s_{\hat{y}^2}}{s_{y}^2}$
+
+Diese Erkenntnis kann man aus der Varianzzerlegung entnehmen, und zwar ist es so, dass die Gesamtvarianz $s_{y}^2$ durch eine Produktsumme der Varianz mit dem Determinationskoeffizienten ausgedrückt werden kann:
+
+$s_{y}^2=R^2\cdot s_{y}^2+(1-R^2)\cdot s_{y}$ bzw. Kriteriumsvarianz $=$ Erklärte Varianz + Fehlervarianz 
+
+Eine weitere Eigenschaft des multiplen Determinationskoeffizienten ist, dass sie nur Werte zwischen null und eins annehmen kann ($0\le R^2\le 1$, mit $Q_{d}\le Q_{t}$) und im Betrag unabhängig von der Skalierung der Variablen ist. Die positive Wurzel des Determinationskoeffizienten stellt den multiplen Korrelattionskoeffizienten dar, welcher den __Zusammenhang zwischen den Kriteriumswerten ($y$) und den vorhergesagten Werten__ ($\hat{y}$) darstellt (nicht den Zusammenhang zwischen dem Kriterium und einer der Prädiktoren!):
+
+```{r}
+
+###Datensatz mit den Daten der Kriteriumswerte und der vorhergesagten Werte
+data_y<- data.frame(y=c(7,8,4,2,1),yhut=c(7.91,5.71,4.81,2.76,0.81))
+## Multiple Korrelation 
+m_cor<- cor(data_y$y, data_y$yhut)
+m_cor
+## Determinationskoeffizient (die minimalen Unterschiede sind auf Rundungen zurückzuführen)
+m_cor^2
+```
+
+## Prognoseintervall und Konfidenzintervalle für die Regressionsgewichte
+
+### Prognoseintervall
+
+In der psychologischen Diagnostik ist es üblich, dass man nicht nur einen einzelnen Wert zur Vorhersage angibt (Punktvorhersagte), sondern ein Intervall, in welchem unter einer bestimmten Fehlerwahrscheinlichkeit der tatsächliche Wert liegt (Prognoseintervall). Im Folgenden werden wir für Lisa ein Prognoseintervall berechnen. Über Lisa wissen wir anhand von einem Fragebogen, dass sie eine sehr positive Einstellung gegenüber Psychologen ($x_{1}=20$)hat und überhaupt keine Medikamente einnimmt ($x_{2}=0$). Für Lisa sagt das Regressionsmodell folgenden Wert vorher:
+
+$\hat{y}=2.45+0.57\cdot 20 - 0.25*0=13.87$
+
+Das Prognoseintervall kann man mit folgender Formel bestimmen:
+
+$\hat{y}\pm t_{(1-\alpha/2,df_{e})}\cdot \hat{\sigma}_{e}\cdot \sqrt{1+x_{i}'(X'X)^{-1}x_{i}}$
+
+Bei ausreichend großen Stichproben ist der Ausdruck $\sqrt{1+x_{i}'(X'X)^{-1}x_{i}}$ approximativ 1 und kann vernachlässigt werden. Da unsere Stichprobe jedoch aus nur fünf Beobachtungseinheiten besteht, werden wir den exakten Wert bestimmen, welcher ca. 3.44 beträgt (s. unten). Den Standardschätzfehler kann man über folgende Formel bestimmen (Vergiss nicht, die Fehlerfreiheitsgrade sind $n-m-1$):
+
+$\hat{\sigma}_{e}=\sqrt{\frac{Q_{e}}{df_{e}}}$
+
+Für unser Beispiel würden wir mit $df_{e}=5-2-1=2$ Freiheitsgraden folgenden Standardschätzfehler erhalten:
+
+$\hat{\sigma}_{e}=\sqrt{\frac{7.37}{2}}=3.69$
+
+Mit Hilfe von R kann man den kritischen t-Wert unter der t-Verteilung mit 2 Freiheitsgraden bestimmen. Der Einfachtheit halber werden wir das zweiseitige 0.95- Prognoseinterval berechnen:
+
+```{r}
+qt(0.975,2)
+```
+
+Zu guter letzt schauen wir uns den Ausdruck ganz am Ende der Formel an:
+$\sqrt{1+x_{i}'(X'X)^{-1}x_{i}}=\sqrt{1+x_{i}'(\frac{1}{|X|}\cdot K')^{-1}x_{i}}=$
+
+$\sqrt{1+\begin{pmatrix} 1&20&0\end{pmatrix}\cdot (\frac{1}{3119}\cdot \begin{pmatrix}23645& -2407 & -2179\\-2407 & 266& 211 \\-2179&211&226\end{pmatrix})\cdot \begin{pmatrix} 1\\20\\0\end{pmatrix}}=3.44$ 
+
+
+Nun können wir das Prognoseintervall bestimmen:
+
+$13.87\pm 4.3\cdot 3.69 \cdot 3.44= [-40.71; 68.45]$
+
+Anhand des Prognoseintervalls kann man bereits erkennen, dass unser Regressionsmodell extrem schlecht darin ist, die allgemeine Lebenszufriedenheit vorherzusagen. Der Grund hierfür ist, dass wir zu wenige Beobachtungseinheiten haben, welche dafür sorgen, dass der kritische t-Wert sowie der Standardschätzfehler extrem hoch werden.
+
+### Konfidenzintervall für die Regressionsgewichte
+
+Es ist auch möglich, für die Regressionsgewichte ein Konfidenzintervall aufzuspannen, in welchem unter einer bestimmten Fehlerwahrscheinlichkeit der tatsächliche Einfluss des Prädiktors liegt. Das Konfidenzintervall kann man mit folgender Formel berechnen:
+
+$\hat{\beta}_{j}\pm t_{(1-\alpha/2, df_{e})}\cdot \hat{\sigma}_{\beta_{j}}$ für $\hat{\sigma}_{\beta_{j}}=\frac{s_{y}}{s_{x}}\sqrt{\frac{1}{n-m-1}\cdot \frac{1-R^2}{1-R^2_{j,1...(j)...m}}}$
+
+Der Ausdruck $R^2_{j,1...(j)...m}$ steht für den multiplen Determinationskoeffizient desjenigen Regressionsmodells, in welchem derjenige Prädiktor, dessen Konfidenzintervall man berechnen möchte, die AV ist und die restlichen Prädiktoren des Modells die UV bilden. Der Standardschätzfehler der Regressionsgewichte ist ungefähr proportional zu $1/\sqrt{n}$. Wir werden den Standardschätzfehler für den ersten Prädiktor im folgenden mit dieser vereinfachten Formel berechnen.
+
+$\hat{\beta}_{1}=0.57$
+
+$t(2)=4.3$
+
+$\hat{\sigma}_{1}=\frac{1}{\sqrt{5}}=0.45$
+
+$0.57\pm 4.3\cdot 0.45=[-1.365;2.505]$
+
+Da das Konfidenzintervall die null mit einfschließt, ist der Prädiktor im Sinne der Hypothesenprüfung nicht signifikant von Null verschieden. Man kann für alle anderen Regressionsgewichte mit dem gleichen Vorgehen die Konfidenzintervalle berechnen. Auch hier ist zu erkennen, dass unser Konfidenzintervall absurd breit ist. Das liegt daran, dass das Intervall von mehreren Faktoren beeinflusst wird: der Stichprobengröße, der Anzahl der Prädiktoren, dem multiplen Determinationskoeffizienten und wenn die Prädiktorwerte nur gering mit anderen Prädiktoren korreliert.
+
+1.) Wenn die Stichprobengröße größer wird, wird das Konfidenzintervall schmaler.
+
+2.) Wenn die Anzahl der Prädiktoren sich verringert, wird das Konfidenzintervall schmaler. Das liegt daran, dass der Test mehr Freiheitsgrade und somit einen geringeren t-Wert unter anderem hat.
+
+3.) Wenn $R^2$ größer wird, wird das Kinfidenzintervall schmaler. Das liegt daran, dass je höher $R^2$ ist, desto besser sagt das Modell die Kriteriumswerte vorher und desto geringer ist das Spektrum der Unsicherheit.
+
+4.) Wenn die Prädiktorwerte gering mit anderen Prädiktorwerte korreliert, wird das Konfidenzintervall schmaler. Diese Eigenschaft ist auf ein Phänomen zurückzuführen, welches man unter dem Begriff der Multikollinearität kennt. Auf dieses Problem werden wir im nächsten Kapitel eingehen.
+
+## Standardisierte Regressionsgewichte
+
+Wir können bei unserem Regressionsgewicht anhand der Vorzeichen der Regressionsgewichte sagen, in welche Richtung der Effekt der Prädiktoren auf das Kriterium geht, jedoch können wir nicht sagen, welches der beiden Prädiktoren im Betrag einen höheren Effekt auf das Kriterium hat. Der Grund hierfür ist, dass die spezifischen Werte der Regressionsparameter abhängig von der Skalierung der jeweiligen Variablen sind. Um den relativen Einfluss eines Regressionsgewicht beurteilen zu können, müssen die Regressionsgewichte z-standardisiert werden. Über folgende allgemeine Formel kann man die Regressionsgewichte z-standardisieren:
+
+$\frac{s_{x_{j}}}{s_{y}}\cdot \hat{\beta}_{j}$
+
+Für unsere beiden Prädiktoren würden wir folgende Standardabweichungen bzw. standardisierte Regressionsgewichte erhalten:
+
+$\hat{\beta}_{1z}=\frac{3.01}{2.73}\cdot 0.57=0.63$
+
+$\hat{\beta}_{2z}=\frac{3.26}{2.73}\cdot (-0.25)=-0.3$
+
+Aus den Beträgen der standardisierten Regressionsgewichte können wir ableiten, dass der erste Prädiktor (Einstellung zu Psychologen) im Regressionsmodell einen höheren Effekt auf die Allgemeine Lebenszufriedenheit hat als der Medikamentenkonsum. 
+
+Nebenbei: Wie bei der einfachen linearen Regression ist der Wert für die standardisierte Regressionskonstante Null.
+
+

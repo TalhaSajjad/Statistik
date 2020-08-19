@@ -1,0 +1,151 @@
+# ANOVA mit Messwiederholung
+
+## Vom t-Test für abhängige Stichproben zur rANOVA
+
+Wie es für den t-Test für unabhängige Stichproben eine Erweiterung auf einen multiplen Gruppenvergleich gibt, existiert auch für den t-Test für abhängige Stichproben ein äquivalent, nämlich die Messwiederholungs-ANOVA bzw. die sogenannte repeated ANOVA. Die grundlegende Idee bei der repeated ANOVA ist die Tatsache, dass die Stichproben in den einzelnen Bedingungen nicht unabhängig voneinander sind, sondern alle voneinander abhängen. Ein Beispiel hierfür wäre wenn man Längsschnittstudien einer bestimmten psychischen Störung untersuchen möchte. Beispielsweise interessiert man sich für den Symptomverlauf der generalisierten Angststörung bei einem Auslass jeglicher Intervention. Um den Verlauf zu erfassen würde man eine Personengruppe, welche unter der Störung leidet, nicht einfach nur einmal testen und es dabei sein lassen. Stattdessen werden die __gleichen Personen__ in zuvor definierten Zeitabständen wiederholt gemessen. Anhand der Tatsache, dass die Personen in den einzelnen Messzeitpunkten die gleichen sind, bestehen systematische Abhängigkeiten zwischen den Bedingungen, welche man statistisch erfassen und herauspartialisieren kann. 
+
+## Modellgleichung
+
+Die Modellgleichung der rANOVA ähnelt der herkömmlichen ANOVA, und zwar lautet sie:
+
+$y_{ik}=\mu+u_{i}+\alpha_{k}+\epsilon_{ik}$
+
+Dabei steht $y_{ik}$ für den Messwert der Person i in der Bedingung k. Wie bei der normalen ANOVA entspricht $\mu$ dem Gesamtmittelwert, $\alpha_{k}$ dem Treatmenteffektparameter fer Faktorstufe k und $\epsilon_{ik}$ dem Residuum, welches im Falle der rANOVA folgendermaßen berechnet wird: $\epsilon_{ik}=y_{ik}-(\mu+\alpha_{k}+u_{i})$. Der grundlegende Unterschied zwischen den beiden Modellgleichungen ist die Präsenz von $u_{i}$, welches bei der Messwiederholungs-ANOVA für die Abweichung des i-ten Probanden vom Gesamtmittelwert darstellt. Der Probanden-Level einer Person ist ihre mittlere Ausprägung über alle Messzeitpunkte hinweg. Wenn ich beispielsweise für eine Person zum ersten Messzeitpunkt den Wert 5 erhalte und zum zweiten Zeitpunkt 7, so ist der Probanden-Level der Person 6. Die Abweichung dieses Probanden-Levels vom Gesamtmittelwert stellt $u_{i}$ dar. Zusätzlich gilt, wie beim Treatmenteffektparameter: $u_{i}+u_{2}+...+u_{k}=0$.
+
+## Berechnung der ANOVA am Beispiel
+
+### Beispiel
+
+Ein junger Forscher namens Emre interessiert sich für die Effektivität der Expositionstherapie zur Behandlung einer sozialen Angststörung. Hierfür lässt er drei Probanden das Therapieverfahren durchführen. Bevor er jedoch die Expositionstherapie begonnen hat, hat er die Ausprägung der sozialen Phobie bei den Probanden auf einer zehnstufigen Skala erhoben (Zeitpunkt 1), wobei ein niedriger Wert für eine niedrige Ausprägung in der sozialen Angststörung und ein hoher Wert für eine hohe Ausprägung in der sozialen Angststörung steht. Zusätzlich wurde die Ausprägung der Störung unmittelbar nach der Therapie (Zeitpunkt 2) und ein Jahr später (Zeitpunkt 3) erfasst. Hierbei ergab die Erhebung folgendes Resultat:
+
+Proband      |  Zeitpunkt    |  Ausprägung  
+-------------|---------------|--------------
+1            | 1             | 10
+1            | 2             | 7
+1            | 3             | 10
+2            | 1             | 10
+2            | 2             | 8
+2            | 3             | 8
+3            | 1             | 10
+3            | 2             | 3
+3            | 3             | 6
+
+Um die Effektivität des Therapieverfahrens zu überprüfen wird die rANOVA angewendet, um zu schauen, ob sich die mittlere Ausprägung der sozialen Phobie über die drei Messzeitpunkte hinweg voneinander unterscheiden. 
+
+### Erstellung der Modellgleichung
+
+Zur Veranschaulichung wird hier nochmal die Modellgleichung aufgeführt: $y_{ik}=\mu+u_{i}+\alpha_{k}+\epsilon_{ik}$
+
+Zur Bestimmung des Gesamtmittelwerts können entweder alle Messwerte miteinander verrechnet werden, unabhängig vom Messzeitpunkt oder den gewichteten Mittelwert der einzelnen Messzeitpunktmittelwerte berechnen. Wir werden nun letztere Methode anwenden:
+
+Mittelwert vorher: $\overline{x_{1}}=\frac{10+10+10}{3}=10$
+
+Mittelwert danach: $\overline{x_{2}}=\frac{7+8+3}{3}=6$
+
+Mittelwert 6 Monate danach: $\overline{x_{3}}=\frac{10+8+6}{3}=8$
+
+Berechnung des Gesamtmittelwerts: $\mu=GAM_{x}=\frac{\sum_{r=1}^{s}\overline{x_{r}}\cdot n_{r}}{\sum_{r=1}^{s}n_{r}}=\frac{10\cdot 3+ 6\cdot 3+ 8\cdot 3}{9}=8$
+
+Um die Treatmeneffekt-Parameter der einzelnen Faktorstufen zu bestimmen, müssen wir lediglich die Abweichung der Messzeitpunktmittelwerte vom Gesamtmittelwert berechnen:
+
+Treatmenteffekt-Parameter vorher: $\alpha_{1}=\overline{x_{1}}-\mu=10-8=2$
+
+Treatmenteffekt-Parameter danach: $\alpha_{2}=\overline{x_{2}}-\mu=6-8=-2$
+
+Treatmenteffekt 6 Monate danach: $\alpha_{3}=\overline{x_{3}}-\mu=8-8=0$
+
+Um $u_{i}$ bestimmen zu können, müssen wir zuerst die Probanden Level der Subjects bestimmen. Dies erreichen wir, indem wie die Messwerte eines Patienten i über alle Messzeitpunkte hinweg mitteln. Für unsere drei Probanden würden wir folgendes erhalten:
+
+Proband    | Vorher    | Nachher   | 6 Monate danach | Subject-Level
+-----------|-----------|-----------|-----------------|---------------------
+1          |  10       | 7         | 10              | 9
+2          |  10       | 8         | 8               | 8.67
+3          | 10        | 3         | 6               | 6.33
+
+Nun können wir $u_{i}$ für jeden Probanden bestimmen, indem wir die Abweichung der Subject-Levels vom Gesamtmittelwert bestimmen:
+
+Proband 1: $u_{1}=9-8=1$
+
+Proband 2: $u_{2}=8.67-8=0.67$
+
+Proband 3: $u_{3}= 6.33-8=-1.67$
+
+Zuletzt fehlen die Fehlerwerte bzw. die Abweichungen der spezifischen Messwerte von denjenigen Werten, die man durch $u_{1}$, $\mu$ und $\alpha_{k}$ erhalten würde ($\epsilon_{ik}=y_{ik}-(\mu+\alpha_{k}+u_{i})$). In der folgenden Tabelle werden diese abgebildet:
+
+Proband   |  Messzeitpunkt  | $y_{ik}=$   | $\mu$  | $+u_{i}$  | $+\alpha_{k}$  | $\epsilon_{ik}$
+----------|-----------------|-------------|-------|----------|----------------|-------------------
+1|1| $10=$| $8$| $+1$|$+2$|$-1$
+1|2| $7=$  | $8$| $+1$| $+2$| $-4$
+1|3| $10=$  | $8$| $+1$| $+2$|$-1$
+2|1| $10=$| $8$|$+0.67$|$-2$| $+3.33$
+2|2| $8=$| $8$|$+0.67$|$-2$|$+1.33$
+2|3| $8=$| $8$|$+0.67$|$-2$|$+1.33$
+3|1| $10=$| $8$|$-1.67$| $+0$| $+3.67$
+3|2| $3=$|$8$| $-1.67$| $+0$| $-3.33$
+3|3| $6=$| $8$| $-1.67$| $+0$| $-0.33$
+
+Wenn wir mit den gleichen Daten eine normale ANOVA durchführen, also die Unabhängigkeit der Messzeitpunkte annehmen, würden wir folgende Werte der Modellgleichung erhalten:
+
+Proband   |  Messzeitpunkt  | $y_{ik}=$   | $\mu$  | $+u_{i}$  | $+\alpha_{k}$  | $\epsilon_{ik}$
+----------|-----------------|-------------|-------|----------|----------------|-------------------
+1|1| $10=$| $8$| |$+2$|$+0$
+1|2| $7=$  | $8$| | $+2$| $-3$
+1|3| $10=$  | $8$| | $+2$|$+0$
+2|1| $10=$| $8$||$-2$| $+4$
+2|2| $8=$| $8$||$-2$|$+2$
+2|3| $8=$| $8$||$-2$|$+2$
+3|1| $10=$| $8$|| $+0$| $+2$
+3|2| $3=$|$8$| | $+0$| $-5$
+3|3| $6=$| $8$| | $+0$| $-2$
+
+Wie man unschwer erkennen kann, verändern sich die konkreten Fehlerwerte, wenn die Subject-Levels nicht berücksichtigt werden. Dies liegt daran, dass bei der rANOVA die systematischen Abhängigkeiten zwischen den Messzeitpunkten in Form der Subject Levels repräsentiert und als weitere Varianzquelle herauspartialisiert werden können. Dadurch verringert sich die Fehlerquadratsumme bei der rANOVA im Vergleich zur normalen ANOVA, bei welchem diese systematischen Abhängigkeiten nicht bestehen. Die verringerte Fehlerquadratsumme führt wiederum zu einer erhöhten Teststärke.
+
+### Quadratsummenzerlegung
+
+Im Folgenden werden die Quadratsummen kurz dargestellt und im Kontext des Beispiels berechnet:
+
+totale Quadratsumme (quadrierte Abweichung aller Messwerte vom Gesamtmittelwert): $QS_{tot}=\sum_{k=1}^{K}\sum_{i=1}^{n}(y_{ik}-\overline{\overline{y}})^2$
+
+$=(10-8)^2+(7-8)^2+(10-8)^2+(10-8)^2+(8-8)^2+(8-8)^2+(10-8)^2+(3-8)^2+(6-8)^2=46$
+
+Quadratsumme zwischen den Gruppen (quadrierte Abweichung der Gruppenmittelwerte vom Gesamtmittelwert, gewichtet auf die Gruppenbesetzung): $QS_{zw}=\sum_{k=1}^{K}n_{k}\cdot(\overline{y_{k}}-\overline{\overline{y}})^2$
+
+$=3\cdot(2^2+(-2)^2+0^2)=24$
+
+Quadratsumme innerhalb der Gruppen (quadrierte Abweichung der Messwerte von ihren spezifischen Gruppenmittelwerten): $QS_{inn}=\sum_{k=1}^{K}\sum_{i=1}^{n} (y_{ik}-\overline{y_{k}})^2$
+
+$=(10-10)^2+(10-10)^2+(10-10)^2+(7-6)^2+(8-6)^2+(3-6)^2+(10-8)^2+(8-8)^2+(6-8)^2=22$
+
+Quadratsumme der subject levels (quadrierte Abweichung der personenspezifische Mittelwerte vom Gesamtmittelwert): $QS_{subjects}=K\cdot \sum_{i=1}^{n} (\overline{y_{i}}-\overline{\overline{y}})^2$
+
+$=3\cdot (1^2+0.67^2+(-1.67)^2)= 12.7134$
+
+Fehlerquadratsumme: $QS_{err}=QS_{inn}-QS_{subjects}=22-12.7134=9.2866$
+
+### Mittlere Quadratsumme
+
+Um nun die Mittelwertsunterschiede auf Signifikant prüfen zu können, müssen wir die mittlere Quadratsumme zwischen den Gruppen sowie die mittlere Fehlerquadratsumme berechnen und ins Verhältnis setzen. Die mittleren Quadratsummen erhält man, indem man die Quadratsummen ine Verhältnis zu ihren Freiheitsgraden setzt:
+
+I.) Mittlere Quadratsumme zwischen den Gruppen: $MQS_{zw}=\frac{QS_{zw}}{df_{zw}}=\frac{QS_{zw}}{K-1}=\frac{24}{2}=12$
+
+II.) mittlere Fehlerquadratsumme: $MQS_{err}=\frac{QS_{err}}{df_{err}}=\frac{QS_{err}}{(K-1)\cdot (n-1)}=\frac{9.2866}{4}=2.32165$
+
+Nun können wir die F-Prüfgröße der Messwiederholungs-ANOVA bestimmen:
+
+$F=\frac{MQS_{zw}}{MQS_{err}}=\frac{12}{2.32165}=5.17$
+
+Wir können in R mit Hilfe des Befehls qf() und den relevanten Freiheitsgraden $df_{zw}$ und $df_{err}$ den kritischen Wert unter der F-Verteilung bestimmen:
+
+```{r}
+qf(0.95,    # alpha- Niveau von 5%
+   2,       # df inn
+   4)       # df err
+```
+
+Da die F-Prügröße nicht größer bzw. extremer als der kritische Wert ist, wird die $H_{0}$ beibehalten, d.h. es gibt keine Mittelwertsunterschiede in der Ausprägung der sozialen Angststörung, nachdem die Probanden der Expositonstherapie unterzogen wurden.
+
+## Die Sphärizitätsannahme und abschließende Bemerkungen
+
+Über die Voraussetzungen der normalen ANOVA hinaus wird bei der Messwiederholungs-ANOVA die Sphärizitätsannahme zusätzlich vorausgesetzt. Unter dem Begriff der Sphärizität versteht man, dass die Varianzen aller möglichen Differenzvariablen gleich sind. Die Differenzvariablen entstehen, wenn man die Differenz von zwei Messwerten der gleichen Person aus unterschiedlichen Faktorstufen bestimmt. In unserem Beispiel wäre es möglich, drei Differenzvariablen zu bestimmen (Vorher-Danach, Vorher-6 Monate später und Danach-6 Monate später). Wenn Sphärizität gegeben ist, haben alle Differenzvariablen die gleiche Varianz. Eine weitere Möglichkeit, Sphärizität zu überprüfen, ist, indem man die Korrelationen der Gruppenpaare miteinander vergleicht. Ist Sphärizität gegeben, müssten die Korrelation der Gruppenpaare gleich sein. Allgemein wird Sphärizität mit dem Mauchly-Test überprüft, wobei die $H_{0}$ aussagt, dass Sphärizität gegeben ist. Falls die Sphärizitätsannahme nicht gegeben ist, existieren entsprechende Korrekturverfahren wie der Greenhouse-Geiser-korrigierte F-Test bei welchem ein Greenhouse-Geiser-$\epsilon$ bestimmt wird, welcher mit den Freiheitsgraden multipliziert wird. Das Resultat sind höhere kritische Werte, damit der F-Test nicht zu liberal wird.
+
+Über die hier vorgestellten Verfahren der Varianzanalyse existieren weitere Verfahren, die auf den hier vorgestellten Grundlagen basieren. So ist es möglich, eine zweifaktorielle ANOVA aufzustellen, bei welchem ein Faktor ein between-subjects Faktor ist, während der andere Faktor ein within-subjects Faktor ist (Profilanalyse). Es ist auch möglich, sogenannte Kovariate in die Modellgleichung der ANOVA einzufügen, womit der Effekt der Faktoren durch die Kovariaten kontrolliert wird. Dies ermöglicht bei einer sinnvollen Wahl der Kovariaten eine realistische Schätzung der tatsächlichen Effekte des Faktors.

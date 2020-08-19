@@ -1,0 +1,205 @@
+# Einstichproben-t-Test und Beginn Zweistichproben-t-Test
+
+## Daten
+
+Im Folgenden werden wir den Einstichproben-t-Test anhand eines Beispiels behandeln. Stellt euch vor, ihr habt den Film [__,,Parasite''__](https://de.wikipedia.org/wiki/Parasite_(Film)) des südkoreanischen Regisseurs [__Bong Joon-ho__](https://de.wikipedia.org/wiki/Bong_Joon-ho) im Kino gesehen und fandet ihn super. Ihr würdet sogar meinen, dass der Film ein Meisterwerk ist: eine Auffassung, die scheinbar auch von der Allgemeinheit vertreten wird. Nun möchtet ihr wissen, ob eure fünf engsten FreundeInnen die gleiche Meinung teilen oder sich in ihrer Einstellung zum Film ,,Parasite'' von der restlichen menschlichen Population unterscheiden. Statt wie ein normaler Mensch zu fragen und es dabei zu belassen, erfasst ihr die Einstellung eurer FreundenInnen zum Film auf einer Skala von 1-100 und erhält folgende Werte:
+
+FreundIn (m)  | Einstellung zum Film ,,Parasite'' (x)
+------------- | --------------------------------------
+1             | 47
+2             | 88
+3             | 65
+4             | 98
+5             | 60
+
+Wir gehen davon aus, dass in der Population die Einstellung zum Film bei $\mu_{0}=90$ liegt und normalverteilt ist. Ihr vermutet, dass es einen Unterschied zwischen euren Freunden und der Allgemeinheit gibt.
+
+In diesem Sinne formuliersen wir die beiden statistischen Hypothesen:
+
+(I) $H_{0}$: Es gibt __keinen__ Unterschied zwischen euren FreundenInnen und der Allgemeinheit in der Einstellung zum Film ,,Parasite'' ($\mu=\mu_{0}$)
+
+(II) $H_{0}$: Es gibt __einen__ Unterschied zwischen euren FreundenInnen und der Allgemeinheit in der Einstellung zum Film ,,Parasite'' ($\mu\neq\mu_{0}$)
+
+
+
+## Einstichproben-t-Test
+
+
+### Standardfehler und Teststatistik
+
+Das Problem beim Einstichproben-z-Test ist der Umstand, dass er bekannte Populationsvarianzen zur Berechnung der Standardfehler voraussetzt. Ist dies nicht gegeben, müssen wir die Populationsvarianz $\sigma_{x}^2$ aus den Daten schätzen und diesen Schätzer der Populationsvarianz $\hat{\sigma}_{x}^2$  nutzen, um den Standardfehler von $\overline{X}$ zu schätzen. Die Formel zur Bestimmung des Populationsvarianzsschätzers haben wir bereits in der letzten Sitzung behandelt. Den geschätzten Standardfehler bestimmt man mit der folgenden Formel: $\hat{\sigma}_{\overline{X}}=\sqrt{\frac{\hat{\sigma}_{X}^2}{n}}=\sqrt{\frac{s_{X}^2}{n-1}}$
+
+Im Bezug zu unserem Beispiel würden wir diese Größen folgendermaßen bestimmen (in R):
+
+```{r}
+data<- c(47,88,65,98,60)
+mean<- mean(data)
+mean
+mu<- 90
+n<- length(data)
+n
+
+### Schätzer der Populationsvarianz
+
+var<- var(data)
+var
+
+### geschätzter Standardfehler
+
+se<- sqrt(var/n)
+se
+```
+
+Standardisiert man die Abweichung unseres empirischen Mittelwerts $\overline{x}=71.6$ vom Populationsmittelwert $\mu_{0}=90$ am geschätzten Standardfehler $\hat{\sigma}_{\overline{X}}$ erhält man eine Prüfgröße t, welche einer t-Verteilung folgt. Für unseren konkrten Mittelwert $\overline{X}$ erhält man also einen t-Wert, den man mit einem kritischen t-Wert vergleichen kann. Diese t-Teststatistik berechnet man folgendermaßen: $t=\frac{\overline{X}-\mu_{0}}{\hat{\sigma}_{\overline{X}}}$
+
+Im Hinblick auf unser Beispiel würden wir folgenden t-Wert erhalten (in R):
+
+```{r}
+diff<- mean-mu
+diff
+t<- diff/se
+t
+```
+
+Bevor wir diesen t-Wert genauer interpretieren wäre es sinnvoll, uns ein grundlegendes Verständnis für die t-Verteilung und der Freiheitsgrade anzueignen.
+
+### t-Verteilung und Freiheitsgrade
+
+Da wir die exakte Populationsvarianz der Variable x nicht kennen, sind wir dazu gezwungen, diese aus den Daten zu schätzen. Dieser Populationsvarianzschätzer wird dann zur Schätzung des Standardfehlers genutzt. Durch die Nutzung des geschätzten Standardfehlers resultiert durch die Standardisierung eine t-Verteilung, die nicht mehr einer exakten Normalverteilung folgt. Besonders in den Extrembereichen, welche für unsere inferenzstatistischen Tests von besonderer Relevanz sind, unterscheiden sich die beiden Verteilungen voneinander. Man kann die gesamte t-Verteilung mit einer Größe modellieren: den __Anzahl an Freiheitsgraden__ der Prüfgröße. Die Freiheitsgrade einer Prüfgröße wird wie folgt definiert: die Anzahl von Komponenten, die bei ihrer Berechnung frei variieren können. Folglich stellt man sich bei den Freiheitsgraden folgende Frage: Wie sehr können die Komponenten meiner Prüfgröße variieren, bis das Ergebnis der Prüfgröße feststeht? In diesem Sinne beziehen sich die Freiheitsgrade auf die Daten, welche wir erhoben haben.
+
+Veranschaulichen wir uns diese Definition an dem Mittelwert und der Varianz: Bei der Formel für den Mittelwert haben wir die einzelnen Messwerte der Merkmalsträger als Komponenten sowie die Stichprobengröße n als weitere Komponente. Insgesamt haben wir also n Merkmalsträger + 1 Komponenten. Da die Stichprobengröße bei der Berechnung des Mittelwerts bereits feststeht und diese nicht variieren kann, haben wir nur noch $n+1-1=n$ Freiheitsgrade: die Messwerte der Merkmalsträger können frei variieren und erst wenn alle Messwerte erfasst wurden, steht das Ergebnis für den Mittelwert fest.
+
+Bei der Formel für die Varianz haben wir $n+2$ Komponenten: (1) erneut die einzelnen Messwerte der Merkmalsträger, (2) die Stichprobengröße n und (3) unseren empirischen Mittelwert $\overline{x}$. Die Stichprobengröße n und der Mittelwert stehen jedoch bereits fest und können nicht frei variieren. Insofern würde man meinen, dass die Varianz auch n Freiheitsgrade hat. Dies ist jedoch __nicht__ der Fall, da nicht alle Messwerte frei variieren können. Der Grund hierfür ist die Eigenschaft des Mittelwerts, dass die Summe aller Messwertabweichungen vom Mittelwert  0 ergibt ($\sum_{m=1}^{n}(x-\overline{x})=0$). Wegen dieser Eigenschaft verfügt die Varianz nur über $n-1$ Freiheitsgrade, da der letzte Messwert dafür sorgt, dass die Differenz 0 ergibt. Wenn man also $n-1$ Messwerte kennt, steht das Ergebnis für die Varianz fest.
+
+Man kann sich diesen Umstand an unserem Beispiel leicht veranschaulichen: Stellen wir uns vor, wir möchten die Varianz unserer Messwerte berechnen. Uns fehlt jedoch der fünfte Messwert 60. Wir wissen lediglich die Stichprobengröße $n=5$ und den Mittelwert $\overline{x}=71.6$. Da wir diese beiden Komponente und die ersten vier Messwerte ($47,88,65,98$) kennen, können wir die die Varianz trotzdem berechnen, da wir __den fünften Messwert durch die Eigenschaft des Mittelwerts ganz einfach bestimmen können__. Wenn wir die Differenz der vier Messwerte vom Mittelwert aufsummieren erhalten wir $11.6$. Folglich muss der fünfte uns zurzeit noch fehlende Messwert um $-11.6$ vom Mittelwert abweichen, damit die Summe der Messwertabweichungen gleich 0 ergibt. Wenn wir $71.6-11.6$ berechnen erhalten wir unseren fünften Messwert: 60. Hieran erkennt man, dass die Varianz nur $n-1$ Freiheitsgrade hat, da der n-te Messwert durch die anderen Messwerte eindeutig bestimmt werden konnte und nicht frei variieren kann.
+
+Jetzt stellt sich natürlich folgende Frage: Wie viele Freiheitsgrade hat die t-Prüfgröße?
+
+Aus der Formel für die Teststatistik ist ersichtlich, dass nur die Messwerte der Merkmalsträger, aus denen der Stichprobenmittelwert berechnet und sein Standardfehler geschätzt wird frei variieren können. Bei der Berechnung des Standardfehlers geht jedoch ein Freiheitsgrad verloren, da beim t-Test dieser aus den empirischen Daten / der empirischen Standardabweichung geschätzt wird und diese $n-1$ Freiheitsgrade hat. Folglich hat der t-Test  auch $n-1$ Freiheitsgrade.
+
+###  Signifikanzprüfung
+
+Es gibt- wie immer -mehrere Möglichkeiten, die Signifikanz einer Prüfgröße zu überprüfen. Im Folgenden gehen wir auf zwei Möglichkeiten in R ein (wir testen auf einem $\alpha$-Fehlerniveau von 5%):
+
+(I) Wir berechnen den p-Wert der Prüfgröße mit dem pt() Befehl. Wichtig hierbei ist, im Befehl auch die Anzahl an Freiheitsgraden anzugeben. Da wir ungerichtet testen, wird der p-Wert der Prüfgröße verdoppelt (In der nächsten Sitzung werden wir besprechen, warum dies gemacht wird.)
+
+```{r}
+2* pt(t,4)
+```
+
+Da unser p-Wert größer als 0.05 ist, ist die t-Teststatistik nicht signifikant und die $H_{0}$ konnte nicht verworfen werden.
+
+(II) Wir bestimmen den kritischen t-Wert unter der t-Verteilung mit dem qt() Befehl und vergleichen unsere t-Teststatistik mit dem kritischen Wert. Da wir ungerichtet testen, geben wir einen Quantilwert von .975 an ($1-\frac{\alpha}{2}$) und vergleichen ihn mit dem __Betrag der Teststatistik__.
+
+```{r}
+qt(.975,4)
+```
+
+Da unsere Teststatik nich größer ist als der kritische Wert, ist diese nicht signifikant. Wir gehen weiterhin von der $H_{0}$  bzw. dass eure FreundeInnen sich in ihrer Einstellung zum Film ,,Parasite'' nicht von der Allgemeinheit unterscheiden, aus.
+
+### Konfidenzintervall
+
+Da wir in unserem Beispiel die Populationsstandardabweichung nicht kennen und den t-Test zur Signifizanzprüfung genutzt haben, nutzen wir auch die Quantile der t-Verteilung und den geschätzten Standardfehler zur Bestimmung der Intervallgrenzen:
+
+
+$\overline{X}\pm \hat{\sigma}_{\overline{X}}\cdot t_{(1-\frac{\alpha}{2})}$
+
+
+Für unser Beispiel würden sich folgende Intervallgrenzen ergeben:
+
+
+Untergrenze: $\overline{X}- \hat{\sigma}_{\overline{X}}\cdot t_{(1-\frac{\alpha}{2})}=71.6-9.35\cdot 2.78=45.61$
+
+Obergrenze: $\overline{X}+ \hat{\sigma}_{\overline{X}}\cdot t_{(1-\frac{\alpha}{2})}=71.6+9.35\cdot 2.78=97.59$
+
+Zweiseitiges 95% Konfidenzintervall: [45.61;95.59]
+
+__Anmerkung__: Man kann auch anhand der Konfidenzintervalle erkennen, dass der empirische Befund sich nicht signifikant vom Populationsmittelwert 90 unterscheidet, da der Wert 90 selbst im Intervall liegt.
+
+Einseitige Konfidenzintervalle bestimmt man folgendermaßen:
+
+
+$\overline{X}+ \hat{\sigma}_{\overline{X}}\cdot t_{(1-\alpha)}$
+
+
+
+$\overline{X}- \hat{\sigma}_{\overline{X}}\cdot t_{(1-\alpha)}$
+
+
+### Exkurs: Wenn die Daten zur Signifikanzbestimmung gegeben sind
+
+Wir haben in den vorangegangenen Abschnitten die einzelnen Komponenten zur Bestimmung der Prüfgröße t händisch in R berechnet. Sind die Daten zur Signifikanzbestimmung jedoch gegeben, kann man den Befehl __t.test()__ nutzen, um den Einstichproben-t-Test durchzuführen:
+
+```{r}
+t.test(data,  # Der Vektor unserer Variable, deren Signifikanz wir bestimmen wollen
+       mu=90, # Populationsparameter unter der Nullhypothese, gegen den wir testen
+       alternative='two.sided', # Wir definieren, ob wir gerichtet oder ungerichtet testen
+       conf.level=.95)  # Hier wird angegeben, welches Konfidenzintervall bestimmt wird
+```
+
+Ihr mögt euch vielleicht jetzt denken ,,Wenn man mit so einem einfachen Befehl den ganzen händischen Weg umgehen kann, warum zeigst du es uns dann in R?''. Die Antwort ist relativ simpel: Man kann den t.test() Befehl in R nur dann sinnvoll einsetzen, wenn uns die Daten zur Verfügung gestellt werden. Wenn uns jedoch die Daten fehlen und wir stattdessen nur die deskriptiven Werte erhalten, sind wir dazu gezwungen, den Test händisch in R zu bestimmen.
+
+__Anmerkung__: In Abschnitt 2.3) haben wir den p-Wert zur Bestimmung der Signifikanz verdoppelt, weil wir ungerichtet getestet haben. __Im t.test Befehl verdoppelt R auch den p-Wert in Abhängigkeit davon, ob wir gerichtet oder ungerichtet testen__. Wir haben beim obigen Verfahren einen p-Wert von .1205 erhalten. Würden wir jedoch die gleichen Daten nehmen und gerichtet testen (also für das alternative Element  'less' definieren, da unser t-Wert negativ ist), erhalten wir folgenden p-Wert:
+
+```{r}
+t.test(data,
+       mu=90,
+       alternative='less',
+       conf.level=.95)
+```
+
+Die Intervallgrenzen ändern sich in diesem Sinne natürlich auch.
+
+## Zweistichproben-t-Test
+
+###  Einführung
+
+Bisher haben wir immer nur eine Stichprobe gezogen und diese gegen einen bereits gegebenen Populationsparameter getestet, um eine signifikante Abweichung zu bestimmen. In der psychologischen Forschung möchte man jedoch auch die Signifikanz der Unterschiedlichkeit zweier Stichproben bestimmen. Ein klassisches Beispiel hierfür wären Geschlechterunterschiede: ,,Unterscheiden sich Männer und Frauen im Hinblick auf ihre Lebenszufriedenheit?'' wäre eine solche Frage. In diesem Fall ergibt es Sinn, zwei unterschiedliche Stichproben - eine Frauen- und eine Männerstichprobe- zu erheben und ihre Statistiken gegeneinander zu testen. Für Mittelwerte wurden eine Vielzahl solcher inferenzstatistischen Verfahren entwickelt, wobei wir im Folgenden uns einen solchen Test anschauen: den Zweistichproben-t-Test für unabhängige Stichproben.
+
+Was sind unabhängige Stichproben? Man spricht von zwei unabhängigen Stichproben, wenn ein Messwert in der ersten Stichprobe in keinster Weise von einem Messwert in der zweiten Stichprobe beeinflusst wird (und umgekehrt). Falls diese Voraussetzung nicht gegeben ist, verwendet man alternative Verfahren zur Signifikanzbestimmung.
+
+### Hypothesenformulierung und Teststatistik
+
+Die statistischen Hypothesenpaare formuliert man beim Zweistichproben-t-Test analog zum Einstichproben-t-Test. Der einzige Unterschied ist, dass wir im Folgenden vom Erwartungswert der ersten Stichprobe $\mu_{1}$ und dem Erwartungswert der zweiten Stichprobe $\mu_{2}$ sprechen.
+
+Die __ungerichteten Hypothesenpaare__ formuliert man folgendermaßen:
+
+
+$H_{0}$: $\mu_{1}= \mu_{2}$   bzw.  $H_{0}$: $\mu_{1}- \mu_{2}= 0$
+
+
+Inhaltlich: Die Populationsmittelwerte der beiden Stichproben unterscheiden sich nicht. Folglich ergibt die Differenz der Populationsmittelwerte 0.
+
+
+$H_{1}$: $\mu_{1}\neq \mu_{2}$   bzw.  $H_{1}$: $\mu_{1}- \mu_{2}\neq 0$
+
+
+Inhaltlich: Die Populationsmittelwerte der beiden Stichproben unterscheiden sich. Folglich ergibt die Differenz der beiden Mittelwerte einen Wert ungleich 0.
+
+Die __gerichteten Hypothesenpaare__ formuliert man folgendermaßen:
+
+
+$H_{0}$: $\mu_{1}\ge \mu_{2}$   bzw.  $H_{1}$: $\mu_{1}- \mu_{2}\ge 0$
+
+
+Inhaltlich: Die Populationsmittelwerte der beiden Stichproben unterscheiden sich nicht oder der Populationsmittelwert $\mu_{1}$ ist größer als der Mittelwert $\mu_{2}$. Folglich ergibt die Differenz der beiden Mittelwerte einen Wert ungleich oder größer 0.
+
+$H_{0}$: $\mu_{1}< \mu_{2}$   bzw.  $H_{1}$: $\mu_{1}- \mu_{2}< 0$
+
+
+Inhaltlich: Der Populationsmittelwert $\mu_{1}$ ist kleiner als der Populationsmittelwert $\mu_{2}$. Folglich ergibt die Differenz der beiden Populationsmittelwerte einen Wert kleiner 0.
+
+Anmerkung: Die gerichteten Hypothesen können auch umgekehrt formuliert werden ($\mu_{1}>\mu_{2}$).
+
+#### Teststatistik
+
+Beim Zweistichproben-t-Test interessiert uns also, ob zwei Stichprobenmittelwerte sich signifikant voneinander unterscheiden. Dies erreicht man, indem man die __Mittelwertsdifferenz bildet und auf ihre Signifikanz überprüft__. Ist die Mittelwertsdifferenz signifikant, bedeutet dies, dass die beiden Stichprobenmittelwerte sich signifikant voneinander unterscheiden. Ist die Differenz nicht signifikant, unterscheiden sich die Stichprobenmittelwerte nicht signifikant voneinander. In der Teststatistik schlägt sich diese Logik nieder:
+
+
+$t=\frac{(\overline{x}_{1}-\overline{x}_{2})-(\mu_{1}-\mu_{2})}{\hat{\sigma}_{(\overline{x}_{1}-\overline{x}_{2})}}$
+
+
+Wir testen also, ob sich unsere empirische Mittelwertsdifferenz von der zu erwartenden Populationsmittelwertsdifferenz signifikant unterscheidet. Der Erwartungswert der t-Verteilung ist dementsprechend nicht mehr ein Mittelwert $\mu$ (wie es beim Einstichproben-t-Test der Fall war), sondern die Populationsmittelwertsdifferenz $\mu_{1}-\mu_{2}$. Der Standardfehler, welcher die Standardabweichung unserer Verteilung ist, repräsentiert nicht mehr die Unsicherheit der Schätzung des Populationsmittelwerts (wie es beim Einstichproben-t-Test der Fall war), sondern die Unsicherheit in der Schätzung der Mittelwertsdifferenz. Da die zu erwartende Mittelwertsdifferenz in der Population unter der Nullhypothese 0 ergibt, kürzt sich die Fomel der Prüfgröße zu:
+
+
+$t=\frac{\overline{x}_{1}-\overline{x}_{2}}{\hat{\sigma}_{(\overline{x}_{1}-\overline{x}_{2})}}$

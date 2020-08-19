@@ -1,0 +1,140 @@
+# Kontingenztabellen
+
+
+
+## Einführung: $\chi^2$-Tests für kategoriale Variablen
+
+Im Folgenden Abschnitt werden zwei Testverfahren vorgestellt, die man beim Testen kategorialer Variablen heranzieht: Der $\chi^2$-Unabhängigkeitstest und der $\chi^2$-Anpassungstest.
+Der konkrete Unterschied zwischen den beiden Testverfahren liegt darin, welche Hypothese überprüft wird. Beim $\chi^2$-Unabhängigkeitstest wird überprüft. ob __zwei__ kategoriale Variablen statistisch voneinander abhängig sind oder nicht bzw. ob es einen Zusammenhang zwischen den beiden Variablen gibt. Im Gegensatz dazu wird beim $\chi^2$-Anpassungstest überprüft, ob die Daten __einer__ kategorialen Variable aus einer theoretischen Verteilung stammt, deren Proportionen (Wahrscheinlichkeiten der verschiedenen Kategorien) durch den Anwender definiert wird. In der praktischen Anwendung der beiden Verfahren, die wir im folgenden behandeln werden, wird der Unterschied - hoffentlich - ersichtlich.
+
+## $\chi^2$-Anpassungstest
+
+Beim $\chi^2$-Anpassungstest wird überprüft, ob die Daten einer kategorialen Variable einer vom Anwender definierten Verteilung folgt oder nicht. Im Hinblick auf die Null-und Alternativhypothese bedeutet dies folgendes:
+
+$H_{0}$: Die Daten der kategoriale Variable folgt der vom Anwender definierten theoretischen Verteilung.
+
+$H_{1}$: Die Daten der kategoriale Variable folgt der vom Anwender definierten Verteilung __nicht__.
+
+An einem konkreten Beispiel würde dies folgendermaßen bedeuten: Stellt euch vor, ihr seid ein vielseitig interessierter Meteorologe. Wie der durchschnittliche Mensch verspürt auch ihr einen tiefen Hass für Montage. In den letzten Wochen werdet ihr das Gefühl nicht los, dass es an Montagen öfters regnet als an allen anderen Tagen in der Woche. Scheint Mutter Natur auch Montage zu hassen? Um dieser Frage auf den Grund zu gehen, erhebst du für das ganze Jahr jeden Tag, an dem es geregnet hat, in Abhängigkeit vom Wochentag und erhälst folgende Häufigkeitstabelle (Disclaimer: Die folgenden Daten sind fiktiv. Leider regnet es auch an Sonntagen.):
+
+|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|
+|------|-------|---------|---------|--------|-------|-------|
+| 56   | 34    |     40  |  49     |  30    |  51   |  0    |
+
+Unser gesunder Menschenverstand würd meinen, dass der Wochentag keinen Einfluss auf die Wahrscheinlichkeit, dass es an dem Tag regnen wird, hat. Deshalb testest du die Daten deiner kategorialen Variable (Anzahl regnerischer Tage in Abhängigkeit vom Wochentag) gegen die theoretische Verteilung, bei welchem die Regenwahrscheinlichkeit über alle Wochentage hinweg unverändert bleibt (Gleichverteilung). Für unser Beispiel würde dies folgendes bedeuten: An jedem Tag liegt die Wahrscheinlichkeit, dass es regnen wird, bei $\frac{1}{7}$. Unsere Hypothesen würden für dieses Beispiel folgendermaßen lauten:
+
+$H_{0}$: Die Wahrscheinlichkeit, dass es regnen wird, ist über die Wochentage hinweg rein zufällig verteilt bzw. an jedem Wochentag gleich wahrscheinlich.
+
+$H_{1}$_ Die Wahrscheinlichkeit, dass es regnen wird, ist nicht rein zufällig über die Wochentage verteilt.
+
+Zur Überprüfung der Hypothese bestimmt man eine $\chi^2$-Prüfgröße nach folgender Formel:
+
+
+$$\chi^2=N\sum_{j=1}^{J}\frac{(P_{j}-\pi_{j})^2}{\pi_{j}}$$
+
+Für alle Wochentage haben wir bereits $\pi_{j}$ bestimmt, nämlich $\frac{1}{7}$. Um $P_{j}$ zu bestimmen müssen wir lediglich die Besetzungszahl in der jeweiligen Zelle durch die Stichprobengröße teilen, also $n_{j}/N$ rechnen. Für die einzelnen Wochentage würden wir folglich folgende Wahrscheinlichkeiten $P_{j}$ erhalten:
+
+|      | Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Gesamt
+|------|-------|---------|---------|--------|-------|-------|-------|------
+|$n_{j}$| 56   | 34     |     30  |  39     |  10    |  31   |  0    | 200
+|$P_{j}$| 0.28 | 0.17    |  0.15  |  0.195   | 0.05  | 0.155 | 0     | 1
+
+Nun können wir die $\chi^2$-Prfgröße des Anpassungstest berechnen:
+
+$\chi^2=200\cdot (\frac{(0.28-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0.17-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0.15-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0.195-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0.05-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0.155-\frac{1}{7})^2}{\frac{1}{7}}+\frac{(0-\frac{1}{7})^2}{\frac{1}{7}})=43.52$
+
+Den kritischen $\chi^2$-Wert zur Überprüfung der Signifikanz unserer Prüfgröße kann man entweder aus einer Tabelle herauslesen oder - deutlich einfacher - mit Hilfe des Befehls qchisq(). Der $\chi^2$-Anpassungstest hat $J-1$ Freiheitsgrade, wobei J die Anzahl der Kategorien entspricht (in unserem Fall also $df=7-1=6$):
+
+```{r}
+qchisq(0.95,
+       6)
+```
+
+Da die $\chi^2$-Teststatistik extremer als der kritische Wert ist, wird unter einem $\alpha$-Fehlerniveaus von 5% die $H_{0}$ verworfen, d.h. scheinbar ist die Wahrscheinlichkeit, dass es an einem Wochentag regnet, nicht gleichwahrscheinlich. __Achtung__: Aus unserer Testung ist es nicht möglich, abzuleiten, dass es an Montagen mit einer höheren Wahrscheinlichkeit regnet als an anderen Wochentagen. Zur Überprüfung dieser Hypothese müsste man spezifischere Proportionen definieren. In unserem Fall können wir nur sagen, dass die Wahrscheinlichkeitsverteilung nicht der Gleichverteilung folgt.
+
+## $\chi^2$-Unabhängigkeitstest
+
+### Einführung
+
+Beim $\chi^2$-Unabhängigkeitstest wird überprüft, ob zwei kategoriale Variablen statistisch unabhängig voneinander sind oder nicht. Den Begriff der statistischen Unabhängigkeit haben wir bereits einmal behandelt, jedoch fassen wir die Voraussetzungen hier kurz zusammen. Zwei Variablen sind dann statistisch unabhängig, wenn gilt:
+
+$P(A/B)=P(A)$, $P(B/A)=P(B)$ und $P(A\cap B)=P(A)\cdot P(B)$
+
+Folglich sind die zwei Variablen unabhängig voneinander, wenn sie sich in ihren bedingten Wahrscheinlichkeiten in keinster Weise beeinflussen. Als Konseuenz dafür ist es möglich, die Wahrscheinlichkeit der Schnittmenge der beiden Variablen als das Produkt ihrer einzelnen Wahrscheinlichkeiten zu berechnen. Die Null- und Alternativhypothese des Tests sehen allgemein folgendermaßen aus:
+
+$H_{0}$: Die beiden Variablen sind unabhängig voneinander.
+
+$H_{1}$: Die beiden Variablen sind abhängig voneinander.
+
+Im Folgenden wird der $\chi^2$-Unabhängigkeitstest an einem Beispiel berechnet.
+
+### Beispiel
+
+Stellen wir uns vor, wir interessiern uns für den Zusammenhang zwischen der Gewichtsklasse einer Person und ihrem Neurotizismus. Dafür haben wir bei $n=100$ Menschen folgende Aspekte erhoben. Als erstes haben wir ihr Gewicht erfasst und sie in eine von drei Gewichtskategorien platziert: Untergewichtig, Normalgewichtig und Übergewichtig. Hierbei wurde geachtet, dass das Gewicht der Person keine Konsequenz gesundheitlicher Schwierigkeiten darstellt. Die Begriffe für die Kategorien werden in der Forschung häufig genutzt und reflektieren keine positive oder negative Bewertung der Gewichtsklasse. Weiterhin wurde mittels eines Fragebogens der Neurotizismus der Probanden erfasst, woraufhin sie in eine von zwei Kategorien platziert wurden: unterdurchschnittlich oder überdurchschnittlich (kein Proband hatte eine perfekt durchschnittliche Ausprägung). Das Resultat dieser Erhebung ist folgende Tabelle:
+
+|                   |   Gewichtsklasse               |                       |                      | 
+|-------------------|--------------------------------|-----------------------|----------------------|-------------------
+|                   |  Untergewicht                  | Normalgewicht         | Übergewicht          | Summe
+| Unterdurchschnittlich N. |  5                      |  35                   |  10                  | 50
+| Überdurchschnittlich N.  | 15                       | 15                   | 20                    | 50
+| Summe            | 20 | 50  | 30| 100
+
+Für unser Beispiel würden die Hypothesen lauten:
+
+$H_{0}$: Es besteht kein statistischer Zusammenhang zwischen der Gewichtsklasse und dem Neurotizismus einer Person.
+
+$H_{1}$: Es besteht ein statistischer Zusammenhang zwischen der Gewichtsklasse und dem Neurotizismus einer Person.
+
+Wir können die $\chi^2$-Prüfgrößer mit Hilfe folgender Formel bestimen:
+
+$\chi^2=\sum \frac{(fo-fe)^2}{fe}$ mit $fe=\frac{rowsum+columnsum}{N}$
+
+Bei der Formel steht $fe$ für denjenigen Zellenwert, welchen man bei Unabhängigkeit der beiden Variablen erwarten würde. Folglich wird beim Test die quadrierte Differenz zwischen der tatsächlichen Zellenbesetzung und der erwarteten Zellenbesetzung berechnet und auf die Erwartung relativiert. Die erwartete Zellenbesetzung erhält man, wenn man die Spalten- und Zeilensumme der jeweiligen Zelle miteinander multipliziert und im Anschluss an der Gesamtstichprobengröße relativiert. Im Folgenden wird dies beispielhaft für die erste Zelle $x_{11}$ berechnet. Die tatsächliche Zellenbesetzung liegt bei 5, mit einer Zeilensumme von 50 und einer Spaltensumme von 20. Die erwartete Zellenbesetzung lautet folglich:
+
+$fe_{11}=\frac{50\cdot 20}{100}=10$
+
+Unter der Annahme der Unabhängigkeit der beiden Variablen würde man in der Zelle eine Besetzungszahl von 10 erwarten. Wenn wir den Erwartungswert für alle Zellen berechnen erhalten wir folgendes Ergebnis (in Klammern):
+
+|                   |   Gewichtsklasse               |                       |                      | 
+|-------------------|--------------------------------|-----------------------|----------------------|-------------------
+|                   |  Untergewicht                  | Normalgewicht         | Übergewicht          | Summe
+| Unterdurchschnittlich N. |  5 (10)                     |  35   (25)                |  10   (15)               | 50
+| Überdurchschnittlich N.  | 15 (10)                      | 15   (25)               | 20      (15)              | 50
+| Summe            | 20 | 50  | 30| 100
+
+Mit diesen Kenntnissen können wir nun die $\chi^2$-Prüfgröße berechnen:
+
+$\chi^2=\frac{(5-10)^2}{10}+\frac{(15-10)^2}{10}+\frac{(35-25)^2}{25}+\frac{(15-25)^2}{25}+\frac{(10-15)^2}{15}+\frac{(20-15)^2}{15}=16.33$
+
+Der $\chi^2$-Unabhängigkeitstest folgt logischerweise einer $\chi^2$ Verteilung mit $df=(J-1)\cdot (K-1)$ Freiheitsgraden. Für unser Beispiel bedeutet dies: $df=(3-1)\cdot (2-1)=2$. Wir können den kritischen Wert für den Test auch in diesem Fall mit dem Befehl qchisq() bestimmen:
+
+```{r}
+qchisq(0.95,
+       2)
+```
+
+Da die $\chi^2$-Teststatistik extremer ist als der kritische Wert, wird mit einer Irrtumswahrscheinlichkeit von 5% die Nullhypothese verworfen d.h. die Gewichtsklasse und der Neurotizismus scheinen voneinander abhängig zu sein. Welche Zelle konkret signifikant von der zu erwartenden Zellenbesetzung abweicht, ist aus dem $\chi^2$-Test nicht ableitbar. Hierfür bedarf es der sogenannten standardisierten Residuen, die man heranziehen kann zur Überprüfung der einzelnen Zellen. Im ersten Semester haben wir die standardisierten Pearson Residuen bereits einmal behandelt, weshalb seine Definition aus dem Kapitel im Folgenden herauskopiert wird:
+
+### standardisierte Residuen
+
+Man kann mit den Pearon-Residuen die Abweichungen der tatsächlichen Zellenhäufigkeit von der zu erwarteten Zellenhäufigkeit mit folgender Formel quantifzieren:
+
+
+$\frac{(n_{ij}-e_{ij})}{\sqrt{e_{ij}}}$
+
+
+Das standardisierte Pearon-Residuum erhält man mit folgender Formel:
+
+
+$\frac{(n_{ij}-e_{ij})}{\sqrt{e_{ij}\cdot (1-\frac{n_{i\cdot}}{n})\cdot (1-\frac{n_{\cdot j}}{n})}}$
+
+
+Das standardisierte Pearon-Residuum folgt asymptotisch der Standardnormalverteilung. Folglich kann man die Signifikanz dieser Residuen unter der Standardnormalverteilung überprüfen: Falls das Residuum im Betrag extremer als 1,96 (bei einer ungerichteten Hypothese mit einem $\alpha$-Fehler von 0.05) ist, ist das Residuum signifikant bzw, die Abweichung der tatsächlichen Zellenhäufigkeit von der zu erwarteten Zellenhäufigkeit ist signifikant. Bei Herrn Kleins Folien steht, dass ab einem Betrag von 3 die Abweichung auffällig ist. Nach welchen Kriterien er sich auf die 3 festgelegt hat, weiß ich nicht (wahrscheinlich ist der p-Wert bei einem Wert von 3 einfach so gering, dass man es definitiv nicht mehr unter der Annahme der Unabhängigkeit beider Variablen erklären kann). Wir berechnen im Folgenden das standardisierte Pearson-Residuum beispiehaft an der Zelle $x_{13}$ der Tabelle und erhalten:
+
+$z_{13}=\frac{20-15}{\sqrt{15\cdot (1-\frac{50}{100})\cdot (1-\frac{30}{100})}}=2.18$
+
+Mit einer Irrtumswahrscheinlichkeit von 5% unter der Standardnormalverteilung wäre die Abweichung der tatsächlichen Zellenbesetzung von der zu erwartenden signifikant. Nach dem Kriterium von Herrn Klein wäre die Abweichung jedoch nicht auffällig.
+
+### Abschließende Bemerkung
+
+Der $\chi^2$-Unabhängigkeitstest ist geeignet bei der Überprüfung zweier nominalskalierter Variablen. Sie kann auch für ordinalskalierte, kategoriale Variablen eingesetzt werden, jedoch gibt es für diesen Fall auch ein Testverfahren, nämlich die Berechnung des Lambda-Koeffizienten. Bei der Berechnung des Lamba-Koeffizienten wird untersucht, wie sehr die Fehlerquote sich bei der Vorhersage einer Variablen y verringert, wenn man die Kategorienzugehörigkeit von der Variablen x bereits kennt, als wenn man lediglich über Randwahrscheinlichkeiten von y versucht, die Kategorienzugehörigkeit vorherzusagen. Deswegen spricht man bei Lambda auch von einem proportionalen Fehlerreduktionsmaß.

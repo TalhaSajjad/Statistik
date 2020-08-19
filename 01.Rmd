@@ -1,0 +1,150 @@
+# Skalenniveaus
+
+
+##  Die Erklärung des karthesischen Produkts
+
+>Definition des karthesischen Produkts: Das kartesische Produkt A × B zweier Mengen A und
+B ist die Menge aller geordneten Paare, deren
+erste Komponente Element in A und deren zweite
+Komponente Element in B ist.
+
+>Nehmen wir an, wir haben die folgende Menge U:
+
+
+![](Abbildungen/Menge.png)
+
+
+
+>Dann ist das karthesische Produkt U x U folgendermaßen aufgebaut:
+
+>U x U ={(Urs,Urs),(Urs,Hans),(Urs,Fritz),(Urs, Anna),(Urs,Frida),(Hans,Urs),(Hans,Hans),\newline (Hans,Fritz),(Hans,Anna),(Hans, Frida), (Fritz;Urs),(Fritz, Hans),(Fritz,Fritz),\newline (Fritz, Anna),(Fritz,Frida),(Anna,Urs),(Anna, Hans),\newline (Anna, Fritz), (Anna, Anna),(Anna,Frida),(Frida,Urs),(Frida, Hans),(Frida, Fritz),\newline (Frida, Anna),(Frida, Frida)}
+
+>Relationsvorschrift: ,, U hat das gleiche Geschlecht wie V''
+
+>Relation (Teilmenge des karthesischen Produkts, auf die die Relationsvorschrift zutrifft)
+
+![](Abbildungen/Relationsvorschrift.png)
+
+>Relevant für das Verständnis von Relationen
+
+## Die Nominalskala
+
+>Kernidee: Die Klassifikation von Personen
+
+>__I.) Das Repräsentationsproblem__
+
+>* beschäftigt sich mit der Frage, welche Anfoderungen eine Relation erfüllen muss, um zu einem Skalenniveau zu gehören.
+
+>* bei der Nominalskala müssen die Anforderungen der Äquivalenzrelation erfüllt werden
+
+>* sind die Anforderungen gegeben, spricht man bei den Klassen von Äquivalenzklassen
+
+> Eigenschaften der Äquivalenzklassen:
+
+>1.) Sie sind unabhängig voneinander bzw. disjunkt.
+
+>Wenn bei einer nominalskalierten Variable nach dem Lieblingssport gefragt wird, darf beispielsweise eine Option nicht Fußball und eine andere Option Ballsport sein, da diese sich überschneiden.
+
+>2.) __Jede__ Person aus einer für uns relevante Gruppe muss einer Äquivalenzklasse zuordenbar sein.
+
+>Wenn man bei einer Untersuchung nach dem Geschlecht fragt und versehentlich ,,weiblich'' als Option nicht angibt, wird eine Subgruppe von Merkmalsträgern durch das Design ausgeschlossen.
+
+>3.) Jede Person darf nur __einer__ Äquivalenzklasse zugeordnet werden.
+
+>Diese Eigenschaft ist beispielsweise nicht gegeben, wenn man eine Person nach seiner Nationalität fragt, da es Menschen mit mehreren Nationalitäten gibt.
+
+>Wenn eine Variable einer dieser Eigenschaften missachtet, ist diese __nicht__ nominalskaliert. Jedoch gibt es selbstverständlich Möglichkeiten, dieses Problem (in Abhängigkeit von der Situation) zu lösen .
+
+>NSM = [(U,$\approx$), ($\mathbb{R}$, =), h]
+
+>Der allgemeine Aufbau eines Skalenmodells: SM= [(empirische Relativ),(numerische Relativ), Homomorphismus]
+
+>__II.) Eindeutigkeitsproblem__
+
+>* beschäftigt sich mit der Frage, welche mathematischen Transformationen auf der jeweiligen Skala erlaubt sind.
+
+>Im Falle der Nominalskala: eineindeutige Transformationen
+
+> Unterschied zwischen einer eindeutigen und einer eineindeutigen Transformation:
+
+>eindeutig: Die Eindeutigkeit der Transformation geht nur in eine Richtung und ist nicht umkehrbar.
+
+![](Abbildungen/eindeutig.png)
+
+>eineindeutig: Die Eindeutigkeit der Transformation geht in beide Richtungen und ist umkehrbar.
+
+![](Abbildungen/eineindeutig.png)
+
+>__III.) Bedeutsamkeitsproblem__
+
+>* beschäftigt sich mit der Frage, welche Aussagen gültig sind in Abhängigkeit vom Skalenniveau der Variable.
+
+>Im Falle der Nominalskala: Aussagen über Gleichheit und Ungleichheit sind möglich.
+
+>Generelle Idee zur Bestimmung der Bedeutsamkeit von Aussagen: Wenn sich nach einer gültigen Transformation der Inhalt der Aussage ändert, ist diese nicht invariant.
+
+
+##Die Ordinalskala
+
+>* Kernidee: Aussagen über Gleichheit und Ungleichheit und Ordnung (Dabei kann man nicht genau definieren, wie groß der qualitative Unterschied ist.)
+
+
+>__I.) Repräsentationsproblem__
+
+>* bei der Ordinalskala müssen die Anforderungen der Äquivalenzrelation und der strengen Ordnungsrelation gegeben sein
+
+>* Zwei Elemente einer Menge U stehen entweder in einer Äquivalenzrelation (sie haben die gleiche Ausprägung) oder in der strengen Ordnungsrelation (Person A hat eine höhere/niedrigere Ausprägung als Person B)
+
+>OSM = [(U,$\approx$, >), ($\mathbb{R}$, =, >), h]
+
+>__II.) Eindeutigkeitsproblem__: monotone Transformation
+
+>* die Ordnung/ Reihenfolge der Variable muss nach der Transformation beibehalten werden. Die Größe des Unterschieds zwischen den Zahlenwerten ist irrelevant.
+
+>__III.) Bedeutsamkeitsproblem__: Aussagen über Gleichheit und Ungleichheit sowie Aussagen zu qualitativen Unterschieden sind gültig.
+
+## Kardinalskala
+
+>* die höheren Skalen fasst man unter den Begriff Kardinalskala zusammen, da ab der Intervallskala die Differenzen zwischen Merkmalsausprägungen einen interpretativen Wert haben.
+
+>* Anmerkung: Ab der Kardinalskala sind die Skalenmodelle und die Anforderungen an die Relation hochkomplex und werden im Folgenden nicht behandelt (sie werden im Eid, Gollwitzer auch nicht erwähnt und sind dementsprechend nicht Prüfungsrelevant.)
+
+### Intervallskala
+
+>__I.) Eindeutigkeitsproblem__: lineare Transformationen
+
+>* __WICHTIG__: Der Faktor bei der linearen Transformationen __muss__ größer als null sein. Wenn er negativ ist, wird die Ordnung innerhalb der Variable invertiert.
+
+>* Visuelle Darstellung, bei welcher man die Invertierung der Ordnung erkennen kann:
+
+![](Abbildungen/Intervallskala.png)
+
+>__II.) Bedeutsamkeitsproblem__: Aussagen zu Gleichheit und Ungleichheit, Ordnung und Gleichheit der Differenzen.
+
+>* die Verhältnisse von einzelnen Merkmalsausprägungen kann man bei intervallskalierten Variablen nicht bestimmen, da diese nicht über einen absoluten Nullpunkt verfügt.
+
+>* Definition eines absoluten Nullpunkts: Der untere Grenzwert einer Variable, welche nicht unterschritten werden kann.
+
+>* Bei den Temperaturen kann man dies beobachten:
+
+>$\frac{20°C}{10°C}\neq \frac {68°F}{50°F}$
+
+>* Jedoch kann man die Differenzen von Merkmalsausprägungen in ein Verhältnis zueinander setzen:
+
+>$\frac{50°C - 25°C}{50°C-37,5°C}=\frac{122°F-77°F}{122°F-99,5°F}=2$
+
+### Die Verhältnisskala
+
+>* verhältnisskalierte Variablen verfügen über einen absoluten Nullpunkt.
+
+>__I.) Eindeutigkeitsproblem__: Ähnlichkeitstransformation
+
+>__II.) Bedeutsamkeitsproblem__: Aussagen über Gleichheit und Ungleichheit, Ordnung, Gleichheit von Differenzen und das Verhältnis von Merkmalsausprägungen
+
+###  Absolutskala
+
+>* Eine absolutskalierte Variable zeichnet sich durch eine natürliche Maßeinheit aus. (Beispiel: Anzahl korrekt gelöster Aufgaben, die Anzahl der Geschwister etc.)
+
+>__I.) Eindeutigkeitsproblem__: Identitätstransformation
+
+>__II.) Bedeutsamkeitsproblem__: Aussagen über Gleichheit und Ungleichheit, Ordnung, Gleichheit von Differenzen, das Verhältnis von Merkmalsausprägungen und der absolute Wert von Merkmalsausprägungen

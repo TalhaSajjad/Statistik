@@ -1,0 +1,89 @@
+# McNemar Test
+
+## Einführung
+
+Man wendet den McNemar Test dann an, wenn Probanden nacheinander hinsichlich zwei dichotomer Variablen gemessen wurden: Es handelt sich hierbei also um eine Wiederholungsmessung. 
+
+Zur Veranschulichung des Verfahrens stellen wir uns folgendes Beispiel vor: Ihr wollt die Effektivität von CocaCola Werbung untersuchen und schauen, ob sich die Einstellung von Personen gegenüber CocaCola ändert. Als erstes fragt ihr Probanden, ob sie die Marke mögen oder nicht (dichotomes Antwortformat: ,,Ja, ich mag CocaCola'' oder ,,Nein, ich mag CocaCola nicht''). Danach präsentierst du den Probanden 10 Stunden CocaCola Werbung, und stellst ihnen daraufhin die gleiche Frage. Daraus resultiert folgende Vierfeldertafel:
+
+|        |  Nachher    |              |       |
+|--------|-------------|--------------|-------|
+|Vorher  | Ja          | Nein         |  Summe|
+| Ja     | 30($n_{11}$)|  11($n_{12}$)|  41   |       
+| Nein   | 20($n_{21}$)|  19($n_{22}$)| 39    |
+| Summe  | 50          |  30          |  80   |
+
+
+Die Nullhypothese des McNemar Tests besagt, dass der Anteil an Menschen, die CocaCola mögen sich zwischenn den zwei Messzeitpunkten nicht verändert hat ($H_{0}:\pi_{1}=\pi_{2}$). Im Bezug zu unserem Beispiel behauptet die Nullhypothese, dass sich die Anteile $\frac{50}{80}$ und $\frac{41}{80}$ nicht signifikant voneinander unterscheiden. Mit folgender Formel kann man dies überprüfen:
+
+
+
+$Z=\frac{n_{12}-n_{21}}{\sqrt{n_{12}+n_{21}}}$
+
+
+
+Für unser Beispiel würden wir folgendes Ergebnis erhalten: $Z=\frac{11-20}{\sqrt{11+20}}= -1.61$
+
+Da die Prüfgröße den Quantilen der Standardnormalverteilung folgt, kann man in einer z-Tabelle den p-Wert für die Prüfgröße bestimmen oder alternativ ihn mit einem bereits eingesehenen kritischen Wert vergleichen. Da wir ungerichtet testen liegt der kritische Wert bei einem $\alpha$-Fehlerniveau von 5% bei $-1.96$. Da unsere Prüfgröße diesen Wert nicht überschreitet ist sie nicht signifikant: Die CocaCola Werbung hat nicht zu einer signifikanten Veränderung der Einstellung zur Marke geführt. 
+
+__Anmerkung__: Der McNemar Test liefert nur dann zuverlässige Ergebnisse, wenn folgendes gilt: $n_{12}+n_{21}>20$ 
+
+## Konfidenzintervall für Anteilsdifferenz
+
+In der Praxis kann es des öfteren von Interesse sein, ein Konfidenzintervall für die Anteilsdifferenz ($\pi_{1}-\pi_{2}$) zu bestimmen. Glücklicherweise lässt sich dieses Intervall relativ unkompliziert bestimmen:
+
+
+
+$(\hat{\pi}_{1}-\hat{\pi}_{2})\pm z \cdot se$
+
+
+
+Den z-Wert kann man aus der Z-Tabelle entnehmen (in unserem Fall 1.96) und den Standardfehler se kann man mit folgender Formel berechnen:
+
+
+$se=\sqrt{\frac{(n_{12}+n_{21})-(n_{12}-n_{21})^2/n}{n}}$
+
+
+
+Für unser Beispiel würden wir folgenden Standardfehler erhalten:
+
+$se=\sqrt{\frac{(11+20)-(11-20)^2/80}{80}}=0.068$
+
+Mit diesem Standardfehler erhalten wir dementsprechend folgendes Konfidenzintervall:
+
+$(\frac{41}{80}-\frac{50}{80})\pm 1.96 \cdot 0.068= [-0.25,0.02]$
+
+Man kann bereits am Intervall erkennen, dass die Anteile sich nicht signifikant voneinander unterscheiden, da das Intervall den Wert null enthält.
+
+## Einfaches Testen einer Proportion
+
+Man kann nicht nur die Differenzen von Proportionen gegen null testen, sondern auch einzelne einfache Proportionen gegen einen beliebigen Wert $\pi_{0}$. Beispielsweise könnte man sich dafür interessieren, ob allgemein der Anteil an Personen, die die Videospielreiche [Final Fantasy](https://de.wikipedia.org/wiki/Final_Fantasy) mögen, signifikant von null oder einem anderen Wert abweicht. Stellen wir uns vor, wir haben an einer Stichprobe von 100 Personen festgestell, dass 45% der Befragten die Videospielreihe mögen. Nun möchten wir überprüfen, ob diese Proportion von $\pi=0.45$ signifikant von $\pi_{0}=0.2$ abweicht (den 0.2 Wert habe ich jetzt arbiträr ausgewählt. I.d.R. orientiert man sich natürlich nach dem aktuellen Forchungsstand.). Die Nullhypothese besagt, dass es keinen Unterschied zwischen den beiden Proportionen geben wird ($H_{0}: \pi=\pi_{0}$ bzw. $\pi=0.2$). Man kann diese Hypothese mit folgender Formel überprüfen:
+
+
+
+$z=\frac{\hat{\pi}-\pi_{0}}{se}$ mit $se=\sqrt{\pi_{0}\cdot (1-\pi_{0})/n}$
+
+
+
+Für unser Bespiel würden wir folgenden Standardfehler und z-Prüfgröße erhalten:
+
+$se=\sqrt{0.2\cdot 0.8/100}=0.04$ und $z=\frac{0.45-0.2}{0.04}=6.25$
+
+Da die Prüfgröße den Quantilen der Standardnormalverteilung folgt, kann man aus einer z-Tabelle den kritischen Wert entnehmen und ihn mit der Prüfgröße vergleichen. Bei einem $\alpha$-Fehlerniveau von 5% ist der zweiseitige kritische Wert bei 1.96. Da die Prüfgröße größer bzw. extremer als der kritische Wert ist, ist das Ergebnis signifikant: Personen scheinen anteilmäßig Final Fantasy mehr zu mögen als nur 20%.
+
+Für einfache Proportionen lässt sich auch ein Konfidenzintervall aufspannen:
+
+
+
+$\hat{\pi}\pm z\cdot se$ mit $se=\sqrt{\hat{\pi}\cdot (1-\hat{\pi})/n}$
+
+
+
+
+Für unser Beispiel würden wir folgende Ergebnisse erhalten:
+
+$se=\sqrt{0.45\cdot 0.55/100}=0.05$
+
+$0.45\pm 1.96 \cdot 0.05=[0.352,0.548]$
+
+Am Konfidenzintervall kann man die Signifikanz der Proportion erkennen, da die der Wert $0.2$, gegen den wir getestet haben, nicht im Intervall liegt.
